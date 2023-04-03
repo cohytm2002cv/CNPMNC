@@ -15,11 +15,10 @@ if ($conn->connect_error) {
 
 if (isset($_GET['Masp'])) {
   $Masp = $_GET['Masp'];
-  $sql = "SELECT * FROM SanPham where Masp=$Masp";
+  $sql = "SELECT * FROM SanPham, PhanLoai where Masp=$Masp and PhanLoai.MaLoai=SanPham.LoaiSP";
   $result = mysqli_query($conn, $sql);
   $rowDe = mysqli_fetch_row($result);
 }
-
 
 
 
@@ -55,21 +54,19 @@ if ($result->num_rows > 0) {
 }
 
 
+
 /////
 
 if (isset($_GET['Masp'])) {
   $Masp = $_GET['Masp'];
-  $sql = "SELECT * FROM Hinh where Masp=$Masp";
+  $sql = "SELECT * FROM Hinh where Masp=$Masp ";
   $result = mysqli_query($conn, $sql);
   $rowHinh= mysqli_fetch_row($result);
 }
 
 
-////
-// echo " <pre>";
-// var_dump($data);
-// echo " </pre>";
-// // die;
+
+
 
 ?>
 
@@ -140,13 +137,14 @@ if (isset($_GET['Masp'])) {
   </header>
   <div class="link">
     <div class="link-link">
-      <ul>
-        <li><a href="./Home.php">Trang chủ</a></li>
-        <span> ></span>
-        <li><a href="../IPhone/IPhone.html">IPhone</a></li>
-        <span> ></span>
-        <li><a href="../IPhone/chitiet.html">IPhone 14 Pro Max</a></li>
-      </ul>
+    <ul>
+            <li><a href="./Home.php">Trang chủ</a></li>
+            <span> ></span>
+            <li><a href="menu.php?MaLoai=<?= $rowDe[6] ?>"> <?php echo $rowDe[8] ?></a></li>
+            <span> ></span>
+            <li><a href="chitiet.php?Masp=<?= $rowDe[0] ?>"> <?php echo $rowDe[1] ?></a></li>
+
+        </ul>
     </div>
   </div>
   <!-- ------main-body--- -->
@@ -262,7 +260,7 @@ if (isset($_GET['Masp'])) {
               <a href="chitiet.php?Masp=<?= $value['Masp']; ?>".>
 
                 <div class="card">
-                  <img class="imgPhone" src="../img/iphone/ip1.jpeg">
+                  <img class="imgPhone" src= <?= $value['Hinhsp']; ?>>
                   <p class="NamePhone"><?= $value['Tensp']; ?></p>
                   <p class="price">
                     29.000.000d

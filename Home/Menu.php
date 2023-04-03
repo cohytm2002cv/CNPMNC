@@ -13,19 +13,6 @@ if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 
-  
-// $fp = @fopen('goc.php', "w");
-  
-// Kiểm tra file mở thành công không
-// if (!$fp) {
-//     echo 'Mở file không thành công';
-// }
-// else
-// {
-//     $data = " ";
-//     fwrite($fp, $data);
-// }
-// die;
 if (isset($_GET['MaLoai'])) {
   $MaLoai = $_GET['MaLoai'];
   $sql = "SELECT * FROM SanPham where loaisp=$MaLoai  " ;
@@ -46,16 +33,29 @@ if ($result->num_rows > 0) {
   echo "0 results";
 }
 
-
+// lấy tên loại ở link
+if (isset($_GET['MaLoai'])) {
+  $MaLoai = $_GET['MaLoai'];
+  $sql = "SELECT * FROM Phanloai where MaLoai=$MaLoai  " ;
+  $result = mysqli_query($conn, $sql);
+  $rowTenLoai = mysqli_fetch_row($result);
+}
 
 ////
-// echo " <pre>";
-// var_dump($data);
-// echo " </pre>";
-// // die;
+$sqli = "SELECT * FROM phanloai" ;
+$loai = $conn->query($sqli);
+
+$tl=array();
+
+if ($loai->num_rows > 0) {
+  while($rowl = $loai->fetch_assoc()) {
+      $tl[]=$rowl;
+  }
+} else {
+  echo "0 results";
+}
 
 ?>
-
 
 <html lang="en">
 
@@ -81,7 +81,6 @@ if ($result->num_rows > 0) {
 
   <link rel="stylesheet" href="../css/khuyenmai.css">
   <link rel="stylesheet" href="../css/email.css">
-
 
 
 
@@ -115,13 +114,12 @@ if ($result->num_rows > 0) {
     <a href="" class="logo"><i class="ri-home-fill"></i><span>logo</span></a>
 
     <ul class="navbar">
-      <li><a href="./IPhone.php" class="active">IPhone</a></li>
-      <li><a href="">IPad</a></li>
-      <li><a href="">Mac</a></li>
-      <li><a href="">Watch</a></li>
-      <li><a href="">Âm thnah</a></li>
-      <li><a href="">Phụ kiện</a></li>
-      <li><a href="">Khuyến mãi</a></li>
+    <?php foreach($tl as $key=>$value): ?>
+
+      <li><a href="Menu.php?MaLoai=<?= $value['MaLoai']; ?>". class="active"> <?= $value['TenLoai']; ?></a></li>
+    
+      <?php endforeach; ?>
+
     </ul>
 
     <div class="main">
@@ -140,9 +138,9 @@ if ($result->num_rows > 0) {
 <div class="link">
     <div class="link-link">
         <ul>
-            <li><a href="../Home.html">Trang chủ</a></li>
+            <li><a href="./Home.php">Trang chủ</a></li>
             <span> ></span>
-            <li><a href="../IPhone/IPhone.html">IPhone</a></li>
+            <li><a href="Menu.php?MaLoai=<?= $rowTenLoai[0] ?>"><?php echo $rowTenLoai[1] ?></a></li>
 
         </ul>
     </div>

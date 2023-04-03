@@ -139,7 +139,7 @@ if ($result->num_rows > 0) {
       <a href="./giohang.php" class="Cart">
         <i class="fa-solid fa-cart-shopping"></i>
       </a>
-      <a href="/Home/dangnhap.php" class="User"> <i class="fa-solid fa-user"></i></a>
+      <a href="./taikhoan.php" class="User"> <i class="fa-solid fa-user"></i></a>
       <div class="bx bx-menu" id="menu-icon"></div>
 
     </div>

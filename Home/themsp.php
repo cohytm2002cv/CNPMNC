@@ -43,6 +43,22 @@
             <th>trang thai:</th>
             <td><input id="TrangThai" type="text" name="TrangThai" value=""></td>
         </tr>
+        <tr>
+            <th>Ma IMG:</th>
+            <td><input id="MaIMG" type="text" name="MaIMG" value=""></td>
+        </tr>
+        <tr>
+            <th>Dia Chi IMG:</th>
+            <td><input id="DiaChi" type="text" name="DiaChi" value=""></td>
+        </tr>
+        <tr>
+            <th>Ten IMG:</th>
+            <td><input id="TenIMG" type="text" name="TenIMG" value=""></td>
+        </tr>
+        <tr>
+            <th>ma img:</th>
+            <td><input id="Masp2" type="text" name="Masp2" value=""></td>
+        </tr>
     </table>
     <button type="submit">Gửi</button>
 </form>
@@ -77,6 +93,11 @@ $Hinhsp =  $_POST['Hinhsp'];
 $SL=$_POST['SL'];
 $LoaiSP=$_POST['LoaiSP'];
 $TrangThai=$_POST['TrangThai'];
+$MaIMG=$_POST['MaIMG'];
+$DiaChi=$_POST['DiaChi'];
+$TenIMG=$_POST['TenIMG'];
+$Masp2 = $_POST['Masp2'];
+
 
 $sql = "SELECT *FROM Sanpham ";
 $result = $conn->query($sql);
@@ -89,13 +110,29 @@ if ($result->num_rows > 0) {
 } else {
   echo "0 results";
 }
+$sql = "SELECT *FROM Hinh ";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+  // output data of each row
+  while($row = $result->fetch_assoc()) {
+    echo "id: " . $row["MaIMG"]. " TenIMG: " . $row["TenIMG"]. " " . $row["DiaChi"].  "<br>";
+  }
+} else {
+  echo "0 results";
+}
 
 
 
 
+
+// $sql = "INSERT INTO Sanpham (Masp, Tensp, Giasp, Hinhsp, SL,LoaiSP,TrangThai)
+// VALUES ('$Masp', '$Tensp', '$Giasp','../img/IPad/Pro/$Hinhsp','$SL','$LoaiSP','$TrangThai')";
+
+
+// -----
 $sql = "INSERT INTO Sanpham (Masp, Tensp, Giasp, Hinhsp, SL,LoaiSP,TrangThai)
 VALUES ('$Masp', '$Tensp', '$Giasp','../img/IPad/Pro/$Hinhsp','$SL','$LoaiSP','$TrangThai')";
-
 
 if ($conn->query($sql) === TRUE) {
   echo "New record created successfully";
@@ -103,8 +140,16 @@ if ($conn->query($sql) === TRUE) {
   echo "Error: " . $sql . "<br>" . $conn->error;
 }
 
-// -----
 
+$sql = "INSERT INTO Hinh (MaIMG, DiaChi, Masp,TenIMG)
+VALUES ('$MaIMG','../img/IPad/Pro/$DiaChi','$Masp2','$TenIMG')";
+
+
+if ($conn->query($sql) === TRUE) {
+  echo "New record created successfully";
+} else {
+  echo "Error: " . $sql . "<br>" . $conn->error;
+}
 
 // //Lấy giá trị POST từ form vừa submit
 // 			$Masp = $_POST["Masp"];
