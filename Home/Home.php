@@ -1,9 +1,14 @@
 
 <?php
+
+
+
+
+
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "CNPM";
+$dbname = "DoAn";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password,$dbname);
@@ -13,8 +18,29 @@ if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 
+
+
+  
+// $fp = @fopen('goc.php', "w");
+  
+// Kiểm tra file mở thành công không
+// if (!$fp) {
+//     echo 'Mở file không thành công';
+// }
+// else
+// {
+//     $data = " ";
+//     fwrite($fp, $data);
+// }
+// die;
+
 //truyvan
-$sql = "SELECT * FROM SanPham where LoaiSP='1' limit 4 " ;
+
+
+
+// $MaL = $_GET['MaLoai'];
+
+$sql = "SELECT * FROM SanPham,TrangThai where LoaiSP='1' and  MaTT=TrangThai and Hinhsp not like ''  limit 4 " ;
 $result = $conn->query($sql);
 $Iphone=array();
 
@@ -27,8 +53,26 @@ if ($result->num_rows > 0) {
   echo "0 results";
 }
 
+$sqli = "SELECT * FROM phanloai" ;
+$loai = $conn->query($sqli);
+$tl=array();
+
+
+if ($loai->num_rows > 0) {
+  while($rowl = $loai->fetch_assoc()) {
+      $tl[]=$rowl;
+  }
+} else {
+  echo "0 results";
+}
+///
+// $sqlLoai="SELECT*FROM PhanLoai";
+// $kq = $conn->query($kq);
+// $TLoai=array();
+
+
 /////
-$sql = "SELECT * FROM SanPham  where LoaiSP = '3'" ;
+$sql = "SELECT * FROM SanPham,TrangThai where LoaiSP='2' and  MaTT=TrangThai and Hinhsp not like ''  limit 4 " ;
 $result = $conn->query($sql);
 $Ipad=array();
 
@@ -58,7 +102,7 @@ if ($result->num_rows > 0) {
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Trang Chu</title>
+  <title>IPhone</title>
   <link rel="stylesheet" href="./header.css">
   <link rel="stylesheet" href="./banner.css">
 
@@ -82,19 +126,17 @@ if ($result->num_rows > 0) {
     <a href="" class="logo"><i class="ri-home-fill"></i><span>logo</span></a>
 
     <ul class="navbar">
-      <li><a href="./IPhone/IPhone.html" class="active">IPhone</a></li>
-      <li><a href="">IPad</a></li>
-      <li><a href="">Mac</a></li>
-      <li><a href="">Watch</a></li>
-      <li><a href="">Âm thanh</a></li>
-      <li><a href="">Phụ kiện</a></li>
-      <li><a href="">Khuyến mãi</a></li>
+    <?php foreach($tl as $key=>$value): ?>
+      <li><a href="Menu.php?MaLoai=<?= $value['MaLoai']; ?>". class="active"> <?= $value['TenLoai']; ?></a></li>
+    
+      <?php endforeach; ?>
+
     </ul>
 
     <div class="main">
       <a href=""><i class="fa-solid fa-magnifying-glass"></i></a>
 
-      <a href="" class="Cart">
+      <a href="./giohang.php" class="Cart">
         <i class="fa-solid fa-cart-shopping"></i>
       </a>
       <a href="/Home/dangnhap.php" class="User"> <i class="fa-solid fa-user"></i></a>
@@ -144,10 +186,10 @@ if ($result->num_rows > 0) {
     <?php foreach($Iphone as $key=>$value): ?>
 
 
-      <a href="./chitiet.php">
+      <a href="chitiet.php?Masp=<?= $value['Masp']; ?>".>
       <div class="column">
         <div class="card">
-          <div class="status">Tạm hết hàng</div>
+          <div id="sta" class="status"> <?= $value['TenTT']; ?></div>
           <img class="imgPhone" src= <?= $value['Hinhsp']; ?>>
           <p class="NamePhone"> <?= $value['Tensp']; ?> </p>
           <div class="price-contain">
@@ -177,11 +219,11 @@ if ($result->num_rows > 0) {
 
     <?php foreach($Ipad as $key=>$value): ?>
 
-      <a href="">
+      <a href="chitiet.php?Masp=<?= $value['Masp']; ?>".>
       <div class="column">
         <div class="card">
-          <div class="status">Tạm hết hàng</div>
-          <img class="imgPhone" src= <?= $value['Hinhsp']; ?>>
+          <div id="sta" class="status">Tạm hết hàng</div>
+          <img class="imgPhone" src= <?= $value['Hinhsp']; ?> >
           <p class="NamePhone"> <?= $value['Tensp']; ?> </p>
           <div class="price-contain">
           <p class="price"> <?= $value['Giasp']; ?> </p>
@@ -198,7 +240,8 @@ if ($result->num_rows > 0) {
 
 
   <p class="btn-all">
-    <button>Xem tất cả IPad</button>
+    <a href=""> <button>Xem tất cả IPad</button></a>
+   
   </p>
   </div>
 
@@ -247,6 +290,23 @@ if ($result->num_rows > 0) {
         prevEl: ".swiper-button-prev",
       },
     });
+  </script>
+<!-- <script>
+  if(document.getElementById('sta').innerText =='1')
+  {
+   
+
+  document.getElementById("sta").innerText = "Tam het hang";
+}
+else
+{
+  document.getElementById('sta').style.display='none';
+
+}
+
+</script> -->
+
+
   </script>
 </body>
 

@@ -2,27 +2,69 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "CNPM";
+$dbname = "Doan";
 
 // Create connection
-$conn = new mysqli($servername, $username, $password,$dbname);
+$conn = new mysqli($servername, $username, $password, $dbname);
 
 // Check connection
 if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 
-//truyvan
-$sql = "SELECT * FROM SanPham limit 5" ;
+
+if (isset($_GET['Masp'])) {
+  $Masp = $_GET['Masp'];
+  $sql = "SELECT * FROM SanPham where Masp=$Masp";
+  $result = mysqli_query($conn, $sql);
+  $rowDe = mysqli_fetch_row($result);
+}
+
+
+
+
+
+///
+$sql = "SELECT * FROM SanPham,TrangThai where LoaiSP='1'and  MaTT=TrangThai and Hinhsp not like ''  limit 5 ";
 $result = $conn->query($sql);
-$data=array();
+$Iphone = array();
+
+
 if ($result->num_rows > 0) {
-  while($row = $result->fetch_assoc()) {
-      $data[]=$row;
+  while ($row = $result->fetch_assoc()) {
+    $Iphone[] = $row;
   }
 } else {
   echo "0 results";
 }
+
+
+
+//
+$sql = "SELECT * FROM SanPham  where LoaiSP  = '1'  limit 6";
+$result = $conn->query($sql);
+$Ipad = array();
+
+
+if ($result->num_rows > 0) {
+  while ($row = $result->fetch_assoc()) {
+    $Ipad[] = $row;
+  }
+} else {
+  echo "0 results";
+}
+
+
+/////
+
+if (isset($_GET['Masp'])) {
+  $Masp = $_GET['Masp'];
+  $sql = "SELECT * FROM Hinh where Masp=$Masp";
+  $result = mysqli_query($conn, $sql);
+  $rowHinh= mysqli_fetch_row($result);
+}
+
+
 ////
 // echo " <pre>";
 // var_dump($data);
@@ -40,22 +82,26 @@ if ($result->num_rows > 0) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>danh muc</title>
   <link rel="stylesheet" href="./header.css">
-
-  <!-- or -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+  <link rel="stylesheet" href="./banner.css">
+  
+  <!-- or
   <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
-  <!-- Link Swiper's CSS -->
+  <-- Link Swiper's CSS -->
+
   <link rel="stylesheet" href="../css/swiper-bundle.min.css">
   <link rel="stylesheet" href="./style-chitiet.css">
   <!-- --css footer-- -->
-  <link rel="stylesheet" href="./footer.css">
-  <link rel="stylesheet" href="./css/khuyenmai.css">
+  <link rel="stylesheet" href="../footer.css">
+  <link rel="stylesheet" href="../css/khuyenmai.css">
   <!-- ---css icon -->
-  <link rel="stylesheet" href="/icon/fontawesome-free-6.3.0-web/css/all.css">
-
+  <link rel="stylesheet" href="../icon/fontawesome-free-6.3.0-web/css/all.css">
   <link rel="stylesheet" href="../css/email.css">
+
   <!-- ----chitiet---- -->
   <link rel="stylesheet" href="../css/chitiet.css">
   <link rel="stylesheet" href="../css/slide-chitiet.css">
+
 
 
 
@@ -108,24 +154,17 @@ if ($result->num_rows > 0) {
     <div class="top">
       <div class="left">
         <div class="slideshow-container">
+///          <?php foreach($result as $key=>$value): ?>
+
 
           <div class="mySlides fade">
             <div class="numbertext">1 / 3</div>
-            <img src="../img/chitiet/ip14-2.jpeg" style="width:100%">
+            <img src=<?= $value['DiaChi']; ?> style="width:100%">
             <div class="text">Caption Text</div>
           </div>
 
-          <div class="mySlides fade">
-            <div class="numbertext">2 / 3</div>
-            <img src="../img/chitiet/ip14-2.jpeg" style="width:100%">
-            <div class="text">Caption Two</div>
-          </div>
-
-          <div class="mySlides fade">
-            <div class="numbertext">3 / 3</div>
-            <img src="../img/chitiet/ip14-3.jpeg" style="width:100%">
-            <div class="text">Caption Three</div>
-          </div>
+          <?php endforeach; ?>
+////
 
           <a class="prev" onclick="plusSlides(-1)">❮</a>
           <a class="next" onclick="plusSlides(1)">❯</a>
@@ -134,16 +173,16 @@ if ($result->num_rows > 0) {
         <br>
 
         <div class="slide-img">
-     
-            
-       
+
+
+
 
         </div>
 
       </div>
       <div class="right">
         <div class="right-content">
-          <h2>IPhone 14 Pro Max 128GB</h2>
+          <h2><?php echo $rowDe[1] ?></h2>
           <span class="fa fa-star checked"></span>
           <span class="fa fa-star checked"></span>
           <span class="fa fa-star checked"></span>
@@ -151,9 +190,9 @@ if ($result->num_rows > 0) {
           <span class="fa fa-star"></span>
           <div class="gach"></div>
           <div class="gia">
-            <div class="giamoi" id="price">27000000</div>
+            <div class="giamoi" id="price"><?php echo $rowDe[2] ?></div>
             <div class="giacu" id="price">34000000</div>
-          
+
           </div>
           <div class="dungluong">
             dung lượng
@@ -167,7 +206,7 @@ if ($result->num_rows > 0) {
               <li>
                 <label id="dl3" for="">512GB</label>
               </li>
-              <li>                <label id="dl4" for="">1TB</label>
+              <li> <label id="dl4" for="">1TB</label>
               </li>
 
             </ul>
@@ -175,17 +214,17 @@ if ($result->num_rows > 0) {
           <div class="mau">
             màu sắc
             <ul>
-          <li><span style="background-color:#4C4B49 ;"></span></li>
-          <li><span style="background-color: #E3E5E3;"></span></li>
-          <li><span style="background-color: #FCEBD3;"></span></li>
-          <li><span style="background-color: #61586B;"></span></li>
+              <li><span style="background-color:#4C4B49 ;"></span></li>
+              <li><span style="background-color: #E3E5E3;"></span></li>
+              <li><span style="background-color: #FCEBD3;"></span></li>
+              <li><span style="background-color: #61586B;"></span></li>
             </ul>
           </div>
           <div class="chuongtrinh">
             <div class="km">
-             <p class="p-km"> <i class="fa-solid fa-gift"></i> khuyến mãi</p>
+              <p class="p-km"> <i class="fa-solid fa-gift"></i> khuyến mãi</p>
               <ul>
-                
+
                   <input type="radio" id="muathang" name="fav_language" value="muathang">
                   <label for="muathang">Mua thẳng</label><br>
                   <input type="radio" id="gop" name="fav_language" value="gop">
@@ -203,7 +242,7 @@ if ($result->num_rows > 0) {
             </div>
           </div>
           <div class="mua">
-            <a href="">            <button class="btnmua">MUA NGAY</button>
+            <a href=""> <button class="btnmua">MUA NGAY</button>
             </a>
           </div>
         </div>
@@ -216,66 +255,76 @@ if ($result->num_rows > 0) {
         <div class="swiper mySwiper">
           <div class="swiper-wrapper">
 
-          <?php foreach($data as $key=>$value): ?>
-
+          <?php foreach($Iphone as $key=>$value): ?>
+              
             <div class="swiper-slide">
               <div class="column">
+              <a href="chitiet.php?Masp=<?= $value['Masp']; ?>".>
+
                 <div class="card">
-                  <img class="imgPhone" src="../img/iphone/ip1.jpeg" >
+                  <img class="imgPhone" src="../img/iphone/ip1.jpeg">
                   <p class="NamePhone"><?= $value['Tensp']; ?></p>
                   <p class="price">
-                  <?= $value['Giasp']; ?>
+                    29.000.000d
                   </p>
                   </p>
                 </div>
+                </a>
               </div>
-          
+              
             </div>
+            <?php endforeach; ?>
+
+
             
-          <?php endforeach; ?>
 
 
+    
+    
+          
+          
+          
           </div>
           <div class="swiper-pagination"></div>
         </div>
-      
+
       </div>
 
 
-    <!-- ----read-more-- -->
+      <!-- ----read-more-- -->
 
-      <div  class="thongtin">
+      <div class="thongtin">
         <h2 style="text-align:center;">Thông Tin</h2>
         <p>iPhone 14 Pro Max. Bắt trọn chi tiết ấn tượng với Camera Chính 48MP. Trải nghiệm iPhone theo cách hoàn toàn mới với Dynamic Island và màn hình Luôn Bật. Công nghệ an toàn quan trọng –
-           Phát Hiện Va Chạm  thay bạn gọi trợ giúp khi cần kíp <br>
-           <span id="dots"></span>
-           <span id="more">
+          Phát Hiện Va Chạm thay bạn gọi trợ giúp khi cần kíp <br>
+          <span id="dots"></span>
+          <span id="more">
             Tính năng nổi bật
-      
-          Màn hình Super Retina XDR 6,7 inch với tính năng Luôn Bật và ProMotion
-          Dynamic Island, một cách mới tuyệt diệu để tương tác với iPhone
-          Camera Chính 48MP cho độ phân giải gấp 4 lần
-          Chế độ Điện Ảnh nay đã hỗ trợ 4K Dolby Vision tốc độ lên đến 30 fps
-          Chế độ Hành Động để quay video cầm tay mượt mà, ổn định
-          Công nghệ an toàn quan trọng – Phát Hiện Va Chạm thay bạn gọi trợ giúp khi cần kíp
-          Thời lượng pin cả ngày và thời gian xem video lên đến 29 giờ
-          A16 Bionic, chip điện thoại thông minh tuyệt đỉnh. Mạng di động 5G siêu nhanh
-          Các tính năng về độ bền dẫn đầu như Ceramic Shield và khả năng chống nước
-          iOS 16 đem đến thêm nhiều cách để cá nhân hóa, giao tiếp và chia sẻ
-          Pháp lý
-          
-          SOS Khẩn Cấp sử dụng kết nối mạng di động hoặc Cuộc Gọi Wi-Fi.
-          Màn hình có các góc bo tròn. Khi tính theo hình chữ nhật, kích thước màn hình theo đường chéo là 6,69 inch. Diện tích hiển thị thực tế nhỏ hơn.
-          Thời lượng pin khác nhau tùy theo cách sử dụng và cấu hình; truy cập  để biết thêm thông tin.
-          Cần có gói cước dữ liệu. Mạng 5G chỉ khả dụng ở một số thị trường và được cung cấp qua một số nhà mạng. Tốc độ có thể thay đổi tùy địa điểm và nhà mạng. .
-          iPhone 14 Pro Max có khả năng chống tia nước, chống nước và chống bụi. Sản phẩm đã qua kiểm nghiệm trong điều kiện phòng thí nghiệm có kiểm soát đạt mức IP68 theo tiêu chuẩn IEC 60529 (chống nước ở độ sâu tối đa 6 mét trong vòng tối đa 30 phút). Khả năng chống tia nước, chống nước và chống bụi không phải là các điều kiện vĩnh viễn. Khả năng này có thể giảm do hao mòn thông thường. Không sạc pin khi iPhone đang bị ướt.
-          Vui lòng tham khảo hướng dẫn sử dụng để biết cách lau sạch và làm khô máy. Không bảo hành sản phẩm bị hỏng do thấm chất lỏng.
-          Một số tính năng không khả dụng tại một số quốc gia hoặc khu vực.</span>
-            </p>
+
+            Màn hình Super Retina XDR 6,7 inch với tính năng Luôn Bật và ProMotion
+            Dynamic Island, một cách mới tuyệt diệu để tương tác với iPhone
+            Camera Chính 48MP cho độ phân giải gấp 4 lần
+            Chế độ Điện Ảnh nay đã hỗ trợ 4K Dolby Vision tốc độ lên đến 30 fps
+            Chế độ Hành Động để quay video cầm tay mượt mà, ổn định
+            Công nghệ an toàn quan trọng – Phát Hiện Va Chạm thay bạn gọi trợ giúp khi cần kíp
+            Thời lượng pin cả ngày và thời gian xem video lên đến 29 giờ
+            A16 Bionic, chip điện thoại thông minh tuyệt đỉnh. Mạng di động 5G siêu nhanh
+            Các tính năng về độ bền dẫn đầu như Ceramic Shield và khả năng chống nước
+            iOS 16 đem đến thêm nhiều cách để cá nhân hóa, giao tiếp và chia sẻ
+            Pháp lý
+
+            SOS Khẩn Cấp sử dụng kết nối mạng di động hoặc Cuộc Gọi Wi-Fi.
+            Màn hình có các góc bo tròn. Khi tính theo hình chữ nhật, kích thước màn hình theo đường chéo là 6,69 inch. Diện tích hiển thị thực tế nhỏ hơn.
+            Thời lượng pin khác nhau tùy theo cách sử dụng và cấu hình; truy cập để biết thêm thông tin.
+            Cần có gói cước dữ liệu. Mạng 5G chỉ khả dụng ở một số thị trường và được cung cấp qua một số nhà mạng. Tốc độ có thể thay đổi tùy địa điểm và nhà mạng. .
+            iPhone 14 Pro Max có khả năng chống tia nước, chống nước và chống bụi. Sản phẩm đã qua kiểm nghiệm trong điều kiện phòng thí nghiệm có kiểm soát đạt mức IP68 theo tiêu chuẩn IEC 60529 (chống nước ở độ sâu tối đa 6 mét trong vòng tối đa 30 phút). Khả năng chống tia nước, chống nước và chống bụi không phải là các điều kiện vĩnh viễn. Khả năng này có thể giảm do hao mòn thông thường. Không sạc pin khi iPhone đang bị ướt.
+            Vui lòng tham khảo hướng dẫn sử dụng để biết cách lau sạch và làm khô máy. Không bảo hành sản phẩm bị hỏng do thấm chất lỏng.
+            Một số tính năng không khả dụng tại một số quốc gia hoặc khu vực.</span>
+        </p>
         <button class="readmore" onclick="myFunction()" id="myBtn">Xem Thêm</button>
-          </div>
+      </div>
     </div>
- 
+
   </div>
   <!-- ---Email-- -->
   <div class="email">
@@ -299,16 +348,16 @@ if ($result->num_rows > 0) {
 
   <!-- --script -->
   <script src="../js/chitiet.js"></script>
-  <script src="../script.js"></script>
+  <script src="./script.js"></script>
   <script src="https://kit.fontawesome.com/fcab3c1849.js" crossorigin="anonymous"></script>
   <!-- Swiper JS -->
   <script src="../js/swiper-bundle.min.js"></script>
 
   <script>
-    var num = document.getElementsByName("giamoi").textContent; 
-let text = num.toLocaleString();
+    var num = document.getElementsByName("giamoi").textContent;
+    let text = num.toLocaleString();
 
-document.getElementById("price").innerHTML = text;
+    document.getElementById("price").innerHTML = text;
   </script>
 
   <!-- ------goiy--- -->
@@ -321,18 +370,18 @@ document.getElementById("price").innerHTML = text;
       var dots = document.getElementById("dots");
       var moreText = document.getElementById("more");
       var btnText = document.getElementById("myBtn");
-    
+
       if (dots.style.display === "none") {
         dots.style.display = "inline";
-        btnText.innerHTML = "Xem Thêm"; 
+        btnText.innerHTML = "Xem Thêm";
         moreText.style.display = "none";
       } else {
         dots.style.display = "none";
-        btnText.innerHTML = "Thu Gọn"; 
+        btnText.innerHTML = "Thu Gọn";
         moreText.style.display = "inline";
       }
     }
-    </script>
+  </script>
 </body>
 
 </html>

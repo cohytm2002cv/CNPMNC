@@ -1,0 +1,51 @@
+.dangnhap{
+    position: relative;
+    width: 100%;
+    margin: auto;
+    width: 600px;
+    background-color: rgb(255, 255, 255)   ;
+    border-radius: 10px;
+    margin-top: 80px;
+    margin-bottom: 100px;
+    }
+    
+    h2{
+        text-align: center;
+        font-weight: bolder;
+        color: red;
+    }
+    
+    .login{
+        margin: auto;
+        width:fit-content;
+        height: 500px;
+    }
+    .input{
+       margin-bottom: 30px;
+    }
+    input{
+        width: 400px;
+        height: 40px;
+        border: none;
+        border-bottom: 1px solid;
+    }
+    
+    .submit{
+        border-radius: 10px;
+        border: none;
+        background-color: rgba(255, 0, 0, 0.863);
+        color: white;
+        margin-bottom: 40px;
+        height: 30px;
+        width: 400px;
+        font-weight: bold;
+    }
+    .login ul {
+        list-style-type: none;
+        margin-left: -30px;
+    
+    }
+    .login a{
+        text-decoration: none;
+        color: rgba(255, 0, 0, 0.824);
+    }

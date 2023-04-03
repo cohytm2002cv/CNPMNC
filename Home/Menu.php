@@ -1,8 +1,9 @@
+
 <?php
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "CNPM";
+$dbname = "DoAn";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password,$dbname);
@@ -11,17 +12,42 @@ $conn = new mysqli($servername, $username, $password,$dbname);
 if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
+
+  
+// $fp = @fopen('goc.php', "w");
+  
+// Kiểm tra file mở thành công không
+// if (!$fp) {
+//     echo 'Mở file không thành công';
+// }
+// else
+// {
+//     $data = " ";
+//     fwrite($fp, $data);
+// }
+// die;
+if (isset($_GET['MaLoai'])) {
+  $MaLoai = $_GET['MaLoai'];
+  $sql = "SELECT * FROM SanPham where loaisp=$MaLoai  " ;
+  $result = mysqli_query($conn, $sql);
+  $rowDe = mysqli_fetch_row($result);
+}
 //truyvan
-$sql = "SELECT * FROM SanPham limit 4" ;
+$sql = "SELECT * FROM SanPham where loaisp=$MaLoai  " ;
 $result = $conn->query($sql);
-$data=array();
+$Iphone=array();
+
+
 if ($result->num_rows > 0) {
   while($row = $result->fetch_assoc()) {
-      $data[]=$row;
+      $Iphone[]=$row;
   }
 } else {
   echo "0 results";
 }
+
+
+
 ////
 // echo " <pre>";
 // var_dump($data);
@@ -30,30 +56,57 @@ if ($result->num_rows > 0) {
 
 ?>
 
+
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
+  <!-- <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>danh muc</title>
-  <link rel="stylesheet" href="../header.css">
-  <link rel="stylesheet" href="/banner-chitiet.css">
+  <link rel="stylesheet" href="./header.css">
+  <link rel="stylesheet" href="../banner-chitiet.css">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+  <-- or -->
+  <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+  <!-- Link Swiper's CSS -->
+  <link rel="stylesheet" href="../css/swiper-bundle.min.css">
+  <link rel="stylesheet" href="./style-chitiet.css">
+  <!-- --css footer-- -->
+  <link rel="stylesheet" href="./footer.css">
+  <link rel="stylesheet" href="./css/khuyenmai.css">
+  <!-- ---css icon -->
+  <link rel="stylesheet" href="../icon/fontawesome-free-6.3.0-web/css/all.css">
+
+  <link rel="stylesheet" href="../css/khuyenmai.css">
+  <link rel="stylesheet" href="../css/email.css">
+
+
+
+
+  <!-- ---------- -->
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IPhone</title>
+  <link rel="stylesheet" href="./header.css">
+  <link rel="stylesheet" href="./banner.css">
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
   <!-- or -->
   <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
   <!-- Link Swiper's CSS -->
   <link rel="stylesheet" href="../css/swiper-bundle.min.css">
-  <link rel="stylesheet" href="../style-chitiet.css">
+  <link rel="stylesheet" href="./style.css">
   <!-- --css footer-- -->
-  <link rel="stylesheet" href="../footer.css">
+  <link rel="stylesheet" href="/footer.css">
   <link rel="stylesheet" href="../css/khuyenmai.css">
   <!-- ---css icon -->
-  <link rel="stylesheet" href="/icon/fontawesome-free-6.3.0-web/css/all.css">
+  <link rel="stylesheet" href="./icon/fontawesome-free-6.3.0-web/css/all.css">
+  <!-- ---email-css-- -->
+  <link rel="stylesheet" href="./css/email.css">
 
-  <link rel="stylesheet" href="/..css/khuyenmai.css">
-  <link rel="stylesheet" href="../css/email.css">
   
 </head>
 
@@ -62,7 +115,7 @@ if ($result->num_rows > 0) {
     <a href="" class="logo"><i class="ri-home-fill"></i><span>logo</span></a>
 
     <ul class="navbar">
-      <li><a href="" class="active">IPhone</a></li>
+      <li><a href="./IPhone.php" class="active">IPhone</a></li>
       <li><a href="">IPad</a></li>
       <li><a href="">Mac</a></li>
       <li><a href="">Watch</a></li>
@@ -102,7 +155,7 @@ if ($result->num_rows > 0) {
     <section class="main-banner swiper mySwiper">
       <div class="wrapper swiper-wrapper">
         <div class="slide swiper-slide">
-          <img class="img" src="./img/banner/ban1.jpeg" alt="">
+          <img class="img" src="../img/banner/ban1.jpeg" alt="">
         </div>
 
         <div class="slide swiper-slide">
@@ -132,82 +185,25 @@ if ($result->num_rows > 0) {
 
 
   <div class="row">
-    <div class="column">
-      <div class="card">
-        <img class="imgPhone" src="/img/iphone/ip1.jpeg" >
-        <p class="NamePhone">IPhone 12 Pro Max</p>
-        <p class="price">
-       29.000.000d
-        </p>
-        </p>
-      </div>
-    </div>
 
-    <div class="column">
-      <div class="card">
-        <img class="imgPhone" src="/img/iphone/ip1.jpeg" >
-        <p class="NamePhone">IPhone 14 Pro Max</p>
-        <p class="price">
-       29.000.000d
-        </p>
-        </p>
-      </div>
-    </div>
+  <?php foreach($Iphone as $key=>$value): ?>
 
-    <div class="column">
-      <div class="card">
-        <img class="imgPhone" src="/img/iphone/ip1.jpeg" >
-        <p class="NamePhone"> IPhone 13 Pro Max</p>
-        <p class="price">
-       29.000.000d
-       
-        </p>
-        </p>
-      </div>
-    </div>
 
-    <div class="column">
-      <div class="card">
-        <img class="imgPhone" src="/img/iphone/ip1.jpeg" >
-        <p class="NamePhone">IPhone 12 Pro Max</p>
-        <p class="price">
-       29.000.000d
-        </p>
-        </p>
-      </div>
+<a href="chitiet.php?Masp=<?= $value['Masp']; ?>"]>
+<div class="column">
+  <div class="card">
+    <div id="sta" class="status"> <?= $value['TenTT']; ?></div>
+    <img class="imgPhone" src= <?= $value['Hinhsp']; ?>>
+    <p class="NamePhone"> <?= $value['Tensp']; ?> </p>
+    <div class="price-contain">
+    <p class="price"> <?= $value['Giasp']; ?> </p>
+    <!-- <p class="price-old">34.000.000</p> -->
     </div>
+    </div>
+    </div>
+  </a>
 
-    <div class="column">
-        <div class="card">
-          <img class="imgPhone" src="/img/iphone/ip1.jpeg" >
-          <p class="NamePhone">IPhone 11 Pro Max</p>
-          <p class="price">
-         29.000.000d
-          </p>
-          </p>
-        </div>
-      </div>
-      <div class="column">
-        <div class="card">
-          <img class="imgPhone" src="/img/iphone/ip1.jpeg" >
-          <p class="NamePhone">IPhone 14 Pro </p>
-          <p class="price">
-         29.000.000d
-          </p>
-          </p>
-        </div>
-      </div>
-    <div class="column">
-        <div class="card">
-          <img class="imgPhone" src="/img/iphone/ip1.jpeg" >
-          <p class="NamePhone">IPhone 13 Pro</p>
-          <p class="price">
-         29.000.000d
-          </p>
-          </p>
-        </div>
-      </div>
-  
+<?php endforeach; ?>
   </div>
   
 

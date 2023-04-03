@@ -1,0 +1,49 @@
+header{
+    position: relative;
+}
+.giohang{
+    position: relative;
+    color: black;
+}
+table p{
+    color: black;
+
+}
+.giasp{
+    color: aqua;
+}
+.body-main{
+    width: 60%;
+    margin: auto;
+    color: black;
+}
+.link{
+    margin-top: 0px;
+}
+table {
+    color: black;
+    width: 60%;
+    border-collapse: collapse;
+    border-bottom: 1px solid;
+}
+td{
+  height: 30px;
+    vertical-align:top;
+   
+}
+td img{
+    height: 100px;
+}
+.index{
+  font-weight: bold;
+  border-bottom: 1px solid;
+
+}
+td{
+    border-style:none !important;
+}
+.btndat {
+    width: 100px;
+    height: 30px;
+    background-color: blanchedalmond;
+}

@@ -10,35 +10,19 @@
 </head>
 <body>
 	
-<form action="dangnhap.php" method="post">
+<form action="Phanloai.php" method="post">
     <table>
         <tr>
             <th>Masp:</th>
-            <td><input id="Masp" type="text" name="Masp" value=""></td>
+            <td><input id="MaLoai" type="text" name="MaLoai" value=""></td>
         </tr>
 
         <tr>
             <th>Ten sp:</th>
-            <td><input id="Tensp" type="text" name="Tensp" value=""></td>
+            <td><input id="TenLoai" type="text" name="TenLoai" value=""></td>
         </tr>
 
-        <tr>
-            <th>gia sp:</th>
-            <td><input id="Giasp" type="text" name="Giasp" value=""></td>
-        </tr>
-
-        <tr>
-            <th>hinh sp:</th>
-            <td><input type="file"  name="Hinhsp"></td>
-        </tr>
-		<tr>
-            <th>so luong:</th>
-            <td><input id="SL" type="text" name="SL" value=""></td>
-        </tr>
-		<tr>
-            <th>loai sp:</th>
-            <td><input id="LoaiSP" type="text" name="LoaiSP" value=""></td>
-        </tr>
+        
     </table>
     <button type="submit">Gửi</button>
 </form>
@@ -49,10 +33,18 @@
 
 
 <?php
+
+session_start();
+if(!isset($_SESSION['UserName'])){
+  header('location:taikhoan.php');
+}
+
+
+
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "CNPM";
+$dbname = "DoAn";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password,$dbname);
@@ -64,20 +56,17 @@ if ($conn->connect_error) {
 
 //truyvan
 
-$Masp = $_POST['Masp'];
-$Tensp = $_POST['Tensp'];
-$Giasp = $_POST['Giasp'];
-$Hinhsp =  $_POST['Hinhsp'];
-$SL=$_POST['SL'];
-$LoaiSP=$_POST['LoaiSP'];
+$MaLoai = $_POST['MaLoai'];
+$TenLoai = $_POST['TenLoai'];
 
-$sql = "SELECT *FROM SanPham";
+
+$sql = "SELECT *FROM PhanLoai";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
   // output data of each row
   while($row = $result->fetch_assoc()) {
-    echo "id: " . $row["Masp"]. " Tensp: " . $row["Tensp"]. " " . $row["Giasp"]. "hinh ". $row["Hinhsp"]. "<br>";
+    echo "MaLoai: " . $row["MaLoai"]. " Tenloai: " . $row["TenLoai"]. "<br>";
   }
 } else {
   echo "0 results";
@@ -86,8 +75,8 @@ if ($result->num_rows > 0) {
 
 
 
-$sql = "INSERT INTO Sanpham (Masp, Tensp, Giasp, Hinhsp, SL,LoaiSP)
-VALUES ('$Masp', '$Tensp', '$Giasp','../img/IPad/Pro/$Hinhsp','$SL','$LoaiSP')";
+$sql = "INSERT INTO PhanLoai (MaLoai, TenLoai)
+VALUES ('$MaLoai', '$TenLoai')";
 
 
 if ($conn->query($sql) === TRUE) {
