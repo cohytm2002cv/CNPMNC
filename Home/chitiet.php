@@ -265,7 +265,7 @@ include_once("inclu.php");
                   <img class="imgPhone" src= <?= $value['Hinhsp']; ?>>
                   <p class="NamePhone"><?= $value['Tensp']; ?></p>
                   <p class="price">
-                    29.000.000d
+                  <?= $value['Giasp']; ?>
                   </p>
                   </p>
                 </div>
@@ -354,7 +354,7 @@ include_once("inclu.php");
   <script src="../js/swiper-bundle.min.js"></script>
 
   <script>
-    var num = document.getElementsByName("giamoi").textContent;
+    var num = document.getElementsByName("price").textContent;
     let text = num.toLocaleString();
 
     document.getElementById("price").innerHTML = text;
