@@ -12,6 +12,29 @@ $conn = new mysqli($servername, $username, $password,$dbname);
 if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
+//thêm sản phâm vao giỏ
+if (isset($_GET['Masp'])) {
+  $Masp = $_GET['Masp'];
+  $sql = "SELECT * FROM GioHang where MaSP=$Masp ";
+  $result = mysqli_query($conn, $sql);
+  $rowHinh= mysqli_fetch_row($result);
+  $sql = "INSERT INTO GioHang (MaSP)
+VALUES ('$Masp')";
+
+if ($conn->query($sql) === TRUE) {
+  echo "New record created successfully";
+} else {
+  echo "Error: " . $sql . "<br>" . $conn->error;
+}
+header("location:giohang.php");
+}
+
+// -----
+
+////
+
+
+
 $sql = "SELECT *FROM GioHang,Sanpham where sanpham.Masp=GioHang.Masp ";
 $result = $conn->query($sql);
 $ad = array();
@@ -23,8 +46,8 @@ if ($result->num_rows > 0) {
 } else {
   echo "0 results";
 }
+// ----xoá----
 
-  
 
 
 ////
@@ -32,6 +55,7 @@ if ($result->num_rows > 0) {
 // var_dump($data);
 // echo " </pre>";
 // // die;
+
 
 ?> -->
 
@@ -62,7 +86,20 @@ if ($result->num_rows > 0) {
   <link rel="stylesheet" href="../css/email.css">
   <link rel="stylesheet" href="./giohang.css">
   <link rel="stylesheet" href="./style-chitiet.css">
- 
+
+
+
+
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('.delete-row').click(function() {
+      $.post('delete.php?mode=delete', { row_id: $(this).data('row_id')}).done(function(data) {
+        // Reload your table/data display
+      });
+    });
+  });
+</script>
 </head>
 
 <body>
@@ -123,7 +160,8 @@ if ($result->num_rows > 0) {
       <td ><img src="../img/IPad/Pro/Ipa9-1.jpeg" alt=""></td>
       <td> <?= $value['Tensp']; ?></td>
       <td> <?= $value['Giasp']; ?></td>
-
+      <td> <a href="delete.php?MaGH=<?= $value['MaGH']; ?>".> <button  class="delete-row">Delete</button></a>
+</td>
     </tr>
     <tr>
   
@@ -133,7 +171,8 @@ if ($result->num_rows > 0) {
 
   </table>
   <div class="btndat">
-     <button > đặt hàng</button>
+    <a href="./Home.php">     <butto > đặt hàng</button></a>
+
   </div>
  
   </div>
@@ -189,23 +228,7 @@ if ($result->num_rows > 0) {
       },
     });
   </script>
-<!-- <script>
-  if(document.getElementById('sta').innerText =='1')
-  {
-   
 
-  document.getElementById("sta").innerText = "Tam het hang";
-}
-else
-{
-  document.getElementById('sta').style.display='none';
-
-}
-
-</script> -->
-
-
-  </script>
 </body>
 
 </html>

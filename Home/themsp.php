@@ -12,10 +12,7 @@
 	
 <form action="" method="post">
     <table>
-        <tr>
-            <th>Masp:</th>
-            <td><input id="Masp" type="text" name="Masp" value=""></td>
-        </tr>
+
 
         <tr>
             <th>Ten sp:</th>
@@ -43,10 +40,7 @@
             <th>trang thai:</th>
             <td><input id="TrangThai" type="text" name="TrangThai" value=""></td>
         </tr>
-        <tr>
-            <th>Ma IMG:</th>
-            <td><input id="MaIMG" type="text" name="MaIMG" value=""></td>
-        </tr>
+
         <tr>
             <th>Dia Chi IMG:</th>
             <td><input id="DiaChi" type="text" name="DiaChi" value=""></td>
@@ -131,8 +125,8 @@ if ($result->num_rows > 0) {
 
 
 // -----
-$sql = "INSERT INTO Sanpham (Masp, Tensp, Giasp, Hinhsp, SL,LoaiSP,TrangThai)
-VALUES ('$Masp', '$Tensp', '$Giasp','../img/IPad/Pro/$Hinhsp','$SL','$LoaiSP','$TrangThai')";
+$sql = "INSERT INTO Sanpham ( Tensp, Giasp, Hinhsp, SL,LoaiSP,TrangThai)
+VALUES ( '$Tensp', '$Giasp','../img/IPad/Pro/$Hinhsp','$SL','$LoaiSP','$TrangThai')";
 
 if ($conn->query($sql) === TRUE) {
   echo "New record created successfully";
