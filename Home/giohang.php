@@ -6,7 +6,7 @@ $password = "";
 $dbname = "DoAn";
 
 // Create connection
-$conn = new mysqli($servername, $username, $password,$dbname);
+$conn = new mysqli($servername, $username, $password, $dbname);
 
 // Check connection
 if ($conn->connect_error) {
@@ -17,16 +17,16 @@ if (isset($_GET['Masp'])) {
   $Masp = $_GET['Masp'];
   $sql = "SELECT * FROM GioHang where MaSP=$Masp ";
   $result = mysqli_query($conn, $sql);
-  $rowHinh= mysqli_fetch_row($result);
+  $rowHinh = mysqli_fetch_row($result);
   $sql = "INSERT INTO GioHang (MaSP)
 VALUES ('$Masp')";
 
-if ($conn->query($sql) === TRUE) {
-  echo "New record created successfully";
-} else {
-  echo "Error: " . $sql . "<br>" . $conn->error;
-}
-header("location:giohang.php");
+  if ($conn->query($sql) === TRUE) {
+    echo "New record created successfully";
+  } else {
+    echo "Error: " . $sql . "<br>" . $conn->error;
+  }
+  header("location:giohang.php");
 }
 
 // -----
@@ -46,6 +46,12 @@ if ($result->num_rows > 0) {
 } else {
   echo "0 results";
 }
+// ----sumgia--
+$sql = "SELECT SUM(Giasp) FROM GioHang,Sanpham where SanPham.Masp=GioHang.MaSP ";
+$result = mysqli_query($conn, $sql);
+$rowDe = mysqli_fetch_row($result);
+
+
 // ----xoá----
 
 
@@ -86,20 +92,22 @@ if ($result->num_rows > 0) {
   <link rel="stylesheet" href="../css/email.css">
   <link rel="stylesheet" href="./giohang.css">
   <link rel="stylesheet" href="./style-chitiet.css">
-
+<link rel="stylesheet" href="./giohang2.css">
 
 
 
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script type="text/javascript">
-  $(document).ready(function(){
-    $('.delete-row').click(function() {
-      $.post('delete.php?mode=delete', { row_id: $(this).data('row_id')}).done(function(data) {
-        // Reload your table/data display
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('.delete-row').click(function() {
+        $.post('delete.php?mode=delete', {
+          row_id: $(this).data('row_id')
+        }).done(function(data) {
+          // Reload your table/data display
+        });
       });
     });
-  });
-</script>
+  </script>
 </head>
 
 <body>
@@ -133,53 +141,56 @@ if ($result->num_rows > 0) {
 
   <div class="link">
     <div class="link-link">
-        <ul>
-            <li><a href="../Home.html">Trang chủ</a></li>
-            <span> ></span>
-            <li><a href="../IPhone/IPhone.html">IPhone</a></li>
-            <span> ></span>
-            <li><a href="../IPhone/IPhone.html">IPhone 14 Series   </a></li>
-        </ul>
+      <ul>
+        <li><a href="../Home.html">Trang chủ</a></li>
+        <span> ></span>
+        <li><a href="../IPhone/IPhone.html">IPhone</a></li>
+        <span> ></span>
+        <li><a href="../IPhone/IPhone.html">IPhone 14 Series </a></li>
+      </ul>
     </div>
-</div>
+  </div>
   <div class="body-main">
 
 
 
-  <table>
+    <table style="margin-top: 10px;">
 
-    <tr class="index" >
-      <td  >Hinh anh</td>
-      <td>Ten san pham</td>
-      <td>Gia</td>
+      <tr class="index">
+        <td>Hình Sản Phẩm</td>
+        <td>Tên Sản Phẩm</td>
+        <td>Giá</td>
+        <td>Xoá</td>
 
-    </tr>
-    <?php foreach ($ad as $key => $value) : ?>
+      </tr>
+      <?php foreach ($ad as $key => $value) : ?>
 
-    <tr>
-      <td ><img src="../img/IPad/Pro/Ipa9-1.jpeg" alt=""></td>
-      <td> <?= $value['Tensp']; ?></td>
-      <td> <?= $value['Giasp']; ?></td>
-      <td> <a href="delete.php?MaGH=<?= $value['MaGH']; ?>".> <button  class="delete-row">Delete</button></a>
-</td>
-    </tr>
-    <tr>
-  
-    </tr>
-    
-    <?php endforeach; ?>
+        <tr>
+          <td><img src="../img/IPad/Pro/Ipa9-1.jpeg" alt=""></td>
+          <td> <?= $value['Tensp']; ?></td>
+          <td> <?= $value['Giasp']; ?></td>
+          <td> <a href="delete.php?MaGH=<?= $value['MaGH']; ?>" .> <button class="delete-row">Delete</button></a>
+          </td>
+        </tr>
+        <tr>
 
-  </table>
-  <div class="btndat">
-    <a href="./Home.php">     <butto > đặt hàng</button></a>
+        </tr>
+
+      <?php endforeach; ?>
+
+    </table>
+    <div class="thanhtien"><span style="font-weight: bold;">Tổng tiền</span>: <span style="font-size: 20px;font-Weight: bold"><?= $rowDe[0] ?></span> </div>
+    <div class="btndathang">
+      <a href="./Home.php">
+        <button class="btndat"> đặt hàng</button></a>
+
+    </div>
 
   </div>
- 
-  </div>
 
-  
 
-  
+
+
 
 
   <!-- ---Email-- -->
@@ -191,10 +202,6 @@ if ($result->num_rows > 0) {
       <button>Subscribe</button>
     </div>
   </div>
-
-
-
-
 
 
 
@@ -210,7 +217,7 @@ if ($result->num_rows > 0) {
 
   <!-- --script -->
 
-  <script src="./script.js"></script>
+  <!-- <script src="./script.js"></script> -->
   <script src="https://kit.fontawesome.com/fcab3c1849.js" crossorigin="anonymous"></script>
   <!-- Swiper JS -->
   <script src="../js/swiper-bundle.min.js"></script>

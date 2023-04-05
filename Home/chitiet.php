@@ -293,7 +293,7 @@ include_once("inclu.php");
 
       <!-- ----read-more-- -->
 
-      <div class="thongtin">
+      <!-- <div class="thongtin">
         <h2 style="text-align:center;">Thông Tin</h2>
         <p>iPhone 14 Pro Max. Bắt trọn chi tiết ấn tượng với Camera Chính 48MP. Trải nghiệm iPhone theo cách hoàn toàn mới với Dynamic Island và màn hình Luôn Bật. Công nghệ an toàn quan trọng –
           Phát Hiện Va Chạm thay bạn gọi trợ giúp khi cần kíp <br>
@@ -322,7 +322,7 @@ include_once("inclu.php");
             Một số tính năng không khả dụng tại một số quốc gia hoặc khu vực.</span>
         </p>
         <button class="readmore" onclick="myFunction()" id="myBtn">Xem Thêm</button>
-      </div>
+      </div> -->
     </div>
 
   </div>

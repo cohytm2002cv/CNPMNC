@@ -1,0 +1,18 @@
+.btndathang {
+    width: 100px;
+    height: 30px;
+    margin-left: 580px;
+}
+.btndathang button{
+    border: 0px;
+    background-color: #0066CC;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    border-radius: 10px;
+
+}
+.thanhtien{
+   margin-top: 10px;
+    margin-left: 500px;
+}
