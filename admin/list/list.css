@@ -16,6 +16,56 @@
     position: relative;
    
 }
+.thongtin-sp{
+
+    margin-top: 20px;
+}
+.thongtin-sp .name{
+    font-weight: bold;
+    font-size: 18px;
+}
+.thongtin-sp .price{
+    color: #0066CC;
+}
+
+.info{
+    width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+}
+.info a{
+    text-decoration: none;
+}
+.btnXoa{
+   right: 0;
+    height: 30px;
+    margin-top: 10px;
+    border: 0px;
+    width: 100px;
+    background-color: #0066CC;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    border-radius: 10px;
+}
+.btnEdit  {
+    border: 1px soild;
+    background-color: white;
+    border-color: #0066CC;
+    right: 0;
+    height: 30px;
+    margin-top: 10px;
+    width: 80px;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    font-size: 16px;
+    border-radius: 10px;
+
+}
+
+
+
 .content2{
     display: flex;
     background-color: rgb(225, 225, 225);

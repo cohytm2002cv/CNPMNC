@@ -37,7 +37,7 @@ if ($conn->connect_error) {
 
 // $MaL = $_GET['MaLoai'];
 
-$sql = "SELECT * FROM SanPham,TrangThai where LoaiSP='1' and  MaTT=TrangThai and Hinhsp not like ''  limit 4 " ;
+$sql = "SELECT * FROM device where cate='1'  and img not like ''  limit 4 " ;
 $result = $conn->query($sql);
 $Iphone=array();
 
@@ -69,7 +69,7 @@ if ($loai->num_rows > 0) {
 
 
 /////
-$sql = "SELECT * FROM SanPham,TrangThai where LoaiSP='2' and  MaTT=TrangThai and Hinhsp not like ''  limit 4 " ;
+$sql = "SELECT * FROM Device where cate='2' and img not like ''  limit 4 " ;
 $result = $conn->query($sql);
 $Ipad=array();
 
@@ -183,14 +183,14 @@ if ($result->num_rows > 0) {
     <?php foreach($Iphone as $key=>$value): ?>
 
 
-      <a href="chitiet.php?Masp=<?= $value['Masp']; ?>".>
+      <a href="chitiet.php?pro-id=<?= $value['id']; ?>".>
       <div class="column">
         <div class="card">
-          <div id="sta" class="status"> <?= $value['TenTT']; ?></div>
-          <img class="imgPhone" src= <?= $value['Hinhsp']; ?>>
-          <p class="NamePhone"> <?= $value['Tensp']; ?> </p>
+          <!-- <div id="sta" class="status"> <?= $value['TenTT']; ?></div> -->
+          <img class="imgPhone" src= <?= $value['img']; ?>>
+          <p class="NamePhone"> <?= $value['name']; ?> </p>
           <div class="price-contain">
-          <p class="price"> <?= $value['Giasp']; ?> </p>
+          <p class="price"> <?= $value['price']; ?> </p>
           <!-- <p class="price-old">34.000.000</p> -->
           </div>
           </div>
@@ -216,14 +216,14 @@ if ($result->num_rows > 0) {
 
     <?php foreach($Ipad as $key=>$value): ?>
 
-      <a href="chitiet.php?Masp=<?= $value['Masp']; ?>".>
+      <a href="chitiet.php?pro-id=<?= $value['id']; ?>".>
       <div class="column">
         <div class="card">
-          <div id="sta" class="status">Tạm hết hàng</div>
-          <img class="imgPhone" src= <?= $value['Hinhsp']; ?> >
-          <p class="NamePhone"> <?= $value['Tensp']; ?> </p>
+          <!-- <div id="sta" class="status">Tạm hết hàng</div> -->
+          <img class="imgPhone" src= <?= $value['img']; ?> >
+          <p class="NamePhone"> <?= $value['name']; ?> </p>
           <div class="price-contain">
-          <p class="price"> <?= $value['Giasp']; ?> </p>
+          <p class="price"> <?= $value['price']; ?> </p>
           <!-- <p class="price-old">34.000.000</p> -->
           </div>
           </div>

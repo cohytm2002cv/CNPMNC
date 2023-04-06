@@ -13,12 +13,12 @@ if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 //thêm sản phâm vao giỏ
-if (isset($_GET['Masp'])) {
-  $Masp = $_GET['Masp'];
-  $sql = "SELECT * FROM GioHang where MaSP=$Masp ";
+if (isset($_GET['pro-id'])) {
+  $Masp = $_GET['pro-id'];
+  $sql = "SELECT * FROM AddCart where ProductID=$Masp ";
   $result = mysqli_query($conn, $sql);
   $rowHinh = mysqli_fetch_row($result);
-  $sql = "INSERT INTO GioHang (MaSP)
+  $sql = "INSERT INTO AddCart (ProductID)
 VALUES ('$Masp')";
 
   if ($conn->query($sql) === TRUE) {
@@ -35,7 +35,7 @@ VALUES ('$Masp')";
 
 
 
-$sql = "SELECT *FROM GioHang,Sanpham where sanpham.Masp=GioHang.Masp ";
+$sql = "SELECT *FROM AddCart,Device where AddCart.ProductID=Device.ID ";
 $result = $conn->query($sql);
 $ad = array();
 
@@ -47,7 +47,7 @@ if ($result->num_rows > 0) {
   echo "0 results";
 }
 // ----sumgia--
-$sql = "SELECT SUM(Giasp) FROM GioHang,Sanpham where SanPham.Masp=GioHang.MaSP ";
+$sql = "SELECT SUM(price) FROM AddCart,Device where Device.ID=AddCart.ProductID ";
 $result = mysqli_query($conn, $sql);
 $rowDe = mysqli_fetch_row($result);
 
@@ -92,7 +92,7 @@ $rowDe = mysqli_fetch_row($result);
   <link rel="stylesheet" href="../css/email.css">
   <link rel="stylesheet" href="./giohang.css">
   <link rel="stylesheet" href="./style-chitiet.css">
-<link rel="stylesheet" href="./giohang2.css">
+  <link rel="stylesheet" href="./giohang2.css">
 
 
 
@@ -142,7 +142,7 @@ $rowDe = mysqli_fetch_row($result);
   <div class="link">
     <div class="link-link">
       <ul>
-        <li><a href="../Home.html">Trang chủ</a></li>
+        <li><a href="../Home.php">Trang chủ</a></li>
         <span> ></span>
         <li><a href="../IPhone/IPhone.html">IPhone</a></li>
         <span> ></span>
@@ -150,11 +150,11 @@ $rowDe = mysqli_fetch_row($result);
       </ul>
     </div>
   </div>
-  <div class="body-main">
+  <div style="min-height: 600px; margin-left: 500px;" class="body-main">
 
 
 
-    <table style="margin-top: 10px;">
+    <table style="margin-top: 10px;min-height: 300px;">
 
       <tr class="index">
         <td>Hình Sản Phẩm</td>
@@ -167,9 +167,12 @@ $rowDe = mysqli_fetch_row($result);
 
         <tr>
           <td><img src="../img/IPad/Pro/Ipa9-1.jpeg" alt=""></td>
-          <td> <?= $value['Tensp']; ?></td>
-          <td> <?= $value['Giasp']; ?></td>
-          <td> <a href="delete.php?MaGH=<?= $value['MaGH']; ?>" .> <button class="delete-row">Delete</button></a>
+          <td> <?= $value['name']; ?></td>
+          <td> <?= $value['price']; ?></td>
+          <td> <a href="delete.php?ID=<?= $value['ID']; ?>" .>
+              <button style="   color:aliceblue ;width: 100px;
+    height: 30px;    background-color: #0066CC;
+">Delete</button></a>
           </td>
         </tr>
         <tr>
@@ -182,7 +185,8 @@ $rowDe = mysqli_fetch_row($result);
     <div class="thanhtien"><span style="font-weight: bold;">Tổng tiền</span>: <span style="font-size: 20px;font-Weight: bold"><?= $rowDe[0] ?></span> </div>
     <div class="btndathang">
       <a href="./Home.php">
-        <button class="btndat"> đặt hàng</button></a>
+        <button style="    width: 100px;
+    height: 30px;" class="btndat"> Đặt hàng</button></a>
 
     </div>
 

@@ -152,12 +152,12 @@ include_once("inclu.php");
     <div class="top">
       <div class="left">
         <div class="slideshow-container">
-///          <?php foreach($result as $key=>$value): ?>
+///          <?php foreach($Ipad as $key=>$value): ?>
 
 
           <div class="mySlides fade">
             <div class="numbertext">1 / 3</div>
-            <img src=<?= $value['DiaChi']; ?> style="width:100%">
+            <img src=<?= $value['img']; ?> style="width:100%">
             <div class="text">Caption Text</div>
           </div>
 
@@ -240,7 +240,7 @@ include_once("inclu.php");
             </div>
           </div>
           <div class="mua">
-            <a href="./giohang.php?Masp=<?php echo $rowDe[0] ?>"> <button onclick="addcart(<?php echo $rowDe[0] ?>)" class="btnmua">
+            <a href="./giohang.php?id=<?php echo $rowDe[0] ?>"> <button onclick="addcart(<?php echo $rowDe[0] ?>)" class="btnmua">
             MUA NGAY</button>
 
             
@@ -255,17 +255,17 @@ include_once("inclu.php");
         <div class="swiper mySwiper">
           <div class="swiper-wrapper">
 
-          <?php foreach($Iphone as $key=>$value): ?>
+          <?php foreach($Ipad as $key=>$value): ?>
               
             <div class="swiper-slide">
               <div class="column">
-              <a href="chitiet.php?Masp=<?= $value['Masp']; ?>".>
+              <a href="chitiet.php?pro-id=<?= $value['id']; ?>".>
 
                 <div class="card">
-                  <img class="imgPhone" src= <?= $value['Hinhsp']; ?>>
-                  <p class="NamePhone"><?= $value['Tensp']; ?></p>
+                  <img class="imgPhone" src= <?= $value['img']; ?>>
+                  <p class="NamePhone"><?= $value['name']; ?></p>
                   <p class="price">
-                  <?= $value['Giasp']; ?>
+                  <?= $value['price']; ?>
                   </p>
                   </p>
                 </div>

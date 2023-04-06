@@ -14,10 +14,10 @@ if ($conn->connect_error) {
 
 echo"ok";
 
-if (isset($_GET['MaGH'])) {
-    $MaGH = $_GET['MaGH'];
+if (isset($_GET['ID'])) {
+    $MaGH = $_GET['ID'];
 
-    $sql = "DELETE FROM GioHang WHERE MaGH=$MaGH";
+    $sql = "DELETE FROM AddCart WHERE ID=$MaGH";
 
     if ($conn->query($sql) === TRUE) {
       echo "Record deleted successfully";

@@ -16,6 +16,7 @@ table p{
     width: 60%;
     margin: auto;
     color: black;
+    min-height: 500px;
 }
 .link{
     margin-top: 0px;
@@ -43,3 +44,6 @@ td{
     border-style:none !important;
 }
 
+table button{
+    background-color: #fff;
+}

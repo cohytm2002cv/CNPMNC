@@ -1,3 +1,26 @@
+<?php
+
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "DoAn";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password,$dbname);
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+  }
+  if (isset($_GET['id'])) {
+    $idTK = $_GET['id'];
+    $sql = "SELECT *FROM TaiKhoan,NguoiDung where TaiKhoan.UserName=NguoiDung.idTaiKhoan and ID=$idTK";
+    $result = mysqli_query($conn, $sql);
+    // $rowHinh = mysqli_fetch_row($result);
+  
+    $rowDe = mysqli_fetch_row($result);
+  }
+ 
+?>
 <html lang="en">
 
 <head>
@@ -35,7 +58,7 @@
       <div class="email-email">
         <div class="thanh-email">
           <span style="margin-top: 10px; font-weight: bold;">Email</span>
-          <div class="email-diachi">caohuytam@gmail.com</div>
+          <div class="email-diachi"><?php echo $rowDe[6] ?></div>
         </div>
         <div class="btn-editMail">
           <svg xmlns="http://www.w3.org/2000/svg"
@@ -83,15 +106,15 @@
         <div class="thongtin">
           <div class="thongtin-chitiet">
             <p>Họ Tên</p>
-            <input style=" padding-left: 10px;" type="text" name="" placeholder="Nhập Họ Tên" id="" value="Huy Tâm">
+            <input style=" padding-left: 10px;" type="text" name="" placeholder="Nhập Họ Tên" id="" value="<?php echo $rowDe[5] ?>">
             <p>Tỉnh, Thành Phố</p>
-            <input style=" padding-left: 10px;" type="text" name="" placeholder="Nhập Tỉnh, Thành Phố" id=""value="Hồ Chí Minh">
+            <input style=" padding-left: 10px;" type="text" name="" placeholder="Nhập Tỉnh, Thành Phố" id=""value="<?php echo $rowDe[9] ?>">
           </div>
           <div class="thongtin-chitiet">
-            <p>Ngày Sinh</p>
-            <input style=" padding-left: 10px;" type="text" name="" placeholder="Nhập Ngày Sinh" id="" value="20/02/2000">
-            <p>Địa Chỉ</p>
-            <input style=" padding-left: 10px;" type="text" name="" id="" placeholder="Nhập Địa Chỉ" value="Quận 10">
+            <p>Tên Tài Khoản</p>
+            <input style=" padding-left: 10px;" type="text" name="" placeholder="Nhập Ngày Sinh" id="" value="<?php echo $rowDe[10] ?>">
+            <p>Năm Sinh</p>
+            <input style=" padding-left: 10px;" type="text" name="" id="" placeholder="Nhập Địa Chỉ" value="<?php echo $rowDe[8] ?>">
           </div>
         </div>
 
@@ -106,7 +129,7 @@
             <br><br>
             <p style="font-weight: bold;">Số diện thoại</p>
             <input style=" padding-left: 10px; width: 660px;height: 40px; margin-bottom: 50px;" type="text" name=""
-              placeholder="Nhập số điện thoại " id="">
+              placeholder="Nhập số điện thoại " value="(+84) <?php echo $rowDe[7] ?>" >
 
 
 
@@ -143,13 +166,13 @@
         <li class="mb-1">
           <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
             data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
-            QUẢN LÍ ĐƠN HÀNG
+            QUẢN LÍ Sản Phẩm
           </button>
           <div class="collapse show" id="home-collapse">
             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-              <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Danh sách đơn
+              <li><a href="../admin/addproduct.php" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Thêm Sản Phẩm
                   hàng</a></li>
-              <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Thêm đơn hàng</a>
+              <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Xoá Sản Phẩm</a>
               </li>
             </ul>
           </div>

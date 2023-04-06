@@ -15,12 +15,12 @@ if ($conn->connect_error) {
 
 if (isset($_GET['MaLoai'])) {
   $MaLoai = $_GET['MaLoai'];
-  $sql = "SELECT * FROM SanPham where loaisp=$MaLoai  " ;
+  $sql = "SELECT * FROM Product where cate=$MaLoai  " ;
   $result = mysqli_query($conn, $sql);
   $rowDe = mysqli_fetch_row($result);
 }
 //truyvan
-$sql = "SELECT * FROM SanPham where loaisp=$MaLoai  " ;
+$sql = "SELECT * FROM device where cate=$MaLoai  " ;
 $result = $conn->query($sql);
 $Iphone=array();
 
@@ -187,14 +187,14 @@ if ($loai->num_rows > 0) {
   <?php foreach($Iphone as $key=>$value): ?>
 
 
-<a href="chitiet.php?Masp=<?= $value['Masp']; ?>"]>
+<a href="chitiet.php?pro-id=<?= $value['id']; ?>"]>
 <div class="column">
   <div class="card">
-    <div id="sta" class="status"> <?= $value['TenTT']; ?></div>
-    <img class="imgPhone" src= <?= $value['Hinhsp']; ?>>
-    <p class="NamePhone"> <?= $value['Tensp']; ?> </p>
+    <!-- <div id="sta" class="status"> <?= $value['name']; ?></div> -->
+    <img class="imgPhone" src= <?= $value['img']; ?>>
+    <p class="NamePhone"> <?= $value['name']; ?> </p>
     <div class="price-contain">
-    <p class="price"> <?= $value['Giasp']; ?> </p>
+    <p class="price"> <?= $value['price']; ?> </p>
     <!-- <p class="price-old">34.000.000</p> -->
     </div>
     </div>

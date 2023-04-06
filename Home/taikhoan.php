@@ -48,11 +48,14 @@ if(isset($_POST['dangnhap'])){
 
     if($username ==$Iphone[0]["UserName"] && $password==$Iphone[0]["Pass"]){
         $_SESSION['UserName']=$username;
-    header('location:phanloai.php');
+    header('location:../admin/admin.html');
 
     }
     else{
-        echo'tai khoan mat khau sai';
+      echo '<script language="javascript">';
+      echo 'alert("Tài Khoản Hoặc Mật Khẩu Không Chính Xác")';
+      echo '</script>';
+   
     }
 
 }
