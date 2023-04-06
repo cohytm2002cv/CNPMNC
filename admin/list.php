@@ -174,7 +174,7 @@ include_once("./deleteDevice.php");
                 </div>
                 <div>
                 
-                <a href="../test/updateproducthtml.php?id=<?= $value['id']; ?>">
+                <a href="../test/updateproduct.php?id=<?= $value['id']; ?>">
                   <button class="btnXoa">Sửa </button>
                 </a>
                 

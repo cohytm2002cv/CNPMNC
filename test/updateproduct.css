@@ -1,0 +1,13 @@
+.img{
+    width: 200px;
+}
+.img img{
+    width: 100%;
+}
+form{
+    display: flex;
+}
+.container-update{
+    width: 70%;
+
+}

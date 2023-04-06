@@ -183,7 +183,7 @@ if ($result->num_rows > 0) {
     <?php foreach($Iphone as $key=>$value): ?>
 
 
-      <a href="chitiet.php?pro-id=<?= $value['id']; ?>".>
+      <a href="chitiet.php?id=<?= $value['id']; ?>".>
       <div class="column">
         <div class="card">
           <!-- <div id="sta" class="status"> <?= $value['TenTT']; ?></div> -->
@@ -216,7 +216,7 @@ if ($result->num_rows > 0) {
 
     <?php foreach($Ipad as $key=>$value): ?>
 
-      <a href="chitiet.php?pro-id=<?= $value['id']; ?>".>
+      <a href="chitiet.php?id=<?= $value['id']; ?>".>
       <div class="column">
         <div class="card">
           <!-- <div id="sta" class="status">Tạm hết hàng</div> -->

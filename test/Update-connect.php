@@ -2,6 +2,10 @@
 
 $id = $_POST["id"];
 $name = $_POST["name"];
+$img=$_POST["img"];
+$price=$_POST["price"];
+$cate=$_POST["cate"];
+$des=$_POST["des"];
 
 $servername = "localhost";
 $username = "root";
@@ -17,7 +21,7 @@ if ($conn->connect_error) {
 }
 
 
-$sql = "update Device set name='$name' where id='$id'";
+$sql = "update Device set name='$name',price='$price',cate='$cate',des='$des'	 where id='$id'";
 
 if ($conn->query($sql) === TRUE) {
 	echo "Records updated: ".$id."-".$name;

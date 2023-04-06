@@ -293,36 +293,15 @@ include_once("inclu.php");
 
       <!-- ----read-more-- -->
 
-      <!-- <div class="thongtin">
+      <div class="thongtin">
         <h2 style="text-align:center;">Thông Tin</h2>
-        <p>iPhone 14 Pro Max. Bắt trọn chi tiết ấn tượng với Camera Chính 48MP. Trải nghiệm iPhone theo cách hoàn toàn mới với Dynamic Island và màn hình Luôn Bật. Công nghệ an toàn quan trọng –
-          Phát Hiện Va Chạm thay bạn gọi trợ giúp khi cần kíp <br>
+        <p><?php echo $rowDe[5] ?><br>
           <span id="dots"></span>
           <span id="more">
-            Tính năng nổi bật
-
-            Màn hình Super Retina XDR 6,7 inch với tính năng Luôn Bật và ProMotion
-            Dynamic Island, một cách mới tuyệt diệu để tương tác với iPhone
-            Camera Chính 48MP cho độ phân giải gấp 4 lần
-            Chế độ Điện Ảnh nay đã hỗ trợ 4K Dolby Vision tốc độ lên đến 30 fps
-            Chế độ Hành Động để quay video cầm tay mượt mà, ổn định
-            Công nghệ an toàn quan trọng – Phát Hiện Va Chạm thay bạn gọi trợ giúp khi cần kíp
-            Thời lượng pin cả ngày và thời gian xem video lên đến 29 giờ
-            A16 Bionic, chip điện thoại thông minh tuyệt đỉnh. Mạng di động 5G siêu nhanh
-            Các tính năng về độ bền dẫn đầu như Ceramic Shield và khả năng chống nước
-            iOS 16 đem đến thêm nhiều cách để cá nhân hóa, giao tiếp và chia sẻ
-            Pháp lý
-
-            SOS Khẩn Cấp sử dụng kết nối mạng di động hoặc Cuộc Gọi Wi-Fi.
-            Màn hình có các góc bo tròn. Khi tính theo hình chữ nhật, kích thước màn hình theo đường chéo là 6,69 inch. Diện tích hiển thị thực tế nhỏ hơn.
-            Thời lượng pin khác nhau tùy theo cách sử dụng và cấu hình; truy cập để biết thêm thông tin.
-            Cần có gói cước dữ liệu. Mạng 5G chỉ khả dụng ở một số thị trường và được cung cấp qua một số nhà mạng. Tốc độ có thể thay đổi tùy địa điểm và nhà mạng. .
-            iPhone 14 Pro Max có khả năng chống tia nước, chống nước và chống bụi. Sản phẩm đã qua kiểm nghiệm trong điều kiện phòng thí nghiệm có kiểm soát đạt mức IP68 theo tiêu chuẩn IEC 60529 (chống nước ở độ sâu tối đa 6 mét trong vòng tối đa 30 phút). Khả năng chống tia nước, chống nước và chống bụi không phải là các điều kiện vĩnh viễn. Khả năng này có thể giảm do hao mòn thông thường. Không sạc pin khi iPhone đang bị ướt.
-            Vui lòng tham khảo hướng dẫn sử dụng để biết cách lau sạch và làm khô máy. Không bảo hành sản phẩm bị hỏng do thấm chất lỏng.
-            Một số tính năng không khả dụng tại một số quốc gia hoặc khu vực.</span>
+          
         </p>
         <button class="readmore" onclick="myFunction()" id="myBtn">Xem Thêm</button>
-      </div> -->
+      </div>
     </div>
 
   </div>

@@ -1,4 +1,3 @@
-
 <html lang="en">
 
 <head>
@@ -17,20 +16,22 @@
     * {
       box-sizing: border-box;
     }
-    
-    input[type=text], select, textarea {
+
+    input[type=text],
+    select,
+    textarea {
       width: 100%;
       padding: 12px;
       border: 1px solid #ccc;
       border-radius: 4px;
       resize: vertical;
     }
-    
+
     label {
       padding: 12px 12px 12px 0;
       display: inline-block;
     }
-    
+
     input[type=submit] {
       background-color: #04AA6D;
       color: white;
@@ -40,45 +41,106 @@
       cursor: pointer;
       float: right;
     }
-    
+
     input[type=submit]:hover {
       background-color: #45a049;
     }
-    
+
     .container {
       border-radius: 5px;
       background-color: #f2f2f2;
       padding: 20px;
     }
-    
+
     .col-25 {
       float: left;
       width: 25%;
       margin-top: 6px;
     }
-    
+
     .col-75 {
       float: left;
       width: 75%;
       margin-top: 6px;
     }
-    
+
     /* Clear floats after the columns */
     .row:after {
       content: "";
       display: table;
       clear: both;
     }
-    
+
     /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
     @media screen and (max-width: 600px) {
-      .col-25, .col-75, input[type=submit] {
+
+      .col-25,
+      .col-75,
+      input[type=submit] {
         width: 100%;
         margin-top: 0;
       }
     }
-    </style>
+  </style>
+  <style>
+    .center {
+      height: 100%;
+      display: flex;
+      margin-right: 40px;
+    }
+
+    .form-input {
+      width: 350px;
+      padding: 20px;
+      background: #fff;
+      box-shadow: -3px -3px 7px rgba(94, 104, 121, 0.377),
+        3px 3px 7px rgba(94, 104, 121, 0.377);
+    }
+
+    .form-input input {
+      display: none;
+
+    }
+
+    .form-input label {
+      display: block;
+      width: 45%;
+      height: 45px;
+      margin-left: 25%;
+  
+      text-align: center;
+      background-color: #04AA6D;
+      border: 0px ;
+
+      color: #fff;
+      font-size: 15px;
+      font-family: "Open Sans", sans-serif;
+      text-transform: Uppercase;
+      font-weight: 600;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    
+    .container form{
+      display: flex;
+    }
+    .container-update{
+    width: 70%;
+
+}
+.preview{
+  min-height: 380px;
+
+}
+    .form-input img {
+      width: 100%;
+      display: none;
+
+      margin-bottom: 30px;
+    }
+  </style>
 </head>
+
 
 <body>
 
@@ -93,9 +155,30 @@
 
 
       <h2>Thêm Sản Phẩm</h2>
-      
+
       <div class="container">
         <form method="post" action="">
+        <div class="row">
+            <!-- <div class="col-25">
+              <label for="pri-img">Ảnh</label>
+            </div>
+            <div class="col-75">
+              <td><input type="file"  name="pro-img"></td>
+            </div> -->
+            <div class="center">
+              <div class="form-input">
+                <div class="preview">
+                  <img id="file-ip-1-preview">
+                </div>
+                <label for="file-ip-1">Tải Ảnh</label>
+                <input type="file" id="file-ip-1" name="pro-img" accept="image/*" onchange="showPreview(event);">
+
+              </div>
+            </div>
+          </div>
+        <div class="container-update">
+
+     
           <div class="row">
             <div class="col-25">
               <label for="pro-name">Tên Thiết Bị</label>
@@ -106,57 +189,65 @@
           </div>
           <div class="row">
             <div class="col-25">
-              <label for="pro-pri">Giá</label>
+              <label for="pro-pri">Giá Thiết Bị</label>
             </div>
             <div class="col-75">
               <input type="text" id="pro-pri" name="pro-pri" value="" placeholder="Nhập giá..">
             </div>
           </div>
-          <div class="row">
-            <div class="col-25">
-              <label for="pri-img">Ảnh</label>
-            </div>
-            <div class="col-75">
-              <td><input type="file"  name="pro-img"></td>
-            </div>
-          </div>
-          <div class="row">
+          
+          <!-- <div class="row">
             <div class="col-25">
               <label for="pro-img-detail">Ảnh Chi Tiết</label>
             </div>
             <div class="col-75">
               <td><input type="file"  name="pro-img-detail"></td>
             </div>
-          </div>
+          </div> -->
           <div class="row">
             <div class="col-25">
-              <label for="pro-loai">Loại</label>
+              <label for="pro-loai">Loại Thiết Bị</label>
             </div>
             <div class="col-75">
-              <select id="pro-loai" name="pro-loai" value="">
+              <select id="pro-loai" name="cate" value="">
 
-                <option value="australia">Australia</option>
+                <option value="1">IPhone</option>
+                <option value="2">IPad</option>
+
 
               </select>
             </div>
           </div>
+
+
+          <!-- <div class="row">
+            <div class="col-25">
+              <label for="pro-mota">Loại Thiết Bị: </label>
+            </div>
+            <div class="col-75">
+              <textarea id="subject" name="cate" placeholder="Nhập mô tả.." ></textarea>
+            </div>
+          </div> -->
           <div class="row">
             <div class="col-25">
-              <label for="pro-mota">Mô Tả </label>
+              <label for="pro-mota">Mô Tả Thiết Bị </label>
             </div>
             <div class="col-75">
               <textarea id="subject" name="pro-mota" placeholder="Nhập mô tả.." style="height:200px"></textarea>
-            </div>
-          </div>
-          <div class="row">
+                        
+          <div style="margin  : 20px;" class="row">
             <input type="submit" value="Submit">
           </div>
-          
+            </div>
+            
+          </div>
+
+          </div>
         </form>
       </div>
 
 
-      </div>
+    </div>
 
 
   </div>
@@ -171,8 +262,7 @@
       </a>
       <ul class="list-unstyled ps-0">
         <li class="mb-1">
-          <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
-            data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
+          <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
             QUẢN LÍ Thiết Bị
           </button>
           <div class="collapse show" id="home-collapse">
@@ -185,8 +275,7 @@
           </div>
         </li>
         <li class="mb-1">
-          <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
-            data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
+          <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
             QUẢN LÍ THỐNG KÊ
           </button>
           <div class="collapse" id="dashboard-collapse">
@@ -200,8 +289,7 @@
           </div>
         </li>
         <li class="mb-1">
-          <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
-            data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false">
+          <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false">
             QUẢN LÍ DỊCH VỤ
           </button>
           <div class="collapse" id="orders-collapse">
@@ -215,8 +303,7 @@
         </li>
         <li class="border-top my-3"></li>
         <li class="mb-1">
-          <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
-            data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="false">
+          <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="false">
             QUẢN LÍ TÀI KHOẢN
           </button>
           <div class="collapse" id="account-collapse">
@@ -241,10 +328,22 @@
 <script src="./bootstrap-5.3.0-alpha3-examples/assets/dist/js/bootstrap.bundle.min.js"></script>
 <script src="sidebars.js"></script>
 <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
-      <script type="text/javascript">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript">
 
-      </script>
+</script>
+<!-- ----chon-anh--- -->
+<script type="text/javascript">
+  function showPreview(event) {
+    if (event.target.files.length > 0) {
+      var src = URL.createObjectURL(event.target.files[0]);
+      var preview = document.getElementById("file-ip-1-preview");
+      preview.src = src;
+      preview.style.display = "block";
+    }
+  }
+</script>
+
 </html>
 <?php
 include("./add-include.php");

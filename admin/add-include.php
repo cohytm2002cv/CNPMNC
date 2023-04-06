@@ -26,10 +26,9 @@ $Tensp = $_POST['pro-name'];
 $Giasp = $_POST['pro-pri'];
 $Hinhsp =  $_POST['pro-img'];
 $SL=$_POST['pro-img-detail'];
-$LoaiSP=$_POST['pro-mota'];
+$LoaiSP=$_POST['cate'];
 $Des=$_POST['pro-mota'];
-$LoaiSP=$_POST['pro-mota'];
-$TrangThai=$_POST['pro-mota'];
+
 
 
 
@@ -58,11 +57,9 @@ if ($result->num_rows > 0) {
 }
 
 
+///hien thi loai
 
 
-
-// $sql = "INSERT INTO Sanpham (Masp, Tensp, Giasp, Hinhsp, SL,LoaiSP,TrangThai)
-// VALUES ('$Masp', '$Tensp', '$Giasp','../img/IPad/Pro/$Hinhsp','$SL','$LoaiSP','$TrangThai')";
 
 
 // -----
