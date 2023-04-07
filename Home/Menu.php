@@ -30,7 +30,7 @@ if ($result->num_rows > 0) {
       $Iphone[]=$row;
   }
 } else {
-  echo "0 results";
+  // echo "0 results";
 }
 
 // lấy tên loại ở link

@@ -1,72 +1,6 @@
 <?php
-// $servername = "localhost";
-// $username = "root";
-// $password = "";
-// $dbname = "Doan";
-
-// // Create connection
-// $conn = new mysqli($servername, $username, $password, $dbname);
-
-// // Check connection
-// if ($conn->connect_error) {
-//   die("Connection failed: " . $conn->connect_error);
-// }
-
-
-// if (isset($_GET['Masp'])) {
-//   $Masp = $_GET['Masp'];
-//   $sql = "SELECT * FROM SanPham, PhanLoai where Masp=$Masp and PhanLoai.MaLoai=SanPham.LoaiSP";
-//   $result = mysqli_query($conn, $sql);
-//   $rowDe = mysqli_fetch_row($result);
-// }
-
-
-
-
-// ///
-// $sql = "SELECT * FROM SanPham,TrangThai where LoaiSP='1'and  MaTT=TrangThai and Hinhsp not like ''  limit 5 ";
-// $result = $conn->query($sql);
-// $Iphone = array();
-
-
-// if ($result->num_rows > 0) {
-//   while ($row = $result->fetch_assoc()) {
-//     $Iphone[] = $row;
-//   }
-// } else {
-//   echo "0 results";
-// }
-
-
-
-// //
-// $sql = "SELECT * FROM SanPham  where LoaiSP  = '1'  limit 6";
-// $result = $conn->query($sql);
-// $Ipad = array();
-
-
-// if ($result->num_rows > 0) {
-//   while ($row = $result->fetch_assoc()) {
-//     $Ipad[] = $row;
-//   }
-// } else {
-//   echo "0 results";
-// }
-
-
-
-// /////
-
-// if (isset($_GET['Masp'])) {
-//   $Masp = $_GET['Masp'];
-//   $sql = "SELECT * FROM Hinh where Masp=$Masp ";
-//   $result = mysqli_query($conn, $sql);
-//   $rowHinh= mysqli_fetch_row($result);
-// }
 
 include_once("inclu.php");
-
-
 
 ?>
 
@@ -110,13 +44,12 @@ include_once("inclu.php");
     <a href="" class="logo"><i class="ri-home-fill"></i><span>logo</span></a>
 
     <ul class="navbar">
-      <li><a href="" class="active">IPhone</a></li>
-      <li><a href="">IPad</a></li>
-      <li><a href="">Mac</a></li>
-      <li><a href="">Watch</a></li>
-      <li><a href="">Âm thnah</a></li>
-      <li><a href="">Phụ kiện</a></li>
-      <li><a href="">Khuyến mãi</a></li>
+    <?php foreach($tl as $key=>$value): ?>
+
+      <li  ><a style="color: #29fd53;" href="Menu.php?MaLoai=<?= $value['MaLoai']; ?>".> <?= $value['TenLoai']; ?></a></li>
+    
+      <?php endforeach; ?>
+
     </ul>
 
     <div class="main">
@@ -152,16 +85,21 @@ include_once("inclu.php");
     <div class="top">
       <div class="left">
         <div class="slideshow-container">
-///          <?php foreach($Ipad as $key=>$value): ?>
+///         
 
 
           <div class="mySlides fade">
             <div class="numbertext">1 / 3</div>
-            <img src=<?= $value['img']; ?> style="width:100%">
-            <div class="text">Caption Text</div>
+            <img src=<?php echo $img[1] ?> style="width:100%">
           </div>
-
-          <?php endforeach; ?>
+          <div class="mySlides fade">
+            <div class="numbertext">1 / 3</div>
+            <img src=<?php echo $img[3] ?> style="width:100%">
+          </div>
+          <div class="mySlides fade">
+            <div class="numbertext">1 / 3</div>
+            <img src=<?php echo $img[4] ?> style="width:100%">
+          </div>
 ////
 
           <a class="prev" onclick="plusSlides(-1)">❮</a>

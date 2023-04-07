@@ -56,11 +56,29 @@ if ($result->num_rows > 0) {
 } else {
   echo "0 results";
 }
+//lay hinh chi tiet
+if (isset($_GET['id'])) {
+  $Masp = $_GET['id'];
+  $sql = "SELECT * FROM imgDetail where ProductID=$Masp";
+  $result = mysqli_query($conn, $sql);
+  // $rowHinh = mysqli_fetch_row($result);
 
+  $img = mysqli_fetch_row($result);
+}
+//lay ten loai sp ở menu
 
+$sqli = "SELECT * FROM phanloai" ;
+$loai = $conn->query($sqli);
 
+$tl=array();
 
-
+if ($loai->num_rows > 0) {
+  while($rowl = $loai->fetch_assoc()) {
+      $tl[]=$rowl;
+  }
+} else {
+  echo "0 results";
+}
 /////
 
 // if (isset($_GET['Masp'])) {

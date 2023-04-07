@@ -211,9 +211,10 @@
             <div class="col-75">
               <select id="pro-loai" name="cate" value="">
 
-                <option value="1">IPhone</option>
-                <option value="2">IPad</option>
-
+              <option value="1">IPhone</option>
+                  <option value="2">IPad</option>
+                  <option value="3">MacBook</option>
+                  <option value="4">Watch</option>
 
               </select>
             </div>

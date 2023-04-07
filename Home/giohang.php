@@ -13,8 +13,8 @@ if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 //thêm sản phâm vao giỏ
-if (isset($_GET['pro-id'])) {
-  $Masp = $_GET['pro-id'];
+if (isset($_GET['id'])) {
+  $Masp = $_GET['id'];
   $sql = "SELECT * FROM AddCart where ProductID=$Masp ";
   $result = mysqli_query($conn, $sql);
   $rowHinh = mysqli_fetch_row($result);
@@ -30,7 +30,18 @@ VALUES ('$Masp')";
 }
 
 // -----
+$sqli = "SELECT * FROM phanloai" ;
+$loai = $conn->query($sqli);
 
+$tl=array();
+
+if ($loai->num_rows > 0) {
+  while($rowl = $loai->fetch_assoc()) {
+      $tl[]=$rowl;
+  }
+} else {
+  echo "0 results";
+}
 ////
 
 
@@ -112,18 +123,16 @@ $rowDe = mysqli_fetch_row($result);
 
 <body>
   <header>
-    <a href="" class="logo"><i class="ri-home-fill"></i><span>logo</span></a>
+    <a href="../Home/Home.php" class="logo"><i class="ri-home-fill"></i><span>logo</span></a>
 
     <ul class="navbar">
-      <li><a href="./IPhone/IPhone.html" class="active">IPhone</a></li>
-      <li><a href="">IPad</a></li>
-      <li><a href="">Mac</a></li>
-      <li><a href="">Watch</a></li>
-      <li><a href="">Âm thanh</a></li>
-      <li><a href="">Phụ kiện</a></li>
-      <li><a href="">Khuyến mãi</a></li>
-    </ul>
+    <?php foreach($tl as $key=>$value): ?>
 
+      <li><a href="Menu.php?MaLoai=<?= $value['MaLoai']; ?>". class="active"> <?= $value['TenLoai']; ?></a></li>
+    
+      <?php endforeach; ?>
+
+    </ul>
     <div class="main">
       <a href=""><i class="fa-solid fa-magnifying-glass"></i></a>
 
@@ -166,9 +175,9 @@ $rowDe = mysqli_fetch_row($result);
       <?php foreach ($ad as $key => $value) : ?>
 
         <tr>
-          <td><img src="../img/IPad/Pro/Ipa9-1.jpeg" alt=""></td>
+          <td><img src="<?= $value['img']; ?>" alt=""></td>
           <td> <?= $value['name']; ?></td>
-          <td> <?= $value['price']; ?></td>
+          <td> <?= $value['price']; ?> </td>
           <td> <a href="delete.php?ID=<?= $value['ID']; ?>" .>
               <button style="   color:aliceblue ;width: 100px;
     height: 30px;    background-color: #0066CC;

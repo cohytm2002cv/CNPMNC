@@ -6,58 +6,57 @@ $password = "";
 $dbname = "DoAn";
 
 // Create connection
-$conn = new mysqli($servername, $username, $password,$dbname);
+$conn = new mysqli($servername, $username, $password, $dbname);
 // Check connection
 if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+  die("Connection failed: " . $conn->connect_error);
+}
+
+
+$sql = "SELECT *FROM TaiKhoan";
+$result = $conn->query($sql);
+
+$User = array();
+
+
+if ($result->num_rows > 0) {
+  while ($row = $result->fetch_assoc()) {
+    $User[] = $row;
   }
+} else {
+  echo "0 results";
+}
 
- 
-  $sql = "SELECT *FROM TaiKhoan";
-  $result = $conn->query($sql);
-  
-  $Iphone=array();
-
-
-  if ($result->num_rows > 0) {
-    while($row = $result->fetch_assoc()) {
-        $Iphone[]=$row;
-    }
-  } else {
-    echo "0 results";
+if ($result->num_rows > 0) {
+  // output data of each row
+  while ($row = $result->fetch_assoc()) {
+    echo "MaLoai: " . $User[0]["UserName"] . " Tenloai: " . $User[0]["Pass"] . "<br>";
   }
-
-  if ($result->num_rows > 0) {
-    // output data of each row
-    while($row = $result->fetch_assoc()) {
-      echo "MaLoai: " . $Iphone[0]["UserName"]. " Tenloai: " . $Iphone[0]["Pass"]. "<br>";
-    }
-  } else {
-    echo "0 results";
-  }
+} else {
+  echo "0 results";
+}
 
 
 
 session_start();
 
-if(isset($_POST['dangnhap'])){
+if (isset($_POST['dangnhap'])) {
+  $username = $_POST['UserName'];
+  $password = $_POST['Pass'];
+  foreach ($User as $key=>$value) {
+    $i = 0;
 
-
-    $username =$_POST['UserName'];
-    $password =$_POST['Pass'];
-
-    if($username ==$Iphone[0]["UserName"] && $password==$Iphone[0]["Pass"]){
-        $_SESSION['UserName']=$username;
-    header('location:../admin/admin.html');
-
-    }
-    else{
+    if ($username == $value["UserName"] && $password == $value["Pass"]) {
+      $_SESSION['UserName'] = $username;
+      header("location:../admin/admin.php?UserName={$username}");
+      
+    } else {
       echo '<script language="javascript">';
       echo 'alert("Tài Khoản Hoặc Mật Khẩu Không Chính Xác")';
       echo '</script>';
-   
     }
-
+    $i++;
+  }
 }
 
 
@@ -119,19 +118,19 @@ if(isset($_POST['dangnhap'])){
 
 
   </header>
-<!-- -------dangnhap--- -->
-<div class="dangnhap">
+  <!-- -------dangnhap--- -->
+  <div class="dangnhap">
     <div class="login">
       <form action="" method="post" class="form">
         <img src="./img/logo.jpg" alt="" />
         <h2>ĐĂNG NHẬP</h2>
         <div class="input">
           <input type="text" placeholder="Tên Đăng Nhập" name="UserName" id="loginUser" required />
-         
+
         </div>
         <div class="input">
-          <input  type="password" placeholder="Mật khẩu" name="Pass" id="loginPwd" required />
-          
+          <input type="password" placeholder="Mật khẩu" name="Pass" id="loginPwd" required />
+
         </div>
         <button name="dangnhap" type="submit" class="submit" onclick="validate()">
           Đăng nhập
@@ -144,11 +143,11 @@ if(isset($_POST['dangnhap'])){
       </form>
     </div>
   </div>
-  
-  
-    
-    
-  
+
+
+
+
+
   <!-- ---footer-- -->
   <div class="footer">
     <i class="cart-shopping-solid.svg"></i>
@@ -182,4 +181,3 @@ if(isset($_POST['dangnhap'])){
 </body>
 
 </html>
-

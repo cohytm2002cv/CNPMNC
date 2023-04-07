@@ -134,20 +134,23 @@ $conn->close();
 
       <h2 style="padding-left: 50px;">Cập Nhật Sản Phẩm</h2>
 
-      <div class="container" >
+      <div class="container">
         <form method="post" action="update-connect.php">
 
-          <div class="img"> <img src="<?= $row['img']; ?>" alt=""></div>
-          <div class="container-update">
-            <div class="row">
+          <div class="img" style="   margin-right: 30px;">
+            <img src="<?= $row['img']; ?>" alt="">
+            
+           <a href="../admin/AddimgDetail.php?ID=<?= $id ?>">
+            <button style="margin: 50px;width:100px"> a</button>
+            </a>
+          </div>
+          <div class="row">
 
-              <div class="col-25">
-                <label for="pro-name">ID Thiết Bị</label>
-              </div>
-              <div class="col-75">
-                <input type="text" value="<?= $row['id']; ?>" name="id" placeholder=" Nhập tên thiết bị">
-              </div>
-            </div>
+
+
+          </div>
+          <div class="container-update">
+
 
 
             <div class="row">
@@ -177,20 +180,28 @@ $conn->close();
               </div>
             </div>
             <div class="row">
-            <div class="col-25">
-              <label for="pro-loai">Loại</label>
-            </div>
-            <div class="col-75">
-              <select id="pro-loai" name="cate" value="">
-      
-                <option value="1">IPhone</option>
-                <option value="2">IPad</option>
+              <div class="col-25">
+                <label for="pro-loai">Loại</label>
+              </div>
+              <div class="col-75">
+                <select id="pro-loai" name="cate" value="">
 
+                  <option value="1">IPhone</option>
+                  <option value="2">IPad</option>
+                  <option value="3">MacBook</option>
+                  <option value="4">Watch</option>
 
-              </select>
+                </select>
+              </div>
             </div>
-          </div>
-           
+            <div class="row">
+
+              <div class="col-25">
+              </div>
+              <div class="col-75">
+                <input type="hidden" value="<?= $row['id']; ?>" name="id" placeholder=" Nhập tên thiết bị">
+              </div>
+            </div>
 
 
 

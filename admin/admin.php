@@ -11,9 +11,9 @@ $conn = new mysqli($servername, $username, $password,$dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
   }
-  if (isset($_GET['id'])) {
-    $idTK = $_GET['id'];
-    $sql = "SELECT *FROM TaiKhoan,NguoiDung where TaiKhoan.UserName=NguoiDung.idTaiKhoan and ID=$idTK";
+  if (isset($_GET['UserName'])) {
+    $idTK = $_GET['UserName'];
+    $sql = "SELECT *FROM TaiKhoan,NguoiDung where TaiKhoan.UserName=NguoiDung.idTaiKhoan and TaiKhoan.UserName=$idTK";
     $result = mysqli_query($conn, $sql);
     // $rowHinh = mysqli_fetch_row($result);
   
@@ -214,12 +214,12 @@ if ($conn->connect_error) {
           </button>
           <div class="collapse" id="account-collapse">
             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-              <li><a href="./admin.html" class="link-dark d-inline-flex text-decoration-none rounded">Xem thông tin</a>
+              <li><a href="./admin.php" class="link-dark d-inline-flex text-decoration-none rounded">Xem thông tin</a>
               </li>
               <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">chỉnh sửa</a></li>
               <li><a href="./list/list.html" class="link-dark d-inline-flex text-decoration-none rounded">Danh sách tài
                   khảin</a></li>
-              <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">Đăng xuất</a></li>
+              <li><a href="../Home/logout.php" class="link-dark d-inline-flex text-decoration-none rounded">Đăng xuất</a></li>
             </ul>
           </div>
         </li>

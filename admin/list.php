@@ -56,12 +56,12 @@ include_once("./deleteDevice.php");
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  <link rel="stylesheet" href="./list/list.css">
 
   <link href="bootstrap-5.3.0-alpha3-examples/assets/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sidebars/">
   <link href="./bootstrap-5.3.0-alpha3-examples/sidebars/sidebars.css" rel="stylesheet">
   <script src="./bootstrap-5.3.0-alpha3-examples/sidebars/sidebars.js"></script>
+  <link rel="stylesheet" href="./list/list.css">
 
 </head>
 
@@ -158,18 +158,18 @@ include_once("./deleteDevice.php");
           </div>
 
           <div class="my-3 p-3 bg-body rounded shadow-sm">
-            <h6 class="border-bottom pb-2 mb-0">Tên Thiết Bị</h6>
+            <h6 class="border-bottom pb-2 mb-0"></h6>
 
 
 
             <?php foreach ($Iphone as $key => $value) : ?>
 
               <a href="">
-                <div class="d-flex text-body-secondary pt-3">
+                <div style="display: flex;">
                   <img width="100px" src="<?= $value['img']; ?>" alt="">                   
                 <div class="info">
                 <div class="thongtin-sp">
-                  <p class="name">Tên:    <?= $value['name']; ?></p>
+                  <a href="../Home/chitiet.php?id=<?= $value['id']; ?>"> <p  class="name">Tên:    <?= $value['name']; ?></p></a>
                   <p class="price">Giá:   <?= $value['price']; ?></p>
                 </div>
                 <div>

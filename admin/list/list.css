@@ -6,6 +6,7 @@
     right: 0;
 
 }
+
 .footter{
     height: 300px;
     background-color: #494949;
@@ -257,10 +258,12 @@ svg {
    border-bottom-right-radius: 20px; */
     
 }
+
 .footer{
   height: 20%;
   background-color: #494949;
 }
+
 
 
 
