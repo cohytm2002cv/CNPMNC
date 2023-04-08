@@ -3,45 +3,9 @@
 include_once("inclu.php");
 
 ?>
-<?php
-session_start();
 
-// Check if product is coming or not
-if (isset($_GET['id'])) {
+<?php session_start(); ?>
 
-  $proid = $_GET['id'];
-
-  // If session cart is not empty
-  if (!empty($_SESSION['cart'])) {
-
-    // Using "array_column() function" we get the product id existing in session cart array
-    $acol = array_column($_SESSION['cart'], 'pro_id');
-
-    // now we compare whther id already exist with "in_array() function"
-    if (in_array($proid, $acol)) {
-
-      // Updating quantity if item already exist
-      $_SESSION['cart'][$proid]['qty'] += 1;
-    } else {
-      // If item doesn't exist in session cart array, we add a new item
-      $item = [
-        'pro_id' => $_GET['pro_id'],
-        'qty' => 1
-      ];
-
-      $_SESSION['cart'][$proid] = $item;
-    }
-  } else {
-    // If cart is completely empty, then store item in session cart
-    $item = [
-      'pro_id' => $_GET['pro_id'],
-      'qty' => 1
-    ];
-
-    $_SESSION['cart'][$proid] = $item;
-  }
-}
-?>
 
 
 <html lang="en">
@@ -94,8 +58,12 @@ if (isset($_GET['id'])) {
     <div class="main">
       <a href=""><i class="fa-solid fa-magnifying-glass"></i></a>
 
-      <a href="" class="Cart">
-        <i class="fa-solid fa-cart-shopping"></i>
+      <a href="./Cart/cart.php" class="Cart">
+        <i class="fa-solid fa-cart-shopping">
+        <?php if (isset($_SESSION['cartt'])) : ?>
+            <?php echo count($_SESSION['cartt']);; ?>
+          <?php endif; ?>
+        </i>
       </a>
       <a href="" class="User"> <i class="fa-solid fa-user"></i></a>
       <div class="bx bx-menu" id="menu-icon"></div>
@@ -110,12 +78,14 @@ if (isset($_GET['id'])) {
   <div class="link">
     <div class="link-link">
     <ul>
+      
+      
             <li><a href="./Home.php">Trang chủ</a></li>
             <span> ></span>
-            <li><a href="menu.php?MaLoai=<?= $rowDe[6] ?>"> <?php echo $rowDe[8] ?></a></li>
+            <li><a href="menu.php?MaLoai=<?= $rowDe[6] ?>"> <?php echo $rowDe[4] ?></a></li>
             <span> ></span>
             <li><a href="chitiet.php?Masp=<?= $rowDe[0] ?>"> <?php echo $rowDe[1] ?></a></li>
-
+            <a class="btn btn-outline-success" href="./Cart/cart.php"></a>
         </ul>
     </div>
   </div>
@@ -124,7 +94,7 @@ if (isset($_GET['id'])) {
     <div class="top">
       <div class="left">
         <div class="slideshow-container">
-///         
+
 
 
           <div class="mySlides fade">
@@ -142,8 +112,7 @@ if (isset($_GET['id'])) {
             <img src="<?php echo $rowDe[8] ?> " style="width:100%">
             <!-- <img src="../Home/img/ip14/14-2.jpeg" alt=""> -->
           </div>
-       
-////
+      
 
           <a class="prev" onclick="plusSlides(-1)">❮</a>
           <a class="next" onclick="plusSlides(1)">❯</a>
@@ -221,10 +190,8 @@ if (isset($_GET['id'])) {
             </div>
           </div>
           <div class="mua">
-            <a href="./giohang.php?id=<?php echo $rowDe[0] ?>"> <button onclick="addcart(<?php echo $rowDe[0] ?>)" class="btnmua">
-            MUA NGAY</button>
-
-            
+            <a href="./cart/cart.php?id=<?=  $rowDe[0]; ?>"> 
+              <button class="btnmua"> MUA NGAY</button>
           </div>
         </div>
       </div>

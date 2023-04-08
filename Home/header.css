@@ -138,3 +138,21 @@ header{
     right: 2%;
 }
 }
+.numCart{
+    width: 20px;
+    height: 20px;
+    background-color: #fff;
+    color: rgb(0, 0, 0);
+    border-radius: 50%;
+    text-align: center;
+    padding-top: 3px;
+    position: absolute;
+    z-index: -3;
+    /* border: 2px solid; */
+    border-color: #fff;
+    margin-left: 15px;
+    font-size: 12px;
+    font-weight: bolder;
+    bottom: 15px;
+
+}

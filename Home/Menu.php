@@ -1,5 +1,6 @@
 
 <?php
+session_start();
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -125,8 +126,14 @@ if ($loai->num_rows > 0) {
     <div class="main">
       <a href=""><i class="fa-solid fa-magnifying-glass"></i></a>
 
-      <a href="" class="Cart">
-        <i class="fa-solid fa-cart-shopping"></i>
+      <a href="./Cart/cart.php" class="Cart">
+        <i class="fa-solid fa-cart-shopping">
+        <div class="numCart" > 
+        <?php if (isset($_SESSION['cartt'])) : ?>
+            <?php echo count($_SESSION['cartt']);; ?>
+          <?php endif; ?>
+        </div>
+        </i>
       </a>
       <a href="" class="User"> <i class="fa-solid fa-user"></i></a>
       <div class="bx bx-menu" id="menu-icon"></div>

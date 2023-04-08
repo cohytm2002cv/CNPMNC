@@ -1,0 +1,150 @@
+.cart-contain{
+    min-height: 900px;
+    width: 80%;
+    margin: auto;
+    display: flex;
+    margin-top: 20px;
+}
+.trai{
+    width: 70%;
+}
+.giua{
+    width: 1%;
+}
+h2{
+    margin-top: 20px;
+    color: black;
+}
+.phai{
+    width: 29%;
+    color: black;
+}
+.tren{
+    padding-top: 20px;
+    background-color: #fff;
+    width: 100%;
+    border-radius: 10px;
+    padding-bottom: 30px;
+}
+table{
+    width: 98%;
+    text-align: center;
+    color: black;
+    font-weight: bold;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    margin: auto;
+}
+.upd{
+    background-color: #bcbcbc;
+    border-radius: 5px;
+    height: 30px;
+    width: 100px;
+    color: white;
+    border: 0.5px solid;
+    font-weight: bold;
+}
+
+.tieude{
+    border-bottom: 0.5px solid;
+    width: 80%;
+}
+.duoi{
+    margin-top: 20px;
+}
+hr{
+
+    width: 80%;
+    margin: auto;
+}
+table img{
+    width: 100px;
+
+}
+table input{
+    text-align: center;
+    width: 30px;
+    height: 30px;
+}
+a{
+    text-decoration: none;
+    color: black;
+}
+.thongtin{
+    padding-bottom: 30px;
+    background-color: #ffffff;
+    width: 100%;
+    border-radius: 10px;
+    /* min-height: 400px; */
+}
+label{
+    color: black;
+    padding-top: 20px;
+    font-weight: bold;
+}
+.form{
+    margin: auto ;
+    width: 80%;
+    color: black;
+    font-size: 18px;
+}
+.div-form{
+    padding: 20px;
+}
+.form input{
+    font-size: 15px;
+    width: 100%;
+    height: 45px;
+    margin-top: 20px;
+    border-radius:10px ;
+    border: 0.5px solid ;
+    padding: 10px;
+
+}
+ .mgg{
+    width: 80%;
+    height: 50px;
+    margin-top: 30px;
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+    border: 0.5px solid;
+    padding: 10px;
+    font-size: 15px;
+}
+.thanhtien{
+    width: 80%;
+    margin: auto;
+}
+.apply{
+    margin-top: 30px;
+    width: 25%  ;
+    height: 50px;
+    border: 0.5px solid;
+    border-bottom-right-radius: 10px;
+    border-top-right-radius: 10px;
+    background-color: rgb(173, 173, 173);
+    color: white;
+    font-weight: bold;
+}
+.tien{
+    margin-top: 30px;
+    display: flex;
+    font-weight: bold;
+    justify-content: space-between;
+}
+.bill{
+    color: #334fdc;
+    font-weight: bold;
+}
+.mua{
+    background-color: #334fdc;
+    width: 100%;
+    height: 50px;
+    font-size: 18px;
+    margin-top: 40px;
+    border: 0px;
+    border-radius: 10px;
+    font-weight: bold;
+    color: white;
+}

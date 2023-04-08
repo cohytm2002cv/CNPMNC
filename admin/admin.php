@@ -170,7 +170,7 @@ if ($conn->connect_error) {
           </button>
           <div class="collapse show" id="home-collapse">
             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-              <li><a href="../admin/addproduct.php" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Thêm Sản Phẩm
+              <li><a href="../User/sanpham/ProductAdd/AddProduct.php" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Thêm Sản Phẩm
                   hàng</a></li>
               <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Xoá Sản Phẩm</a>
               </li>
