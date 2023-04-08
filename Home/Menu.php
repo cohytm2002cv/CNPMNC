@@ -15,7 +15,7 @@ if ($conn->connect_error) {
 
 if (isset($_GET['MaLoai'])) {
   $MaLoai = $_GET['MaLoai'];
-  $sql = "SELECT * FROM Product where cate=$MaLoai  " ;
+  $sql = "SELECT * FROM Device where cate=$MaLoai  " ;
   $result = mysqli_query($conn, $sql);
   $rowDe = mysqli_fetch_row($result);
 }

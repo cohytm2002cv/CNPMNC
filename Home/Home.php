@@ -155,7 +155,7 @@ if ($result->num_rows > 0) {
         </div>
 
         <div class="slide swiper-slide">
-          <img class="img" src="../img/banner/b2.jpeg" alt="">
+          <img class="img" src="./img/banner/b2.jpeg" alt="">
         </div>
       </div>
 
@@ -187,7 +187,7 @@ if ($result->num_rows > 0) {
       <div class="column">
         <div class="card">
           <!-- <div id="sta" class="status"> <?= $value['TenTT']; ?></div> -->
-          <img class="imgPhone" src= <?= $value['img']; ?>>
+          <img class="imgPhone" src=<?=  $value['img']; ?>>
           <p class="NamePhone"> <?= $value['name']; ?> </p>
           <div class="price-contain">
           <p class="price"> <?= $value['price']; ?> </p>

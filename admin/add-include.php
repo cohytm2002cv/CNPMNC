@@ -64,7 +64,7 @@ if ($result->num_rows > 0) {
 
 // -----
 $sql = "INSERT INTO Device ( name, price, img, des,cate)
-VALUES ( '$Tensp', '$Giasp','../img/IPad/Pro/$Hinhsp','$Des','$LoaiSP')";
+VALUES ( '$Tensp', '$Giasp','../Home/img/ip14/$Hinhsp','$Des','$LoaiSP')";
 
 if ($conn->query($sql) === TRUE) {
   echo "New record created successfully";

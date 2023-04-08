@@ -1,0 +1,72 @@
+.header{
+  background-color: #007bff;
+  width: 100%;
+  height: 70px;
+  display: flex;
+  justify-content: space-between;
+}
+.colo{
+  background-color: #fff;
+}
+.containerr{
+  display: flex;
+  min-height: 800px;
+
+}
+.tieude{
+  margin-bottom: 30px;
+ text-align: center;
+  width: 100%;
+  margin-top: 20px;
+}
+.noidung-contain{
+  width: 100%;
+  background-color: #dcdcdc;
+position: relative;
+}
+.noidung{
+  position: absolute;
+  height: 100%;
+  width: 98%;
+  right: 0;  
+  background-color: rgb(255, 255, 255);
+}
+.trangthai{
+  color: rgb(25, 198, 120);
+}
+.title td{
+  background-color: rgb(222, 222, 225);
+
+  border: 0.2px solid;
+}
+.footer{
+  background-color: #b07a7a;
+  height: 300px;
+}
+.title{
+  font-weight: bold;
+  color: rgb(0, 94, 157);
+}
+table{
+  width: 90%;
+  margin: auto;
+  font-weight: bold;
+}
+table td{
+  text-align: center;
+  width: 120px;
+  height: 50px;
+  padding-bottom: 20px;
+  padding: 0px;
+
+}
+
+table button{
+  width: 100px;
+  height: 30px;
+  border: 0px;
+  border-radius: 5px;
+  background-color: rgb(38, 94, 190);
+  color: white;
+  font-weight: bold;
+}

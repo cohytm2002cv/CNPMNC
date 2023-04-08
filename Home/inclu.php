@@ -57,14 +57,14 @@ if ($result->num_rows > 0) {
   echo "0 results";
 }
 //lay hinh chi tiet
-if (isset($_GET['id'])) {
-  $Masp = $_GET['id'];
-  $sql = "SELECT * FROM imgDetail where ProductID=$Masp";
-  $result = mysqli_query($conn, $sql);
-  // $rowHinh = mysqli_fetch_row($result);
+// if (isset($_GET['id'])) {
+//   $Masp = $_GET['id'];
+//   $sql = "SELECT * FROM imgDetail where ProductID=$Masp";
+//   $result = mysqli_query($conn, $sql);
+//   // $rowHinh = mysqli_fetch_row($result);
 
-  $img = mysqli_fetch_row($result);
-}
+//   $img = mysqli_fetch_row($result);
+// }
 //lay ten loai sp ở menu
 
 $sqli = "SELECT * FROM phanloai" ;

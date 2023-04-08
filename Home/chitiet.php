@@ -3,6 +3,45 @@
 include_once("inclu.php");
 
 ?>
+<?php
+session_start();
+
+// Check if product is coming or not
+if (isset($_GET['id'])) {
+
+  $proid = $_GET['id'];
+
+  // If session cart is not empty
+  if (!empty($_SESSION['cart'])) {
+
+    // Using "array_column() function" we get the product id existing in session cart array
+    $acol = array_column($_SESSION['cart'], 'pro_id');
+
+    // now we compare whther id already exist with "in_array() function"
+    if (in_array($proid, $acol)) {
+
+      // Updating quantity if item already exist
+      $_SESSION['cart'][$proid]['qty'] += 1;
+    } else {
+      // If item doesn't exist in session cart array, we add a new item
+      $item = [
+        'pro_id' => $_GET['pro_id'],
+        'qty' => 1
+      ];
+
+      $_SESSION['cart'][$proid] = $item;
+    }
+  } else {
+    // If cart is completely empty, then store item in session cart
+    $item = [
+      'pro_id' => $_GET['pro_id'],
+      'qty' => 1
+    ];
+
+    $_SESSION['cart'][$proid] = $item;
+  }
+}
+?>
 
 
 <html lang="en">
@@ -90,16 +129,20 @@ include_once("inclu.php");
 
           <div class="mySlides fade">
             <div class="numbertext">1 / 3</div>
-            <img src=<?php echo $img[1] ?> style="width:100%">
+            <img src="<?php echo $rowDe[6] ?> " style="width:100%">
+            <!-- <img src="../Home/img/ip14/14-2.jpeg" alt=""> -->
           </div>
           <div class="mySlides fade">
             <div class="numbertext">1 / 3</div>
-            <img src=<?php echo $img[3] ?> style="width:100%">
+            <img src="<?php echo $rowDe[7] ?> " style="width:100%">
+            <!-- <img src="../Home/img/ip14/14-2.jpeg" alt=""> -->
           </div>
           <div class="mySlides fade">
             <div class="numbertext">1 / 3</div>
-            <img src=<?php echo $img[4] ?> style="width:100%">
+            <img src="<?php echo $rowDe[8] ?> " style="width:100%">
+            <!-- <img src="../Home/img/ip14/14-2.jpeg" alt=""> -->
           </div>
+       
 ////
 
           <a class="prev" onclick="plusSlides(-1)">❮</a>
@@ -197,7 +240,7 @@ include_once("inclu.php");
               
             <div class="swiper-slide">
               <div class="column">
-              <a href="chitiet.php?pro-id=<?= $value['id']; ?>".>
+              <a href="chitiet.php?id=<?= $value['id']; ?>".>
 
                 <div class="card">
                   <img class="imgPhone" src= <?= $value['img']; ?>>
