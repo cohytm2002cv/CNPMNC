@@ -25,11 +25,13 @@
 position: relative;
 }
 
-.noidung2{
+.noidung{
+  margin-left: 30px;
   height: 100%;
   width: 98%;
   right: 0;  
-  background-color: rgb(255, 255, 255);
+  margin-bottom: 20px;
+  background-color: #fff;
 }
 .trangthai{
   color: rgb(25, 198, 120);

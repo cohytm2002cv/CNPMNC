@@ -25,9 +25,10 @@ if ($result->num_rows > 0) {
 } else {
   // echo "0 results";
 }
+session_start();
+$username=$_SESSION['UserName'] ;
 
 ?>
-
 
 <html lang="en">
 
@@ -42,9 +43,10 @@ if ($result->num_rows > 0) {
   <script src="./bootstrap-5.3.0-alpha3-examples/sidebars/sidebars.js"></script>
   <script src="https://kit.fontawesome.com/0d29d48e70.js" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="./sanpham.css">
+<link rel="stylesheet" href="./noidung.css">
   <!-- --dropdownmenu- -->
   <link rel="stylesheet" href="./dropdownmenu.css">
-  <script src="./dropdown.js"></script>
+
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.slim.min.js"></script>
@@ -72,7 +74,7 @@ if ($result->num_rows > 0) {
             </button>
             <div class="collapse show" id="home-collapse">
               <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                <li><a href="../Product-list/DSsanpham.html" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Danh sách sản Phẩm</a></li>
+                <li><a href="../Product-list/ListProduct.php" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Danh sách sản Phẩm</a></li>
                 <li><a href="../ProductAdd/AddProduct.php" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Thêm sản phẩm</a>
                 </li>
               </ul>
@@ -85,10 +87,9 @@ if ($result->num_rows > 0) {
             </button>
             <div class="collapse" id="dashboard-collapse">
               <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Danh Sách Đơn Hàng</a>
+                <li><a href="../DonHang/DSDonHang.php" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Danh Sách Đơn Hàng</a>
                 </li>
-                <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Phương thức thanh
-                    toán</a></li>
+
 
               </ul>
             </div>
@@ -115,14 +116,14 @@ if ($result->num_rows > 0) {
             </button>
             <div class="collapse" id="account-collapse">
               <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                <li><a href="./admin.html" class="link-dark d-inline-flex text-decoration-none rounded">Xem thông
+                <li><a href="../admin/admin.php?UserName= <?= $_SESSION['UserName']?>" class="link-dark d-inline-flex text-decoration-none rounded">Xem thông
                     tin</a>
                 </li>
                 <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">chỉnh sửa</a></li>
                 <li><a href="./list/list.html" class="link-dark d-inline-flex text-decoration-none rounded">Danh sách
                     tài
                     khảin</a></li>
-                <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">Đăng xuất</a></li>
+                <li><a href="../admin/logout.php" class="link-dark d-inline-flex text-decoration-none rounded">Đăng xuất</a></li>
               </ul>
             </div>
           </li>
@@ -131,7 +132,7 @@ if ($result->num_rows > 0) {
     </div>
     <div class="noidung-contain">
 
-      <div class="noidung2">
+      <div class="noidung">
         <div class="header">
          
           <div class="login">
@@ -158,28 +159,17 @@ if ($result->num_rows > 0) {
           <?php foreach($SP as $key=>$value): ?>
             <tr>  
               <td>
-                <img width="150px" src="/IMG/iphone11.jpeg" alt="">
+                <img width="150px" src="<?= $value['img']; ?>" alt="">
               </td>
               <td>123</td>
               <td><?= $value['name']; ?></td>
-              <td>29.000.000</td>
+              <td><?php echo number_format($value['price']);?></td>
               <td>39</td>
               <td class="trangthai">Còn Hàng</td>
-              <td> <a href=""><button> <i class="fa-sharp fa-solid fa-trash"></i> </button></a></td>
+              <td> <a href="./del.php?id=<?= $value['id']?>"><button> <i class="fa-sharp fa-solid fa-trash"></i> </button></a></td>
               <hr width="80%" style="margin: auto;">
             </tr>
-            <tr>  
-              <td>
-                <img width="150px" src="/IMG/iphone11.jpeg" alt="">
-              </td>
-              <td>123</td>
-              <td><?= $value['name']; ?></td>
-              <td>29.000.000</td>
-              <td>39</td>
-              <td class="trangthai">Còn Hàng</td>
-              <td> <a href=""><button> <i class="fa-sharp fa-solid fa-trash"></i> </button></a></td>
-              <hr width="80%" style="margin: auto;">
-            </tr>
+            
             <?php endforeach; ?>
             
 

@@ -1,0 +1,132 @@
+.header{
+    background-color: #007bff;
+    width: 100%;
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .colo{
+    background-color: #fff;
+  }
+  .containerr{
+    display: flex;
+    min-height: 800px;
+  
+  }
+  .tieude{
+    margin-bottom: 30px;
+   text-align: center;
+    width: 100%;
+    margin-top: 20px;
+  }
+  .noidung-contain{
+    width: 100%;
+    background-color: #dcdcdc;
+  position: relative;
+  }
+  
+  .noidung{
+    margin-left: 30px;
+    height: 100%;
+    width: 98%;
+    right: 0;  
+    margin-bottom: 20px;
+    background-color: #fff;
+  }
+  .trangthai{
+    color: rgb(25, 198, 120);
+  }
+  .title td{
+    background-color: rgb(222, 222, 225);
+  
+    border: 0.2px solid;
+  }
+  .footer{
+    background-color: #b07a7a;
+    height: 300px;
+  }
+  .title{
+    font-weight: bold;
+    color: rgb(0, 94, 157);
+  }
+  table{
+    width: 90%;
+    margin: auto;
+    font-weight: bold;
+  }
+  table td{
+    text-align: center;
+    width: 120px;
+    height: 50px;
+    padding-bottom: 20px;
+    padding: 0px;
+  
+  }
+  
+  table button{
+    width: 100px;
+    height: 30px;
+    border: 0px;
+    border-radius: 5px;
+    background-color: rgb(38, 94, 190);
+    color: white;
+    font-weight: bold;
+  }
+
+  .ipl{
+    font-weight: bolder;
+  }
+  .ipl p{
+    height: 40px;
+    padding-top: 10px;
+  }
+  .ipr{
+    margin-left: 20px;
+    font-weight: bold;
+  }
+  .ipr p{
+    background-color: #c4bdbd29;
+    height: 40px;
+    padding-top: 10px;
+    border-radius: 3px;
+    width: 700px;
+    border: 0.5px solid;
+    border-color: rgba(128, 128, 128, 0.44)  ;
+  }
+  .sanpham{
+    width: 95%;
+    /* height: 300px; */
+    margin: auto  ;
+    /* text-align: center; */
+    border-radius: 10px;
+    border: 0.5px solid;
+    border-color: gray;
+  }
+
+  .sanpham tr{
+    border: 1px solid;
+    border-radius: 10px;
+  }
+  .sanpham td{
+   
+    width: 70px;
+  }
+  .sanpham div{
+    margin-top: 30px;
+  }
+ 
+  table img{
+    width: 80px;
+    margin: 10px;
+  }
+.tongtienHD{
+  font-weight: bold;
+}
+.tongtienHD span{
+  font-size: 20px;
+  font-weight: b;
+  color: rgb(14, 35, 223)  ;
+}
+.tr{
+  background-color: #007bff;
+}

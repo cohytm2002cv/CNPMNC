@@ -1,4 +1,4 @@
-<!-- <?php session_start(); ?> -->
+<?php session_start(); ?>
 
 
 <!-- 
@@ -66,6 +66,7 @@ if (isset($_GET['id'])) {
   $rowDe = mysqli_fetch_row($result);
   $gia = $rowDe[2];
   $name = $rowDe[1];
+  $img=$rowDe[3];
 
   // If session cart is not empty
   if (!empty($_SESSION['cartt'])) {
@@ -84,7 +85,8 @@ if (isset($_GET['id'])) {
         'id' => $_GET['id'],
         'qty' => 1,
         'price' => $gia,
-        'name' => $name
+        'name' => $name,
+        'img'=>$img
       ];
 
       $_SESSION['cartt'][$proid] = $item;
@@ -95,7 +97,9 @@ if (isset($_GET['id'])) {
       'id' => $_GET['id'],
       'qty' => 1,
       'price' => $gia,
-      'name' => $name
+      'name' => $name,
+      // 'img'=>$img
+
     ];
 
     $_SESSION['cartt'][$proid] = $item;
@@ -121,14 +125,13 @@ if (isset($_GET['id'])) {
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cart</title>
-  <link rel="stylesheet" href="../header.css">
-  <link rel="stylesheet" href="../banner.css">
-  <link rel="stylesheet" href="./carrt.css">
+  <link rel="stylesheet" href="../Cart/carrt.css">
+  <link rel="stylesheet" href="../Cart/header.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
   <!-- or -->
   <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
   <!-- --css footer-- -->
-  <link rel="stylesheet" href="../footer.css">
+  <link rel="stylesheet" href="./footer.css">
   <!-- ---css icon -->
   <!-- <link rel="stylesheet" href="./icon/fontawesome-free-6.3.0-web/css/all.css"> -->
   <!-- <link rel="stylesheet" href="/icon/fontawesome-free-6.3.0-web/css/all.css"> -->
@@ -141,7 +144,7 @@ if (isset($_GET['id'])) {
 
 <body>
   <header>
-    <a href="../Home.php" class="logo"><i class="ri-home-fill"></i><span>logo</span></a>
+    <a href="../ class="logo"><i class="ri-home-fill"></i><span>logo</span></a>
 
     <ul class="navbar">
       <?php foreach ($tl as $key => $value) : ?>
@@ -196,9 +199,10 @@ if (isset($_GET['id'])) {
             ?>
 
 
-                <tr>
+                <tr>  
                   <td style="width:30px">
-                    <img src="./4-1.jpeg" alt="">
+                    <img src="../User/img/device/<?= $cart['img']?>" alt="">
+                    
                   </td>
 
                   <td><?= $cart['name']; ?></td>
@@ -308,5 +312,5 @@ if (isset($_GET['id'])) {
 
 </html>
 <?php
-include_once("./createDH.php")
+include_once('../Cart/createDH.php');
 ?>

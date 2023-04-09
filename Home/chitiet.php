@@ -35,6 +35,7 @@ include_once("inclu.php");
   <!-- ----chitiet---- -->
   <link rel="stylesheet" href="../css/chitiet.css">
   <link rel="stylesheet" href="../css/slide-chitiet.css">
+  <link rel="stylesheet" href="./StarRating/style.css">
 
 
 
@@ -131,11 +132,26 @@ include_once("inclu.php");
       <div class="right">
         <div class="right-content">
           <h2><?php echo $rowDe[1] ?></h2>
-          <span class="fa fa-star checked"></span>
+          <!-- //ngóiao -->
+          <!-- <span class="fa fa-star checked"></span>
           <span class="fa fa-star checked"></span>
           <span class="fa fa-star checked"></span>
           <span class="fa fa-star"></span>
-          <span class="fa fa-star"></span>
+          <span class="fa fa-star"></span> -->
+            
+          <div class="rate">
+            <input type="radio" id="star5" name="rate" value="5" />
+            <label for="star5" title="text">5 stars</label>
+            <input type="radio" id="star4" name="rate" value="4" />
+            <label for="star4" title="text">4 stars</label>
+            <input type="radio" id="star3" name="rate" value="3" />
+            <label for="star3" title="text">3 stars</label>
+            <input type="radio" id="star2" name="rate" value="2" />
+            <label for="star2" title="text">2 stars</label>
+            <input type="radio" id="star1" name="rate" value="1" />
+            <label for="star1" title="text">1 star</label>
+          </div>
+
           <div class="gach"></div>
           <div class="gia">
             <div class="giamoi" id="price"><?php echo number_format($rowDe[2]);?></div>
@@ -190,7 +206,7 @@ include_once("inclu.php");
             </div>
           </div>
           <div class="mua">
-            <a href="./cart/cart.php?id=<?=  $rowDe[0]; ?>"> 
+            <a href="../User/Cart/cart.php?id=<?=  $rowDe[0]; ?>"> 
               <button class="btnmua"> MUA NGAY</button>
           </div>
         </div>

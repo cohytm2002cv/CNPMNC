@@ -13,17 +13,17 @@ if ($conn->connect_error) {
 }
 
 
-if (isset($_GET['ID'])) {
-    $ID = $_GET['ID'];
+if (isset($_GET['id'])) {
+    $ID = $_GET['id'];
 
-    $sql = "DELETE FROM Device WHERE ID=$ID";
+    $sql = "DELETE FROM Device WHERE id=$ID";
 
     if ($conn->query($sql) === TRUE) {
       echo "Record deleted successfully";
     } else {
       echo "Error deleting record: " . $conn->error;
     }
-    header('location:../admin/list.php');
+    header('location:./ListProduct.php');
 
 
 

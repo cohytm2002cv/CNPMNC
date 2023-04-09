@@ -157,11 +157,11 @@ session_start();
     <section class="main-banner swiper mySwiper">
       <div class="wrapper swiper-wrapper">
         <div class="slide swiper-slide">
-          <img class="img" src="../img/banner/ban1.jpeg" alt="">
+          <img class="img" src="../User/User/img/banner/ban1.jpeg" alt="">
         </div>
 
         <div class="slide swiper-slide">
-          <img class="img" src="./img/banner/b2.jpeg" alt="">
+          <img class="img" src="../User/User/img/banner/b2.jpeg" alt="">
         </div>
       </div>
 
@@ -175,9 +175,9 @@ session_start();
     <!-- --khuyemai-- -->
     <div class="khuyenmai-contain">
       <div class="khuyemai">
-        <img class="km" src="../img/khuyenmai/km1.jpeg" alt="">
-        <img class="km" src="../img/khuyenmai/km1.jpeg" alt="">
-        <img class="km" src="../img/khuyenmai/km1.jpeg" alt="">
+      <img class="km" src="../User/User/img/khuyenmai/km1.jpeg" alt="">
+        <img class="km" src="../User/User/img/khuyenmai/km1.jpeg" alt="">
+        <img class="km" src="../User/User/img/khuyenmai/km1.jpeg" alt="">
       </div>
     </div>
     <!-- ---body -->
@@ -194,6 +194,7 @@ session_start();
         <div class="card">
           <!-- <div id="sta" class="status"> <?= $value['TenTT']; ?></div> -->
           <img class="imgPhone" src=<?=  $value['img']; ?>>
+          <!-- <img class="imgPhone" src="../User/User/img/device/14-2.jpeg"> -->
           <p class="NamePhone"> <?= $value['name']; ?> </p>
           <div class="price-contain">
           <p class="price"> <?php echo number_format($value['price']);?> </p>
@@ -250,7 +251,7 @@ session_start();
 
   <!-- ----gioithieu---- -->
   <div class="gioithieu">
-    <a href=""> <img src="../img/banner/ban1.jpeg" alt="">
+    <a href=""> <img src="../User/User/img/banner/ban1.jpeg" alt="">
   </div></a>
 
 

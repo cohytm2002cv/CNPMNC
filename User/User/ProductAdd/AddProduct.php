@@ -1,3 +1,5 @@
+<?php session_start();
+?>
 <html lang="en">
 
 <head>
@@ -25,7 +27,7 @@
 <body>
 
   <div class="containerr">
-    <div class="menu">
+  <div class="menu">
       <div class="flex-shrink-0 p-3" style="width: 280px;">
         <a href="" class="d-flex align-items-center pb-3 mb-3 link-body-emphasis text-decoration-none border-bottom">
           <svg class="bi pe-none me-2" width="30" height="24">
@@ -35,35 +37,35 @@
         </a>
         <ul class="list-unstyled ps-0">
           <li class="mb-1">
-            <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
+            <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
+              data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
               QUẢN LÍ SẢN PHẨM
             </button>
             <div class="collapse show" id="home-collapse">
               <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                <li><a href="../Product-list/DSsanpham.html" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Danh sách sản phẩm
-                    </a></li>
-                <li><a href="./AddProduct.php" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Thêm sản phẩm</a>
+                <li><a href="../Product-list/ListProduct.php" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Danh sách sản Phẩm</a></li>
+                <li><a href="../ProductAdd/AddProduct.php" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Thêm sản phẩm</a>
                 </li>
               </ul>
             </div>
           </li>
           <li class="mb-1">
-            <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
+            <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
+              data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
               QUẢN LÍ Đơn Hàng
             </button>
             <div class="collapse" id="dashboard-collapse">
               <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Danh Sách Đơn
-                    Hàng</a>
+                <li><a href="../DonHang/DSDonHang.php" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Danh Sách Đơn Hàng</a>
                 </li>
-                <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Phương thức thanh
-                    toán</a></li>
+
 
               </ul>
             </div>
           </li>
           <li class="mb-1">
-            <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false">
+            <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
+              data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false">
               QUẢN LÍ DỊCH VỤ
             </button>
             <div class="collapse" id="orders-collapse">
@@ -77,19 +79,20 @@
           </li>
           <li class="border-top my-3"></li>
           <li class="mb-1">
-            <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="false">
+            <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
+              data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="false">
               QUẢN LÍ TÀI KHOẢN
             </button>
             <div class="collapse" id="account-collapse">
               <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                <li><a href="./admin.html" class="link-dark d-inline-flex text-decoration-none rounded">Xem thông
+                <li><a href="../admin/admin.php?UserName= <?= $_SESSION['UserName']?>" class="link-dark d-inline-flex text-decoration-none rounded">Xem thông
                     tin</a>
                 </li>
                 <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">chỉnh sửa</a></li>
                 <li><a href="./list/list.html" class="link-dark d-inline-flex text-decoration-none rounded">Danh sách
                     tài
                     khảin</a></li>
-                <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">Đăng xuất</a></li>
+                <li><a href="../admin/logout.php" class="link-dark d-inline-flex text-decoration-none rounded">Đăng xuất</a></li>
               </ul>
             </div>
           </li>

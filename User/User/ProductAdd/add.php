@@ -57,6 +57,7 @@ if ($conn->query($sql) === TRUE) {
 }
 // header("addproduct.php");
 
+session_start();
 
 
 

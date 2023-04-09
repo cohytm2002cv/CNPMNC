@@ -1,9 +1,66 @@
 <?php
+session_start();
+$username = $_SESSION['UserName'];
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "DoAn";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+}
+
+
+// $sql = "SELECT * FROM DonHang,CTDH where DonHang.IDorder=CTDH.IDDonHang" ;
+// $result = $conn->query($sql);
+
+// $HD=array();
+// if ($result->num_rows > 0) {
+//   while($row = $result->fetch_assoc()) {
+//       $HD[]=$row;
+//       echo 'ok';
+//       }
+// } else {
+//   echo "0 results";
+// }
+
+if (isset($_GET['id'])) {
+  $id = $_GET['id'];
+  $sql = "SELECT * FROM DonHang where IDorder=$id";
+  $result = mysqli_query($conn, $sql);
+  // $rowHinh = mysqli_fetch_row($result);
+
+  $HoaDon = mysqli_fetch_row($result);
 
 
 
-include_once("./DHconfig.php");
+  $sql = "SELECT * FROM CTDH   where IDDonHang=$id ";
+  $result = $conn->query($sql);
+  $CT = array();
+
+
+  if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+      $CT[] = $row;
+    }
+  } else {
+    echo "0 results";
+  }
+}
+
+
+
+
+
+
+
+
 ?>
+
 <html lang="en">
 
 <head>
@@ -15,12 +72,12 @@ include_once("./DHconfig.php");
   <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sidebars/">
   <link href="./bootstrap-5.3.0-alpha3-examples/sidebars/sidebars.css" rel="stylesheet">
   <script src="./bootstrap-5.3.0-alpha3-examples/sidebars/sidebars.js"></script>
-  <link rel="stylesheet" href="./addpro.css">
   <script src="https://kit.fontawesome.com/0d29d48e70.js" crossorigin="anonymous"></script>
-
+  <link rel="stylesheet" href="./chitietDH-css.css">
   <!-- --dropdownmenu- -->
-  <script src="./dropdown.js"></script>
-  <link rel="stylesheet" href="./them.css">
+  <link rel="stylesheet" href="./dropdownmenu.css">
+
+
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
@@ -46,9 +103,8 @@ include_once("./DHconfig.php");
             </button>
             <div class="collapse show" id="home-collapse">
               <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                <li><a href="../Product-list/DSsanpham.html" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Danh sách sản phẩm
-                    </a></li>
-                <li><a href="./AddProduct.php" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Thêm sản phẩm</a>
+                <li><a href="../Product-list/ListProduct.php" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Danh sách sản Phẩm</a></li>
+                <li><a href="../ProductAdd/AddProduct.php" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Thêm sản phẩm</a>
                 </li>
               </ul>
             </div>
@@ -59,11 +115,9 @@ include_once("./DHconfig.php");
             </button>
             <div class="collapse" id="dashboard-collapse">
               <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Danh Sách Đơn
-                    Hàng</a>
+                <li><a href="../DonHang/DSDonHang.php" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Danh Sách Đơn Hàng</a>
                 </li>
-                <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Phương thức thanh
-                    toán</a></li>
+
 
               </ul>
             </div>
@@ -88,14 +142,15 @@ include_once("./DHconfig.php");
             </button>
             <div class="collapse" id="account-collapse">
               <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                <li><a href="./admin.html" class="link-dark d-inline-flex text-decoration-none rounded">Xem thông
+                <li><a href="../admin/admin.php?UserName= <?= $_SESSION['UserName'] ?>" class="link-dark d-inline-flex text-decoration-none rounded">Xem thông
                     tin</a>
                 </li>
                 <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">chỉnh sửa</a></li>
                 <li><a href="./list/list.html" class="link-dark d-inline-flex text-decoration-none rounded">Danh sách
                     tài
                     khảin</a></li>
-                <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">Đăng xuất</a></li>
+                <li><a href="../admin/logout.php" class="link-dark d-inline-flex text-decoration-none rounded">Đăng
+                    xuất</a></li>
               </ul>
             </div>
           </li>
@@ -109,59 +164,84 @@ include_once("./DHconfig.php");
 
           <div class="login">
 
-            a
+
           </div>
-          <div>ok</div>
         </div>
-        <div class="tieude"> <h3>Danh Sách Đơn Hàng</h3></div>
+        <div class="tieude">
+          <h3>Chi Tiết Đơn Hàng</h3>
+        </div>
         <div>
-          <table style="margin-bottom: 20px;">
+          <div style="display: flex; margin-left: 50px;">
+            <div class="ipl">
+              <p>Mã đơn</p>
+              <p>Ngày Mua</p>
+              <p>Tên</p>
+              <p>sdt</p>
+              <p>dia chi</p>
+              <p>email</p>
+            </div>
 
-          <table>
-            <tr class="title">
-              <td >ID</td>
-              <td>Người Mua</td>
-              <td>Đơn Giá</td>
-              <td>Số Điện Thoại</td>
-              <td>Địa Chỉ</td>
-              <td>Email</td>
-              <td>Thao tác</td>
-            </tr>
+            <div class="ipr">
+              <p><?php echo $HoaDon['0']?></p>
+              <p>23/02/2024</p>
+              <p><?php echo $HoaDon['1']?></p>
+              <p>0<?php echo $HoaDon['3']?></p>
+              <p> <?php echo $HoaDon['4']?></p>
 
-            <?php foreach($Ipad as $key=>$value): ?>
-            <tr>
-              <td><?= $value['IDorder']; ?></td>
-              <td><?= $value['KH']; ?></td>
-              <td><?php echo number_format($value['TongTien']);?></td>  
-              <td>0<?= $value['SDT']; ?></td>
-              <td><?= $value['DiaChi']; ?></td>
-              <td><?= $value['email']; ?></td>
-              <!-- <td class="trangthai">trang thai</td> -->
-              <td> <a href=""><button>Xoá</button></a></td>
-            </tr>
-            
-            <?php endforeach; ?>
+              <p><?php echo $HoaDon['5']?></p>
+            </div>
+          </div>
 
-          </table>
+          <h4 style="margin-left: 40px; margin-top: 30px;">sản phẩm đã mua</h4>
+
+          <div class="sanpham">
+            <div>
+              <table>
+                <tr>
+                  <td>Stt</td>
+                  <td>Hình</td>
+                  <td colspan="2">Tên Sản Phẩm</td>
+                  <td colspan="2">Giá Sản Phẩm</td>
+                  <td colspan="2">Số Lượng</td>
+
+                </tr>
+                <?php foreach ($CT as $key => $value) : ?>
+                <div >
+                  <tr>
+                    <td>1</td>
+                    <td><img src="../img/device/14pro-1.jpeg" alt=""></td>
+                    <td colspan="2"><?= $value['TenSP']; ?></td>
+                    <td colspan="2"><?php echo  number_format($value['Gia']); ?> </td>
+                    <td style="width: 80px;"><?= $value['SL']; ?></td>
+
+                  </tr>
+                </div>
+                  
+                <?php endforeach; ?>
+
+              </table>
+              
+            </div>
+            <div style="display: flex;">
+                <div style="width: 80%;"></div>
+                <div class="tongtienHD">Tổng Tiền: <span><?php echo number_format($HoaDon['2']);?></span></div>
+              </div>
+
+
+          </div>
+
         </div>
-
-
-        
       </div>
-
     </div>
-
   </div>
   <div class="footer"></div>
 
 
 
-
 </body>
-
 <script src="bootstrap-5.3.0-alpha3-examples/assets/js/color-modes.js"></script>
+
 <script src="./bootstrap-5.3.0-alpha3-examples/assets/dist/js/bootstrap.bundle.min.js"></script>
 <script src="sidebars.js"></script>
 
 </html>
-

@@ -59,7 +59,18 @@ if (isset($_POST['dangnhap'])) {
   }
 }
 
+$sqli = "SELECT * FROM phanloai" ;
+$loai = $conn->query($sqli);
+$tl=array();
 
+
+if ($loai->num_rows > 0) {
+  while($rowl = $loai->fetch_assoc()) {
+      $tl[]=$rowl;
+  }
+} else {
+  echo "0 results";
+}
 
 ?>
 
@@ -96,13 +107,11 @@ if (isset($_POST['dangnhap'])) {
     <a href="" class="logo"><i class="ri-home-fill"></i><span>logo</span></a>
 
     <ul class="navbar">
-      <li><a href="./IPhone/IPhone.html" class="active">IPhone</a></li>
-      <li><a href="">IPad</a></li>
-      <li><a href="">Mac</a></li>
-      <li><a href="">Watch</a></li>
-      <li><a href="">Âm thanh</a></li>
-      <li><a href="">Phụ kiện</a></li>
-      <li><a href="">Khuyến mãi</a></li>
+    <?php foreach($tl as $key=>$value): ?>
+      <li><a href="Menu.php?MaLoai=<?= $value['MaLoai']; ?>". class="active"> <?= $value['TenLoai']; ?></a></li>
+    
+      <?php endforeach; ?>
+
     </ul>
 
     <div class="main">
