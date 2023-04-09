@@ -1,3 +1,9 @@
+<?php
+
+
+
+include_once("./DHconfig.php");
+?>
 <html lang="en">
 
 <head>
@@ -115,137 +121,27 @@
             <tr class="title">
               <td >ID</td>
               <td>Người Mua</td>
-              <td >Tên Sản Phẩm</td>
               <td>Đơn Giá</td>
               <td>Số Điện Thoại</td>
               <td>Địa Chỉ</td>
               <td>Email</td>
               <td>Thao tác</td>
             </tr>
+
+            <?php foreach($Ipad as $key=>$value): ?>
             <tr>
-              <td>123</td>
-              <td>Người Mua</td>
-              <td>Iphone 13 pro max
-
-              </td>
-              <td>tongtien</td>
-              <td>sdt</td>
-              <td>diachi</td>
-              <td>ncaohuytam@gmail.com</td>
-              <!-- <td class="trangthai">trang thai</td> -->
-              <td> <a href=""><button>Xoá</button></a></td>
-            </tr>
-            <tr>
-              <td>123</td>
-              <td>Người Mua</td>
-              <td>Iphone 13 pro max
-
-              </td>
-              <td>tongtien</td>
-              <td>sdt</td>
-              <td>diachi</td>
-              <td>ncaohuytam@gmail.com</td>
-              <!-- <td class="trangthai">trang thai</td> -->
-              <td> <a href=""><button>Xoá</button></a></td>
-            </tr>
-            <tr>
-              <td>123</td>
-              <td>Người Mua</td>
-              <td>Iphone 13 pro max
-
-              </td>
-              <td>tongtien</td>
-              <td>sdt</td>
-              <td>diachi</td>
-              <td>ncaohuytam@gmail.com</td>
-              <!-- <td class="trangthai">trang thai</td> -->
-              <td> <a href=""><button>Xoá</button></a></td>
-            </tr><tr>
-              <td>123</td>
-              <td>Người Mua</td>
-              <td>Iphone 13 pro max
-
-              </td>
-              <td>tongtien</td>
-              <td>sdt</td>
-              <td>diachi</td>
-              <td>ncaohuytam@gmail.com</td>
-              <!-- <td class="trangthai">trang thai</td> -->
-              <td> <a href=""><button>Xoá</button></a></td>
-            </tr><tr>
-              <td>123</td>
-              <td>Người Mua</td>
-              <td>Iphone 13 pro max
-
-              </td>
-              <td>tongtien</td>
-              <td>sdt</td>
-              <td>diachi</td>
-              <td>ncaohuytam@gmail.com</td>
-              <!-- <td class="trangthai">trang thai</td> -->
-              <td> <a href=""><button>Xoá</button></a></td>
-            </tr><tr>
-              <td>123</td>
-              <td>Người Mua</td>
-              <td>Iphone 13 pro max
-
-              </td>
-              <td>tongtien</td>
-              <td>sdt</td>
-              <td>diachi</td>
-              <td>ncaohuytam@gmail.com</td>
-              <!-- <td class="trangthai">trang thai</td> -->
-              <td> <a href=""><button>Xoá</button></a></td>
-            </tr><tr>
-              <td>123</td>
-              <td>Người Mua</td>
-              <td>Iphone 13 pro max
-
-              </td>
-              <td>tongtien</td>
-              <td>sdt</td>
-              <td>diachi</td>
-              <td>ncaohuytam@gmail.com</td>
-              <!-- <td class="trangthai">trang thai</td> -->
-              <td> <a href=""><button>Xoá</button></a></td>
-            </tr><tr>
-              <td>123</td>
-              <td>Người Mua</td>
-              <td>Iphone 13 pro max
-
-              </td>
-              <td>tongtien</td>
-              <td>sdt</td>
-              <td>diachi</td>
-              <td>ncaohuytam@gmail.com</td>
-              <!-- <td class="trangthai">trang thai</td> -->
-              <td> <a href=""><button>Xoá</button></a></td>
-            </tr><tr>
-              <td>123</td>
-              <td>Người Mua</td>
-              <td>Iphone 13 pro max
-
-              </td>
-              <td>tongtien</td>
-              <td>sdt</td>
-              <td>diachi</td>
-              <td>ncaohuytam@gmail.com</td>
-              <!-- <td class="trangthai">trang thai</td> -->
-              <td> <a href=""><button>Xoá</button></a></td>
-            </tr><tr>
-              <td>123</td>
-              <td>Người Mua</td>
-              <td>Iphone 13 pro max
-
-              </td>
-              <td>tongtien</td>
-              <td>sdt</td>
-              <td>diachi</td>
-              <td>ncaohuytam@gmail.com</td>
+              <td><?= $value['IDorder']; ?></td>
+              <td><?= $value['KH']; ?></td>
+              <td><?php echo number_format($value['TongTien']);?></td>  
+              <td>0<?= $value['SDT']; ?></td>
+              <td><?= $value['DiaChi']; ?></td>
+              <td><?= $value['email']; ?></td>
               <!-- <td class="trangthai">trang thai</td> -->
               <td> <a href=""><button>Xoá</button></a></td>
             </tr>
             
+            <?php endforeach; ?>
+
           </table>
         </div>
 
@@ -269,6 +165,3 @@
 
 </html>
 
-<?php
-include("./add.php");
-?>

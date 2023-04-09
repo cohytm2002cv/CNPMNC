@@ -138,7 +138,7 @@ include_once("inclu.php");
           <span class="fa fa-star"></span>
           <div class="gach"></div>
           <div class="gia">
-            <div class="giamoi" id="price"><?php echo $rowDe[2] ?></div>
+            <div class="giamoi" id="price"><?php echo number_format($rowDe[2]);?></div>
             <div class="giacu" id="price">34000000</div>
 
           </div>
@@ -213,7 +213,7 @@ include_once("inclu.php");
                   <img class="imgPhone" src= <?= $value['img']; ?>>
                   <p class="NamePhone"><?= $value['name']; ?></p>
                   <p class="price">
-                  <?= $value['price']; ?>
+                  <?php echo number_format($value['price']);?>
                   </p>
                   </p>
                 </div>

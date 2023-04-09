@@ -196,7 +196,7 @@ session_start();
           <img class="imgPhone" src=<?=  $value['img']; ?>>
           <p class="NamePhone"> <?= $value['name']; ?> </p>
           <div class="price-contain">
-          <p class="price"> <?= $value['price']; ?> </p>
+          <p class="price"> <?php echo number_format($value['price']);?> </p>
           <!-- <p class="price-old">34.000.000</p> -->
           </div>
           </div>

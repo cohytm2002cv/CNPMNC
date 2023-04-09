@@ -202,7 +202,7 @@ if (isset($_GET['id'])) {
                   </td>
 
                   <td><?= $cart['name']; ?></td>
-                  <td><?= $cart['price']; ?></td>
+                  <td> <?php echo number_format($cart['price']);?></td>
 
                   <td style="width:200px">
                     <form action="update.php" method="post">
@@ -239,24 +239,25 @@ if (isset($_GET['id'])) {
       <div class="duoi">
         <div  class="thongtin div-form">
           <div class="form">
+            <form action="" method="post">
             <div class="div-form">
               <label for="">Họ Tên</label>
-              <input type="text" name="hoten" id="" placeholder="Họ Tên">
+              <input type="text" name="KH" id="" placeholder="Họ Tên">
             </div>
             <div class="div-form">
               <label for="">Số Điện Thoại</label>
-              <input type="text" name="sdt" id="" placeholder="Số Điện Thoại">
+              <input type="text" name="SDT" id="" placeholder="Số Điện Thoại">
             </div>
             <div class="div-form">
               <label for="">Email</label>
-              <input type="text" name="" id="" placeholder=" Email">
+              <input type="text" name="email" id="" placeholder=" Email">
             </div>
             <div class="div-form">
               <label for="">Địa Chỉ</label>
-              <input type="text" name="diachi" id="" placeholder="Địa Chỉ Giao Hàng">
+              <input type="text" name="DiaChi" id="" placeholder="Địa Chỉ Giao Hàng">
             </div>
-
-
+            <input class="mua" type="submit"  value="Đặt Hàng">
+            </form>
           </div>
         </div>
       </div>
@@ -283,13 +284,13 @@ if (isset($_GET['id'])) {
                     $tong=$tong+($value['price']*$value['qty']);
 
                }
-               echo $tong;
+               echo number_format("$tong");
+
             
               //  echo $_SESSION['cartt'][63]['price']*$_SESSION['cartt'][63]['qty'] ?>
-                        </span>
+                      vnđ  </span>
           </div>
           <div>
-            <input class="mua" type="submit" value="Đặt Hàng">
           </div>
         </div>
       </div>
@@ -297,19 +298,15 @@ if (isset($_GET['id'])) {
 
   </div>
 
-
-
-
-
   <!-- ---footer-- -->
   <div class="footer">
     <i class="cart-shopping-solid.svg"></i>
 
   </div>
 
-  <!-- <script src="./script.js"></script> -->
-  <!-- Swiper JS -->
-
 </body>
 
 </html>
+<?php
+include_once("./createDH.php")
+?>

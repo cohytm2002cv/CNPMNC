@@ -1,3 +1,34 @@
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "DoAn";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+}
+
+
+$sql = "SELECT * FROM Device" ;
+$result = $conn->query($sql);
+$Ipad=array();
+
+
+if ($result->num_rows > 0) {
+  while($row = $result->fetch_assoc()) {
+      $SP[]=$row;
+  }
+} else {
+  // echo "0 results";
+}
+
+?>
+
+
 <html lang="en">
 
 <head>
@@ -9,9 +40,8 @@
   <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sidebars/">
   <link href="./bootstrap-5.3.0-alpha3-examples/sidebars/sidebars.css" rel="stylesheet">
   <script src="./bootstrap-5.3.0-alpha3-examples/sidebars/sidebars.js"></script>
-  <link rel="stylesheet" href="./sanpham.css">
   <script src="https://kit.fontawesome.com/0d29d48e70.js" crossorigin="anonymous"></script>
-
+<link rel="stylesheet" href="./sanpham.css">
   <!-- --dropdownmenu- -->
   <link rel="stylesheet" href="./dropdownmenu.css">
   <script src="./dropdown.js"></script>
@@ -101,7 +131,7 @@
     </div>
     <div class="noidung-contain">
 
-      <div class="noidung">
+      <div class="noidung2">
         <div class="header">
          
           <div class="login">
@@ -125,15 +155,13 @@
 
           </table>
           <table>
-            
+          <?php foreach($SP as $key=>$value): ?>
             <tr>  
               <td>
                 <img width="150px" src="/IMG/iphone11.jpeg" alt="">
               </td>
               <td>123</td>
-              <td>Iphone 13 pro max
-
-              </td>
+              <td><?= $value['name']; ?></td>
               <td>29.000.000</td>
               <td>39</td>
               <td class="trangthai">Còn Hàng</td>
@@ -145,16 +173,16 @@
                 <img width="150px" src="/IMG/iphone11.jpeg" alt="">
               </td>
               <td>123</td>
-              <td>Iphone 13 pro max
-
-              </td>
+              <td><?= $value['name']; ?></td>
               <td>29.000.000</td>
               <td>39</td>
               <td class="trangthai">Còn Hàng</td>
               <td> <a href=""><button> <i class="fa-sharp fa-solid fa-trash"></i> </button></a></td>
               <hr width="80%" style="margin: auto;">
             </tr>
+            <?php endforeach; ?>
             
+
           </table>
         </div>
       </div>

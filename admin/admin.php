@@ -1,9 +1,18 @@
 <?php
 
+
+
+
 $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "DoAn";
+
+
+session_start();
+if(!isset($_SESSION['UserName'])){
+  header('location:../Home/taikhoan.php');
+}
 
 // Create connection
 $conn = new mysqli($servername, $username, $password,$dbname);
@@ -11,6 +20,8 @@ $conn = new mysqli($servername, $username, $password,$dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
   }
+
+
   if (isset($_GET['UserName'])) {
     $idTK = $_GET['UserName'];
     $sql = "SELECT *FROM TaiKhoan,NguoiDung where TaiKhoan.UserName=NguoiDung.idTaiKhoan and TaiKhoan.UserName=$idTK";
@@ -19,7 +30,9 @@ if ($conn->connect_error) {
   
     $rowDe = mysqli_fetch_row($result);
   }
+
  
+
 ?>
 <html lang="en">
 
