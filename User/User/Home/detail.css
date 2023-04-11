@@ -15,6 +15,7 @@ body{
 }
 .left{
     width: 55%;
+    margin: auto;
     
 }
 
@@ -185,8 +186,9 @@ margin-left: 10px;
   }
 .swiper-slide .column{
     width: max-content;
-    height: max-content;
+    height: 60%;
     padding: 0 0;
+    margin-left: 10%;
 }
 .slide-img .swiper{
     width: 300px;

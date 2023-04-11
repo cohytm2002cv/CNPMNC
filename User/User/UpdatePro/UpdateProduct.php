@@ -4,6 +4,7 @@ $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "Doan";
+session_start();
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -14,7 +15,7 @@ if ($conn->connect_error) {
 }
 
 
-$sql = "select * from Device where id='$id'";
+$sql = "select * from Device,phanloai where cate=MaLoai and id='$id'";
 
 $result = $conn->query($sql);
 
@@ -24,9 +25,11 @@ if ($result->num_rows > 0) {
 
   $name = $row["name"];
   $price = $row["price"];
-  $img = $row["img"];
+  $imgsr = $row["img"];
+  $maloai = $row["TenLoai"];
   $des = $row["des"];
   $cate = $row["cate"];
+
 } else {
   echo "Not Found";
 }
@@ -43,12 +46,14 @@ $conn->close();
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <link rel="stylesheet" href="../admin/admin.css">
-  <link href="bootstrap-5.3.0-alpha3-examples/assets/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sidebars/">
-  <link href="./bootstrap-5.3.0-alpha3-examples/sidebars/sidebars.css" rel="stylesheet">
-  <script src="./bootstrap-5.3.0-alpha3-examples/sidebars/sidebars.js"></script>
+  <link rel="stylesheet" href="../admin/bootstrap-5.3.0-alpha3-examples/assets/dist/css/bootstrap.min.css">
+  <link href="../admin/bootstrap-5.3.0-alpha3-examples/sidebars/sidebars.css" rel="stylesheet">
+  <script src="../admin/bootstrap-5.3.0-alpha3-examples/sidebars/sidebars.js"></script>
+  <link rel="stylesheet" href="../admin/content-admin.css">
   <link rel="stylesheet" href="../admin/content-admin.css">
   <link rel="stylesheet" href="./updateproduct.css">
+
   <script src="https://kit.fontawesome.com/fcab3c1849.js" crossorigin="anonymous"></script>
   <style>
     * {
@@ -137,11 +142,10 @@ $conn->close();
       <div class="container">
         <form method="post" action="update-connect.php">
 
-          <div class="img" style="   margin-right: 30px;">
-            <img src="<?= $row['img']; ?>" alt="">
+          <div class="img" style="margin-right: 30px; margin: auto;">
+            <img src="../img/<?=$maloai?>/<?=$imgsr?>"  alt="">
             
            <a href="../admin/AddimgDetail.php?ID=<?= $id ?>">
-            <button style="margin: 50px;width:100px"> a</button>
             </a>
           </div>
           <div class="row">
@@ -167,7 +171,7 @@ $conn->close();
                 <label for="pro-pri">Giá Thiết Bị</label>
               </div>
               <div class="col-75">
-                <input type="text" name="price" value="<?= $row['price']; ?>" placeholder="Nhập giá..">
+                <input type="text" name="price" value="<?php echo number_format($row['price']);?>đ" placeholder="Nhập giá..">
               </div>
             </div>
 
@@ -190,16 +194,24 @@ $conn->close();
                   <option value="2">IPad</option>
                   <option value="3">MacBook</option>
                   <option value="4">Watch</option>
-
                 </select>
               </div>
+              
             </div>
             <div class="row">
 
               <div class="col-25">
               </div>
-              <div class="col-75">
+              <div class="col-75" >
                 <input type="hidden" value="<?= $row['id']; ?>" name="id" placeholder=" Nhập tên thiết bị">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-25">
+                <label for="pro-pri">Chọn ảnh</label>
+              </div>
+              <div class="col-75">
+                <input type="file" name="imgsr" value="<?= $row['des']; ?>" placeholder="Nhập mô tả..">
               </div>
             </div>
 
@@ -224,73 +236,77 @@ $conn->close();
   </div>
 
   <div class="menu">
-    <div class="flex-shrink-0 p-3" style="width: 280px;">
-      <a href="" class="d-flex align-items-center pb-3 mb-3 link-body-emphasis text-decoration-none border-bottom">
-        <svg class="bi pe-none me-2" width="30" height="24">
-          <use xlink:href="" />
-        </svg>
-        <span class="fs-5 fw-semibold">LoGo</span>
-      </a>
-      <ul class="list-unstyled ps-0">
-        <li class="mb-1">
-          <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
-            QUẢN LÍ Thiết Bị
-          </button>
-          <div class="collapse show" id="home-collapse">
-            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-              <li><a href="../admin/addproduct.php" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Thêm Thiết
-                  Bị</a></li>
-              <li><a href="../admin/list.php" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Danh Sách Thiết Bị</a>
-              </li>
-            </ul>
-          </div>
-        </li>
-        <li class="mb-1">
-          <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
-            QUẢN LÍ THỐNG KÊ
-          </button>
-          <div class="collapse" id="dashboard-collapse">
-            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-              <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Mã khuyến mãi</a>
-              </li>
-              <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Phương thức thanh
-                  toán</a></li>
+      <div class="flex-shrink-0 p-3" style="width: 280px;">
+        <a href="" class="d-flex align-items-center pb-3 mb-3 link-body-emphasis text-decoration-none border-bottom">
+          <svg class="bi pe-none me-2" width="30" height="24">
+            <use xlink:href="" />
+          </svg>
+          <span class="fs-5 fw-semibold">LoGo</span>
+        </a>
+        <ul class="list-unstyled ps-0">
+          <li class="mb-1">
+            <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
+              data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
+              QUẢN LÍ SẢN PHẨM
+            </button>
+            <div class="collapse show" id="home-collapse">
+              <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                <li><a href="../Product-list/ListProduct.php" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Danh sách sản Phẩm</a></li>
+                <li><a href="../ProductAdd/AddProduct.php" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Thêm sản phẩm</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="mb-1">
+            <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
+              data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
+              QUẢN LÍ Đơn Hàng
+            </button>
+            <div class="collapse" id="dashboard-collapse">
+              <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                <li><a href="../DonHang/DSDonHang.php" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Danh Sách Đơn Hàng</a>
+                </li>
 
-            </ul>
-          </div>
-        </li>
-        <li class="mb-1">
-          <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false">
-            QUẢN LÍ DỊCH VỤ
-          </button>
-          <div class="collapse" id="orders-collapse">
-            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-              <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">New</a></li>
-              <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Processed</a></li>
-              <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Shipped</a></li>
-              <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Returned</a></li>
-            </ul>
-          </div>
-        </li>
-        <li class="border-top my-3"></li>
-        <li class="mb-1">
-          <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="false">
-            QUẢN LÍ TÀI KHOẢN
-          </button>
-          <div class="collapse" id="account-collapse">
-            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-              <li><a href="../admin/admin.php?id=" class="link-dark d-inline-flex text-decoration-none rounded">Xem thông tin</a>
-              </li>
-              <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">chỉnh sửa</a></li>
-              <li><a href="./list/list.php" class="link-dark d-inline-flex text-decoration-none rounded">Danh sách tài
-                  khoản</a></li>
-              <li><a href="../Home/logout.php" class="link-dark d-inline-flex text-decoration-none rounded">Đăng xuất</a></li>
-            </ul>
-          </div>
-        </li>
-      </ul>
+
+              </ul>
+            </div>
+          </li>
+          <li class="mb-1">
+            <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
+              data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false">
+              QUẢN LÍ DỊCH VỤ
+            </button>
+            <div class="collapse" id="orders-collapse">
+              <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">New</a></li>
+                <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Processed</a></li>
+                <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Shipped</a></li>
+                <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Returned</a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="border-top my-3"></li>
+          <li class="mb-1">
+            <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
+              data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="false">
+              QUẢN LÍ TÀI KHOẢN
+            </button>
+            <div class="collapse" id="account-collapse">
+              <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                <li><a href="../admin/admin.php?UserName=<?= $_SESSION['UserName']?>" class="link-dark d-inline-flex text-decoration-none rounded">Xem thông
+                    tin</a>
+                </li>
+                <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">chỉnh sửa</a></li>
+                <li><a href="./list/list.html" class="link-dark d-inline-flex text-decoration-none rounded">Danh sách
+                    tài
+                    khảin</a></li>
+                <li><a href="../admin/logout.php" class="link-dark d-inline-flex text-decoration-none rounded">Đăng xuất</a></li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </div>
     </div>
-  </div>
   <div class="footer"></div>
 
 </body>

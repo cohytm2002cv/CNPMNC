@@ -11,7 +11,7 @@ $dbname = "DoAn";
 
 session_start();
 if(!isset($_SESSION['UserName'])){
-  header('location:../Home/taikhoan.php');
+  header('location:../TaiKhoan/taikhoan.php');
 }
 
 // Create connection
@@ -56,7 +56,7 @@ if ($conn->connect_error) {
 
 
   <div class="content">
-    <div class="header"></div>
+    <div class="header"> <a href="../Home/Home.php">abcdfaaa</a></div>
 
     <div class="noidung">
       <div class="email">
@@ -89,7 +89,6 @@ if ($conn->connect_error) {
     <div class="noidung2">
       <div class="email">
         <h4>Thông Tin Cá Nhân</h4>
-
 
       </div>
       <hr>

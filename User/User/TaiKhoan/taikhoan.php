@@ -104,12 +104,11 @@ if ($loai->num_rows > 0) {
 
 <body>
   <header>
-    <a href="" class="logo"><i class="ri-home-fill"></i><span>logo</span></a>
+    <a href="../" class="logo"><i class="ri-home-fill"></i><span>logo</span></a>
 
     <ul class="navbar">
     <?php foreach($tl as $key=>$value): ?>
-      <li><a href="Menu.php?MaLoai=<?= $value['MaLoai']; ?>". class="active"> <?= $value['TenLoai']; ?></a></li>
-    
+      <li><a href="../Home/Menu.php?MaLoai=<?= $value['MaLoai']; ?>". class="active"> <?= $value['TenLoai']; ?></a></li>
       <?php endforeach; ?>
 
     </ul>

@@ -126,7 +126,7 @@
 
               <div>
                 <p><label for="des">Mô Tả Sản Phẩm</label></p>
-                <textarea id="w3review" name="des" rows="4" cols="61"></textarea>
+                <textarea  id="w3review" name="des" rows="4" style="width: 100%;" ></textarea>
               </div>
               <div>
                 <p>Giá sản phẩm</p>

@@ -15,26 +15,25 @@ include_once("inclu.php");
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>danh muc</title>
-  <link rel="stylesheet" href="./header.css">
+  <link rel="stylesheet" href="../Home/header.css">
+  <link rel="stylesheet" href="./detail.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
-  <link rel="stylesheet" href="./banner.css">
-  
   <!-- or
   <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
   <-- Link Swiper's CSS -->
 
-  <link rel="stylesheet" href="../css/swiper-bundle.min.css">
-  <link rel="stylesheet" href="./style-chitiet.css">
+  <link rel="stylesheet" href="../Home/style-chitiet.css">
+  <link rel="stylesheet" href="../Home/css/swiper-bundle.min.css">
   <!-- --css footer-- -->
   <link rel="stylesheet" href="../footer.css">
-  <link rel="stylesheet" href="../css/khuyenmai.css">
+  <link rel="stylesheet" href="../home/css/khuyenmai.css">
   <!-- ---css icon -->
   <link rel="stylesheet" href="../icon/fontawesome-free-6.3.0-web/css/all.css">
-  <link rel="stylesheet" href="../css/email.css">
+  <link rel="stylesheet" href="../home/css/email.css">
+  <link rel="stylesheet" href="../Home/footer.css ">
 
   <!-- ----chitiet---- -->
-  <link rel="stylesheet" href="../css/chitiet.css">
-  <link rel="stylesheet" href="../css/slide-chitiet.css">
+  <link rel="stylesheet" href="../home/css/slide-chitiet.css">
   <link rel="stylesheet" href="./StarRating/style.css">
 
 
@@ -59,14 +58,16 @@ include_once("inclu.php");
     <div class="main">
       <a href=""><i class="fa-solid fa-magnifying-glass"></i></a>
 
-      <a href="./Cart/cart.php" class="Cart">
+      <a href="../Cart/cart.php" class="Cart">
         <i class="fa-solid fa-cart-shopping">
+        <div class="numCart" > 
         <?php if (isset($_SESSION['cartt'])) : ?>
             <?php echo count($_SESSION['cartt']);; ?>
           <?php endif; ?>
+        </div>
         </i>
       </a>
-      <a href="" class="User"> <i class="fa-solid fa-user"></i></a>
+      <a href="../TaiKhoan/taikhoan.php" class="User"> <i class="fa-solid fa-user"></i></a>
       <div class="bx bx-menu" id="menu-icon"></div>
 
     </div>
@@ -83,7 +84,7 @@ include_once("inclu.php");
       
             <li><a href="./Home.php">Trang chủ</a></li>
             <span> ></span>
-            <li><a href="menu.php?MaLoai=<?= $rowDe[6] ?>"> <?php echo $rowDe[4] ?></a></li>
+            <li><a href="menu.php?MaLoai=<?= $rowDe[9] ?>"> <?php echo $rowDe[10] ?></a></li>
             <span> ></span>
             <li><a href="chitiet.php?Masp=<?= $rowDe[0] ?>"> <?php echo $rowDe[1] ?></a></li>
             <a class="btn btn-outline-success" href="./Cart/cart.php"></a>
@@ -100,17 +101,17 @@ include_once("inclu.php");
 
           <div class="mySlides fade">
             <div class="numbertext">1 / 3</div>
-            <img src="<?php echo $rowDe[6] ?> " style="width:100%">
+            <img src="../img/<?=$rowDe['10']?>/<?= $rowDe['6']?>" style="width:100%">
             <!-- <img src="../Home/img/ip14/14-2.jpeg" alt=""> -->
           </div>
           <div class="mySlides fade">
             <div class="numbertext">1 / 3</div>
-            <img src="<?php echo $rowDe[7] ?> " style="width:100%">
+            <img src="../img/<?=  $rowDe[10] ?>/<?=  $rowDe['7'] ?> " style="width:100%">
             <!-- <img src="../Home/img/ip14/14-2.jpeg" alt=""> -->
           </div>
           <div class="mySlides fade">
             <div class="numbertext">1 / 3</div>
-            <img src="<?php echo $rowDe[8] ?> " style="width:100%">
+            <img src="../img/<?=  $rowDe[10] ?>/<?=  $rowDe[8] ?> " style="width:100%">
             <!-- <img src="../Home/img/ip14/14-2.jpeg" alt=""> -->
           </div>
       
@@ -206,7 +207,7 @@ include_once("inclu.php");
             </div>
           </div>
           <div class="mua">
-            <a href="../User/Cart/cart.php?id=<?=  $rowDe[0]; ?>"> 
+            <a href="../Cart/cart.php?id=<?=  $rowDe[0]; ?>"> 
               <button class="btnmua"> MUA NGAY</button>
           </div>
         </div>
@@ -226,7 +227,7 @@ include_once("inclu.php");
               <a href="chitiet.php?id=<?= $value['id']; ?>".>
 
                 <div class="card">
-                  <img class="imgPhone" src= <?= $value['img']; ?>>
+                  <img class="imgPhone" src='../img/<?=  $rowDe[10] ?>/<?= $value['img']; ?>'>
                   <p class="NamePhone"><?= $value['name']; ?></p>
                   <p class="price">
                   <?php echo number_format($value['price']);?>
@@ -290,11 +291,11 @@ include_once("inclu.php");
 
 
   <!-- --script -->
-  <script src="../js/chitiet.js"></script>
+  <script src="../home/js/chitiet.js"></script>
   <script src="./script.js"></script>
   <script src="https://kit.fontawesome.com/fcab3c1849.js" crossorigin="anonymous"></script>
   <!-- Swiper JS -->
-  <script src="../js/swiper-bundle.min.js"></script>
+  <script src="../home/js/swiper-bundle.min.js"></script>
 
   <script>
     var num = document.getElementsByName("price").textContent;
@@ -306,7 +307,7 @@ include_once("inclu.php");
   <!-- ------goiy--- -->
   <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
 
-  <script src="../js/chitiet2.js"></script>
+  <script src="../home/js/chitiet2.js"></script>
   <!-- -----readmore--- -->
   <script>
     function myFunction() {

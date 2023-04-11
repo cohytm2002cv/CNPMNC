@@ -140,7 +140,8 @@ session_start();
               <td><?= $value['DiaChi']; ?></td>
               <td><?= $value['email']; ?></td>
               <!-- <td class="trangthai">trang thai</td> -->
-              <td><a href="./chitietDH.php?id=<?= $value['IDorder']; ?>">xem</a> <a href="./deltest.php?ID=<?= $value['IDorder']; ?>">xoa</a</td>
+              <td><a style="margin-right: 20px;" href="./chitietDH.php?id=<?= $value['IDorder']; ?>"><i class="fa-sharp fa-solid fa-eye"></i></a>
+               <a onclick="return checkDelete()" href="./deleteDH.php?ID=<?= $value['IDorder']; ?>"> <i class="fa-sharp fa-solid fa-trash"></i></a</td>
             </tr>
             <?php endforeach; ?>
 
@@ -164,6 +165,10 @@ session_start();
 <script src="bootstrap-5.3.0-alpha3-examples/assets/js/color-modes.js"></script>
 <script src="./bootstrap-5.3.0-alpha3-examples/assets/dist/js/bootstrap.bundle.min.js"></script>
 <script src="sidebars.js"></script>
-
+<script>
+  function checkDelete(){
+    return confirm('Bạn có muốn xoá?');
+}
+</script>
 </html>
 

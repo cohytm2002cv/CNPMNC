@@ -13,7 +13,7 @@ if ($conn->connect_error) {
 }
 
 
-$sql = "SELECT * FROM Device" ;
+$sql = "SELECT * FROM Device,phanloai where MaLoai=cate" ;
 $result = $conn->query($sql);
 $Ipad=array();
 
@@ -36,7 +36,7 @@ $username=$_SESSION['UserName'] ;
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Danh Sách Sản Phẩm</title>
   <link href="bootstrap-5.3.0-alpha3-examples/assets/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sidebars/">
   <link href="./bootstrap-5.3.0-alpha3-examples/sidebars/sidebars.css" rel="stylesheet">
@@ -46,6 +46,7 @@ $username=$_SESSION['UserName'] ;
 <link rel="stylesheet" href="./noidung.css">
   <!-- --dropdownmenu- -->
   <link rel="stylesheet" href="./dropdownmenu.css">
+  <link rel="stylesheet" href="./iconList.css">
 
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
@@ -157,19 +158,23 @@ $username=$_SESSION['UserName'] ;
           </table>
           <table>
           <?php foreach($SP as $key=>$value): ?>
+      
             <tr>  
               <td>
-                <img width="150px" src="<?= $value['img']; ?>" alt="">
+                <img width="150px" src="../img/<?= $value['TenLoai']; ?>/<?= $value['img']; ?>" alt="">
               </td>
               <td>123</td>
               <td><?= $value['name']; ?></td>
               <td><?php echo number_format($value['price']);?></td>
               <td>39</td>
               <td class="trangthai">Còn Hàng</td>
-              <td> <a href="./del.php?id=<?= $value['id']?>"><button> <i class="fa-sharp fa-solid fa-trash"></i> </button></a></td>
+              <td> 
+              <a href="../UpdatePro/UpdateProduct.php?id=<?= $value['id']?>"><button> <i class="fa-sharp fa-solid fa-eye"></i></button></a>
+
+                <a onclick="return checkDelete()" href="./del.php?id=<?= $value['id']?>"><button> <i class="fa-sharp fa-solid fa-trash"></i> </button></a>
+              </td>
               <hr width="80%" style="margin: auto;">
             </tr>
-            
             <?php endforeach; ?>
             
 
@@ -187,5 +192,10 @@ $username=$_SESSION['UserName'] ;
 
 <script src="./bootstrap-5.3.0-alpha3-examples/assets/dist/js/bootstrap.bundle.min.js"></script>
 <script src="sidebars.js"></script>
+<script language="JavaScript" type="text/javascript">
 
+function checkDelete(){
+    return confirm('Bạn có muốn xoá?');
+}
+</script>
 </html>

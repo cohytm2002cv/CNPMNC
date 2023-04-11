@@ -61,28 +61,33 @@ if ($loai->num_rows > 0) {
 <html lang="en">
 
 <head>
-  <!-- <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>danh muc</title>
-  <link rel="stylesheet" href="./header.css">
-  <link rel="stylesheet" href="../banner-chitiet.css">
+
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
-  <-- or -->
-  <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
   <!-- Link Swiper's CSS -->
-  <link rel="stylesheet" href="../css/swiper-bundle.min.css">
   <link rel="stylesheet" href="./style-chitiet.css">
-  <!-- --css footer-- -->
-  <link rel="stylesheet" href="./footer.css">
-  <link rel="stylesheet" href="./css/khuyenmai.css">
+
   <!-- ---css icon -->
   <link rel="stylesheet" href="../icon/fontawesome-free-6.3.0-web/css/all.css">
 
-  <link rel="stylesheet" href="../css/khuyenmai.css">
-  <link rel="stylesheet" href="../css/email.css">
 
+  <!-- moi -->
+  <link rel="stylesheet" href="../home/header.css">
+  <link rel="stylesheet" href="../Home/banner.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+  <!-- or -->
+  <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+  <!-- Link Swiper's CSS -->
+  <link rel="stylesheet" href="../home/css/swiper-bundle.min.css">
+  <link rel="stylesheet" href="./style.css">
+  <!-- --css footer-- -->
+  <link rel="stylesheet" href="./footer.css">
+  <link rel="stylesheet" href="../home/css/khuyenmai.css">
+  <link rel="stylesheet" href=".">
+  <!-- ---css icon -->
+  <link rel="stylesheet" href="../icon/fontawesome-free-6.3.0-web/css/all.css">
+  <!-- ---email-css-- -->
+  <link rel="stylesheet" href="../css/email.css">
 
 
   <!-- ---------- -->
@@ -112,7 +117,7 @@ if ($loai->num_rows > 0) {
 
 <body>
   <header>
-    <a href="" class="logo"><i class="ri-home-fill"></i><span>logo</span></a>
+    <a href="./Home.php" class="logo"><i class="ri-home-fill"></i><span>logo</span></a>
 
     <ul class="navbar">
     <?php foreach($tl as $key=>$value): ?>
@@ -126,7 +131,7 @@ if ($loai->num_rows > 0) {
     <div class="main">
       <a href=""><i class="fa-solid fa-magnifying-glass"></i></a>
 
-      <a href="./Cart/cart.php" class="Cart">
+      <a href="../Cart/cart.php" class="Cart">
         <i class="fa-solid fa-cart-shopping">
         <div class="numCart" > 
         <?php if (isset($_SESSION['cartt'])) : ?>
@@ -135,7 +140,7 @@ if ($loai->num_rows > 0) {
         </div>
         </i>
       </a>
-      <a href="" class="User"> <i class="fa-solid fa-user"></i></a>
+      <a href="../TaiKhoan/taikhoan.php" class="User"> <i class="fa-solid fa-user"></i></a>
       <div class="bx bx-menu" id="menu-icon"></div>
      
     </div>
@@ -152,7 +157,7 @@ if ($loai->num_rows > 0) {
         </ul>
     </div>
 </div>
-  <h1 class="CateName">IPhone</h1>
+  <h1 class="CateName"><?php echo $rowTenLoai[1] ?></h1>
 
   <div class="main-body">
 
@@ -160,11 +165,11 @@ if ($loai->num_rows > 0) {
     <section class="main-banner swiper mySwiper">
       <div class="wrapper swiper-wrapper">
         <div class="slide swiper-slide">
-          <img class="img" src="../img/banner/ban1.jpeg" alt="">
+          <img class="img" src="../img/banner/b2.jpeg  " alt="">
         </div>
 
         <div class="slide swiper-slide">
-          <img class="img" src="../img/banner/b2.jpeg" alt="">
+          <img class="img" src="../img/banner/ban1.jpeg" alt="">
         </div>
       </div>
 
@@ -181,7 +186,7 @@ if ($loai->num_rows > 0) {
 <div class="loai">
     <ul>
         <li> <a style="color: #0066CC;" href="./IPhone.html">Tất cả</a></li>
-        <li><a href="./IPhone14.html">IPhone 14 Series</a></li>
+        <li><a href="">IPhone 14 Series</a></li>
         <li><a href="">IPhone 13 Series</a></li>
         <li><a href="">IPhone 12 Series</a></li>
     </ul>
@@ -198,10 +203,10 @@ if ($loai->num_rows > 0) {
 <div class="column">
   <div class="card">
     <!-- <div id="sta" class="status"> <?= $value['name']; ?></div> -->
-    <img class="imgPhone" src= <?= $value['img']; ?>>
+    <img class="imgPhone" src='../img/<?= $rowTenLoai[1] ?>/<?= $value['img']; ?>'>
     <p class="NamePhone"> <?= $value['name']; ?> </p>
     <div class="price-contain">
-    <p class="price"> <?= $value['price']; ?> </p>
+    <p class="price"> <?php echo number_format($value['price']);?>  </p>
     <!-- <p class="price-old">34.000.000</p> -->
     </div>
     </div>

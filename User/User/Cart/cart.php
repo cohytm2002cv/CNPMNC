@@ -59,7 +59,7 @@ session_start();
 if (isset($_GET['id'])) {
 
   $proid = $_GET['id'];
-  $sql = "SELECT * FROM Device where id=$proid";
+  $sql = "SELECT * FROM Device,phanloai where cate=MaLoai and id=$proid";
   $result = mysqli_query($conn, $sql);
   // $rowHinh = mysqli_fetch_row($result);
 
@@ -67,6 +67,8 @@ if (isset($_GET['id'])) {
   $gia = $rowDe[2];
   $name = $rowDe[1];
   $img=$rowDe[3];
+  $TenLoai=$rowDe[10];
+
 
   // If session cart is not empty
   if (!empty($_SESSION['cartt'])) {
@@ -86,7 +88,9 @@ if (isset($_GET['id'])) {
         'qty' => 1,
         'price' => $gia,
         'name' => $name,
-        'img'=>$img
+        'img'=>$img,
+        'tenloai'=> $TenLoai
+
       ];
 
       $_SESSION['cartt'][$proid] = $item;
@@ -98,7 +102,8 @@ if (isset($_GET['id'])) {
       'qty' => 1,
       'price' => $gia,
       'name' => $name,
-      // 'img'=>$img
+      'img'=>$img,
+      'tenloai'=> $TenLoai
 
     ];
 
@@ -144,12 +149,12 @@ if (isset($_GET['id'])) {
 
 <body>
   <header>
-    <a href="../ class="logo"><i class="ri-home-fill"></i><span>logo</span></a>
-
+    <a href="../Home/Home.php"class="logo"><i class="ri-home-fill"></i><span>logo</span></a>
     <ul class="navbar">
       <?php foreach ($tl as $key => $value) : ?>
 
-        <li><a href="../Menu.php?MaLoai=<?= $value['MaLoai']; ?>" . class="active">
+        <li><a href="../Home/Menu.php?MaLoai=<?= $value['MaLoai']; ?>" . class="active">
+
             <?= $value['TenLoai']; ?>
           </a></li>
 
@@ -168,7 +173,7 @@ if (isset($_GET['id'])) {
         </div>
         </i>
       </a>
-      <a href="" class="User">
+      <a href="../User/TaiKhoan/taikhoan.php" class="User">
         <i class="fa-solid fa-user"></i></a>
       <div class="bx bx-menu" id="menu-icon"></div>
 
@@ -201,7 +206,7 @@ if (isset($_GET['id'])) {
 
                 <tr>  
                   <td style="width:30px">
-                    <img src="../User/img/device/<?= $cart['img']?>" alt="">
+                    <img src="../img/<?= $TenLoai?>/<?= $cart['img']?>" alt="">
                     
                   </td>
 

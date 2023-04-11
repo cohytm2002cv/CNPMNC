@@ -63,12 +63,3 @@ table td{
 
 }
 
-table button{
-  width: 100px;
-  height: 30px;
-  border: 0px;
-  border-radius: 5px;
-  background-color: rgb(38, 94, 190);
-  color: white;
-  font-weight: bold;
-}
