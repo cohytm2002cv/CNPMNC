@@ -34,7 +34,7 @@ session_start();
   <div class="containerr">
   <div class="menu">
       <div class="flex-shrink-0 p-3" style="width: 280px;">
-        <a href="" class="d-flex align-items-center pb-3 mb-3 link-body-emphasis text-decoration-none border-bottom">
+      <a href="../Home/Home.php" class="d-flex align-items-center pb-3 mb-3 link-body-emphasis text-decoration-none border-bottom">
           <svg class="bi pe-none me-2" width="30" height="24">
             <use xlink:href="" />
           </svg>
@@ -68,7 +68,7 @@ session_start();
               </ul>
             </div>
           </li>
-          <li class="mb-1">
+          <!-- <li class="mb-1">
             <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
               data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false">
               QUẢN LÍ DỊCH VỤ
@@ -81,7 +81,7 @@ session_start();
                 <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Returned</a></li>
               </ul>
             </div>
-          </li>
+          </li> -->
           <li class="border-top my-3"></li>
           <li class="mb-1">
             <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
@@ -90,7 +90,7 @@ session_start();
             </button>
             <div class="collapse" id="account-collapse">
               <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                <li><a href="../admin/admin.php?UserName= <?= $_SESSION['UserName']?>" class="link-dark d-inline-flex text-decoration-none rounded">Xem thông
+              <li><a href="../admin/admin.php?UserName=<?= $_SESSION['UserName'][0] ?>" class="link-dark d-inline-flex text-decoration-none rounded">Xem thông
                     tin</a>
                 </li>
                 <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">chỉnh sửa</a></li>
@@ -127,6 +127,8 @@ session_start();
               <td>Số Điện Thoại</td>
               <td>Địa Chỉ</td>
               <td>Email</td>
+              <td>Trạng thái</td>
+              <td>Phương thức</td>
               <td>Thao tác</td>
             </tr>
 
@@ -139,8 +141,13 @@ session_start();
               <td>0<?= $value['SDT']; ?></td>
               <td><?= $value['DiaChi']; ?></td>
               <td><?= $value['email']; ?></td>
+              <td><?= $value['trangthai']; ?></td>
+              <td><?= $value['pg']; ?></td>
+
               <!-- <td class="trangthai">trang thai</td> -->
-              <td><a style="margin-right: 20px;" href="./chitietDH.php?id=<?= $value['IDorder']; ?>"><i class="fa-sharp fa-solid fa-eye"></i></a>
+              <td>
+                <a onclick="return cancel()" href="./upd.php?ID=<?= $value['IDorder']; ?> "style="margin-right  : 20px;" href=""><i class="fa-sharp fa-solid fa-xmark"></i></a>
+                <a style="margin-right: 20px;" href="./chitietDH.php?id=<?= $value['IDorder']; ?>"><i class="fa-sharp fa-solid fa-eye"></i></a>
                <a onclick="return checkDelete()" href="./deleteDH.php?ID=<?= $value['IDorder']; ?>"> <i class="fa-sharp fa-solid fa-trash"></i></a</td>
             </tr>
             <?php endforeach; ?>
@@ -168,6 +175,9 @@ session_start();
 <script>
   function checkDelete(){
     return confirm('Bạn có muốn xoá?');
+}
+function cancel(){
+    return confirm('Bạn có muốn huỷ đơn ?');
 }
 </script>
 </html>

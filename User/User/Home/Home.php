@@ -133,7 +133,7 @@ if ($loai->num_rows > 0) {
   <!-- or -->
   <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
   <!-- Link Swiper's CSS -->
-  <link rel="stylesheet" href="../home/css/swiper-bundle.min.css">
+  <link rel="stylesheet" href="../Home/css/swiper-bundle.min.css">
   <link rel="stylesheet" href="./style.css">
   <!-- --css footer-- -->
   <link rel="stylesheet" href="./footer.css">
@@ -142,7 +142,8 @@ if ($loai->num_rows > 0) {
   <!-- ---css icon -->
   <link rel="stylesheet" href="../icon/fontawesome-free-6.3.0-web/css/all.css">
   <!-- ---email-css-- -->
-  <link rel="stylesheet" href="../css/email.css">
+  <link rel="stylesheet" href="../home/css/email.css">
+  <link rel="stylesheet" href="../Home/style-chitiet.css">
 </head>
 
 <body>
@@ -158,8 +159,13 @@ if ($loai->num_rows > 0) {
     </ul>
 
     <div class="main">
-      <a href=""><i class="fa-solid fa-magnifying-glass"></i></a>
+    <form action="./search2.php" method="get">
+    <input class="ips" type="text" name="search" placeholder="Bạn Muồn Tìm Gì?">
 
+    <button class="btnSearch"  type="submit" name="ok"><i  class="fa-solid fa-magnifying-glass"></i></button>
+    
+    
+    </form>
       <a href="../Cart/cart.php" class="Cart">
         <i class="fa-solid fa-cart-shopping">
           <div class="numCart">
@@ -169,7 +175,9 @@ if ($loai->num_rows > 0) {
           </div>
         </i>
       </a>
-      <a href="../TaiKhoan/taikhoan.php" class="User"> <i class="fa-solid fa-user"></i></a>
+      <a href="../TaiKhoan/taikhoan.php" class="User"> <i class="fa-solid fa-user"></i>
+      <?php echo $_SESSION['UserName'][0]?> 
+    </a>
       <div class="bx bx-menu" id="menu-icon"></div>
 
     </div>
@@ -330,7 +338,7 @@ if ($loai->num_rows > 0) {
   <!-- ---footer-- -->
   <div class="footer">
     <i class="cart-shopping-solid.svg"></i>
-    saddd
+    
   </div>
 
 

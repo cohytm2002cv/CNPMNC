@@ -29,8 +29,8 @@ include_once("inclu.php");
   <link rel="stylesheet" href="../home/css/khuyenmai.css">
   <!-- ---css icon -->
   <link rel="stylesheet" href="../icon/fontawesome-free-6.3.0-web/css/all.css">
-  <link rel="stylesheet" href="../home/css/email.css">
   <link rel="stylesheet" href="../Home/footer.css ">
+  <link rel="stylesheet" href="./css/email2.css">
 
   <!-- ----chitiet---- -->
   <link rel="stylesheet" href="../home/css/slide-chitiet.css">
@@ -44,7 +44,7 @@ include_once("inclu.php");
 
 <body>
   <header>
-    <a href="" class="logo"><i class="ri-home-fill"></i><span>logo</span></a>
+    <a href="../Home/Home.php" class="logo"><i class="ri-home-fill"></i><span>logo</span></a>
 
     <ul class="navbar">
     <?php foreach($tl as $key=>$value): ?>
@@ -56,8 +56,13 @@ include_once("inclu.php");
     </ul>
 
     <div class="main">
-      <a href=""><i class="fa-solid fa-magnifying-glass"></i></a>
+    <form action="./search2.php" method="get">
+    <input class="ips" type="text" name="search" placeholder="Bạn Muồn Tìm Gì?">
 
+    <button class="btnSearch"  type="submit" name="ok"><i  class="fa-solid fa-magnifying-glass"></i></button>
+    
+    
+    </form>
       <a href="../Cart/cart.php" class="Cart">
         <i class="fa-solid fa-cart-shopping">
         <div class="numCart" > 
@@ -67,8 +72,10 @@ include_once("inclu.php");
         </div>
         </i>
       </a>
-      <a href="../TaiKhoan/taikhoan.php" class="User"> <i class="fa-solid fa-user"></i></a>
-      <div class="bx bx-menu" id="menu-icon"></div>
+      <a href="../TaiKhoan/taikhoan.php" class="User"> <i class="fa-solid fa-user"> </i>
+      <?php echo $_SESSION['UserName'][0]?> 
+
+    </a>      <div class="bx bx-menu" id="menu-icon"></div>
 
     </div>
     <!-- -------- -->
@@ -215,7 +222,7 @@ include_once("inclu.php");
     </div>
     <div class="bot">
 
-      <h2>Gợi ý phụ kiện đi kèm</h2>
+      <h2>Các Sản Phẩm Gợi Ý</h2>
       <div class="contain">
         <div class="swiper mySwiper">
           <div class="swiper-wrapper">
@@ -259,13 +266,13 @@ include_once("inclu.php");
       <!-- ----read-more-- -->
 
       <div class="thongtin">
-        <h2 style="text-align:center;">Thông Tin</h2>
+        <!-- <h2 style="text-align:center;">Thông Tin</h2> -->
         <p><?php echo $rowDe[5] ?><br>
           <span id="dots"></span>
           <span id="more">
           
         </p>
-        <button class="readmore" onclick="myFunction()" id="myBtn">Xem Thêm</button>
+        <!-- <button class="readmore" onclick="myFunction()" id="myBtn">Xem Thêm</button> -->
       </div>
     </div>
 

@@ -16,11 +16,12 @@ $KH =  $_REQUEST['KH'];
 $SDT =  $_REQUEST['SDT'];
 $DC = $_REQUEST['DiaChi'];
 $Email = $_REQUEST['email'];
+$PT = $_REQUEST['pt'];
 
+$tt='Đang xử lí';
 
-
-$sql = "INSERT INTO DonHang ( KH, TongTien, SDT, DiaChi,email)
-VALUES ( '$KH', '$tong',$SDT,'$DC','$Email')";
+$sql = "INSERT INTO DonHang ( KH, TongTien, SDT, DiaChi,email,pg,trangthai)
+VALUES ( '$KH', '$tong',$SDT,'$DC','$Email','$PT','$tt')";
 
 if ($conn->query($sql) === TRUE) {
   echo "New record created successfully";
@@ -37,9 +38,11 @@ foreach ($_SESSION['cartt'] as $cart) {
   $nameP= $cart['name']; 
   $priceP= $cart['price'];
   $sl=$cart['qty']; 
+  $idpro=$cart['IDpro']; 
 
-$sql = "INSERT INTO CTDH ( TenSP, Gia, IDDonHang,SL)
-VALUES ( ' $nameP ', '$priceP','$lastid','$sl')";
+
+$sql = "INSERT INTO CTDH ( TenSP, Gia, IDDonHang,SL,IDProduct)
+VALUES ( ' $nameP ', '$priceP','$lastid','$sl','$idpro')";
 if ($conn->query($sql) === TRUE) {
     echo "New record created successfully";
   } else {

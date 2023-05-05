@@ -10,9 +10,6 @@ $dbname = "DoAn";
 
 
 session_start();
-if(!isset($_SESSION['UserName'])){
-  header('location:../TaiKhoan/taikhoan.php');
-}
 
 // Create connection
 $conn = new mysqli($servername, $username, $password,$dbname);
@@ -24,7 +21,7 @@ if ($conn->connect_error) {
 
   if (isset($_GET['UserName'])) {
     $idTK = $_GET['UserName'];
-    $sql = "SELECT *FROM TaiKhoan,NguoiDung where TaiKhoan.UserName=NguoiDung.idTaiKhoan and TaiKhoan.UserName=$idTK";
+    $sql = "SELECT *FROM TaiKhoan where  UserName='$idTK'";
     $result = mysqli_query($conn, $sql);
     // $rowHinh = mysqli_fetch_row($result);
   
@@ -56,7 +53,9 @@ if ($conn->connect_error) {
 
 
   <div class="content">
+
     <div class="header"> <a href="../Home/Home.php">abcdfaaa</a></div>
+    <form action="" method="post">
 
     <div class="noidung">
       <div class="email">
@@ -74,12 +73,8 @@ if ($conn->connect_error) {
           <div class="email-diachi"><?php echo $rowDe[6] ?></div>
         </div>
         <div class="btn-editMail">
-          <svg xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 512 512"><!--! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
-            <path
-              d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160V416c0 53 43 96 96 96H352c53 0 96-43 96-96V320c0-17.7-14.3-32-32-32s-32 14.3-32 32v96c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32h96c17.7 0 32-14.3 32-32s-14.3-32-32-32H96z" />
-          </svg>
-          Sửa
+    
+          Đã Xác Minh
         </div>
 
       </div>
@@ -118,30 +113,31 @@ if ($conn->connect_error) {
         <div class="thongtin">
           <div class="thongtin-chitiet">
             <p>Họ Tên</p>
-            <input style=" padding-left: 10px;" type="text" name="" placeholder="Nhập Họ Tên" id="" value="<?php echo $rowDe[5] ?>">
+            <input style=" padding-left: 10px;" type="text" name="teninp" placeholder="Nhập Họ Tên" id="" value="<?php echo $rowDe[2] ?>">
             <p>Tỉnh, Thành Phố</p>
-            <input style=" padding-left: 10px;" type="text" name="" placeholder="Nhập Tỉnh, Thành Phố" id=""value="<?php echo $rowDe[9] ?>">
+            <input style=" padding-left: 10px;" type="text" name="diachiinp" placeholder="Nhập Tỉnh, Thành Phố" id=""value="<?php echo $rowDe[4] ?>">
           </div>
           <div class="thongtin-chitiet">
-            <p>Tên Tài Khoản</p>
-            <input style=" padding-left: 10px;" type="text" name="" placeholder="Nhập Ngày Sinh" id="" value="<?php echo $rowDe[10] ?>">
+            <p></p>
+            <label  style="margin-bottom: 42px;margin-top: 28px" for=""> <span>Tên Tài Khoản </span><span style="color:rgb(37, 126, 254);;" > <?php echo $rowDe[1] ?></span>  </label>
+            <!-- <input style=" padding-left: 10px;" type="text" name="" placeholder="Nhập Ngày Sinh" id="" value="<?php echo $rowDe[1] ?>"> -->
             <p>Năm Sinh</p>
-            <input style=" padding-left: 10px;" type="text" name="" id="" placeholder="Nhập Địa Chỉ" value="<?php echo $rowDe[8] ?>">
+            <input style=" padding-left: 10px;" type="text" name="namsinhinp" id="" placeholder="Nhập năm sinh" value="<?php echo $rowDe[5] ?>">
           </div>
         </div>
 
         <div class="thongtin">
           <div class="thongtin-gt">
             <p style="font-weight: bold;"> Giới Tính</p>
-            <input type="radio" name="gt" id="nam">
+            <input type="radio" name="" id="nam">
             <label for="gt">Nam</label>
 
             <input style="margin-left: 50px;" type="radio" name="gt" id="nu">
             <label for="gt">Nữ</label>
             <br><br>
             <p style="font-weight: bold;">Số diện thoại</p>
-            <input style=" padding-left: 10px; width: 660px;height: 40px; margin-bottom: 50px;" type="text" name=""
-              placeholder="Nhập số điện thoại " value="(+84) <?php echo $rowDe[7] ?>" >
+            <input style=" padding-left: 10px; width: 660px;height: 40px; margin-bottom: 50px;" type="text" name="sdtinp"
+              placeholder="Nhập số điện thoại " value=" <?php echo $rowDe[3] ?>" >
 
 
 
@@ -150,25 +146,21 @@ if ($conn->connect_error) {
         </div>
        
 
-
       </div>
 
-      <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
-      <script type="text/javascript">
-
-      </script>
+    <input type="hidden" name="ID" value="<?php echo $rowDe[2] ?>">
       <div class="save">
         <button class="btn-cancel"><svg  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"/></svg> Huỷ</button>
-       <button class="btn-save" ><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V173.3c0-17-6.7-33.3-18.7-45.3L352 50.7C340 38.7 323.7 32 306.7 32H64zm0 96c0-17.7 14.3-32 32-32H288c17.7 0 32 14.3 32 32v64c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V128zM224 288a64 64 0 1 1 0 128 64 64 0 1 1 0-128z"/></svg> lưu thông tin</button>
+       <button type="submit"  class="btn-save" ><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V173.3c0-17-6.7-33.3-18.7-45.3L352 50.7C340 38.7 323.7 32 306.7 32H64zm0 96c0-17.7 14.3-32 32-32H288c17.7 0 32 14.3 32 32v64c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V128zM224 288a64 64 0 1 1 0 128 64 64 0 1 1 0-128z"/></svg> lưu thông tin</button>
       </div>
     </div>
+    </form>
 
   </div>
 
   <div class="menu">
       <div class="flex-shrink-0 p-3" style="width: 280px;">
-        <a href="" class="d-flex align-items-center pb-3 mb-3 link-body-emphasis text-decoration-none border-bottom">
+        <a href="../Home/Home.php" class="d-flex align-items-center pb-3 mb-3 link-body-emphasis text-decoration-none border-bottom">
           <svg class="bi pe-none me-2" width="30" height="24">
             <use xlink:href="" />
           </svg>
@@ -202,7 +194,7 @@ if ($conn->connect_error) {
               </ul>
             </div>
           </li>
-          <li class="mb-1">
+          <!-- <li class="mb-1">
             <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
               data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false">
               QUẢN LÍ DỊCH VỤ
@@ -215,7 +207,7 @@ if ($conn->connect_error) {
                 <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Returned</a></li>
               </ul>
             </div>
-          </li>
+          </li> -->
           <li class="border-top my-3"></li>
           <li class="mb-1">
             <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
@@ -224,13 +216,13 @@ if ($conn->connect_error) {
             </button>
             <div class="collapse" id="account-collapse">
               <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                <li><a href="../admin/admin.php" class="link-dark d-inline-flex text-decoration-none rounded">Xem thông
+                <li><a href="../admin/admin.php?UserName=<?= $_SESSION['UserName'][0] ?>" class="link-dark d-inline-flex text-decoration-none rounded">Xem thông
                     tin</a>
                 </li>
-                <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">chỉnh sửa</a></li>
+                <!-- <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">chỉnh sửa</a></li>
                 <li><a href="./list/list.html" class="link-dark d-inline-flex text-decoration-none rounded">Danh sách
                     tài
-                    khảin</a></li>
+                    khảin</a></li> -->
                 <li><a href="../admin/logout.php" class="link-dark d-inline-flex text-decoration-none rounded">Đăng xuất</a></li>
               </ul>
             </div>
@@ -245,5 +237,13 @@ if ($conn->connect_error) {
 
 <script src="./bootstrap-5.3.0-alpha3-examples/assets/dist/js/bootstrap.bundle.min.js"></script>
 <script src="sidebars.js"></script>
+<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
+      <script type="text/javascript">
 
+      </script>
 </html>
+
+<?php
+include('./updInfo.php');
+?>

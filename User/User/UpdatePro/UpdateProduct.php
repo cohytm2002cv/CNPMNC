@@ -206,14 +206,14 @@ $conn->close();
                 <input type="hidden" value="<?= $row['id']; ?>" name="id" placeholder=" Nhập tên thiết bị">
               </div>
             </div>
-            <div class="row">
+            <!-- <div class="row">
               <div class="col-25">
                 <label for="pro-pri">Chọn ảnh</label>
               </div>
               <div class="col-75">
                 <input type="file" name="imgsr" value="<?= $row['des']; ?>" placeholder="Nhập mô tả..">
               </div>
-            </div>
+            </div> -->
 
 
 
@@ -237,7 +237,7 @@ $conn->close();
 
   <div class="menu">
       <div class="flex-shrink-0 p-3" style="width: 280px;">
-        <a href="" class="d-flex align-items-center pb-3 mb-3 link-body-emphasis text-decoration-none border-bottom">
+      <a href="../Home/Home.php" class="d-flex align-items-center pb-3 mb-3 link-body-emphasis text-decoration-none border-bottom">
           <svg class="bi pe-none me-2" width="30" height="24">
             <use xlink:href="" />
           </svg>

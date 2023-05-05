@@ -4,7 +4,12 @@ $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "DoAn";
+session_start();
+if(isset($_SESSION['UserName'])){
+  $us=$_SESSION['UserName'][0];
+  header("location:../admin/admin.php?UserName={$us}");
 
+}
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 // Check connection
@@ -43,17 +48,21 @@ session_start();
 if (isset($_POST['dangnhap'])) {
   $username = $_POST['UserName'];
   $password = $_POST['Pass'];
-  foreach ($User as $key=>$value) {
+
+
+  foreach ($User as $key=>$value) {//so sánh với table user
     $i = 0;
 
     if ($username == $value["UserName"] && $password == $value["Pass"]) {
-      $_SESSION['UserName'] = $username;
+      $_SESSION['UserName'] = array();
+      array_push($_SESSION['UserName'], $username);
       header("location:../admin/admin.php?UserName={$username}");
+
       
     } else {
-      echo '<script language="javascript">';
-      echo 'alert("Tài Khoản Hoặc Mật Khẩu Không Chính Xác")';
-      echo '</script>';
+      // echo '<script language="javascript">';
+      // echo 'alert("Tài Khoản Hoặc Mật Khẩu Không Chính Xác")';
+      // echo '</script>';
     }
     $i++;
   }
@@ -104,7 +113,7 @@ if ($loai->num_rows > 0) {
 
 <body>
   <header>
-    <a href="../" class="logo"><i class="ri-home-fill"></i><span>logo</span></a>
+    <a href="../Home/Home.php" class="logo"><i class="ri-home-fill"></i><span>logo</span></a>
 
     <ul class="navbar">
     <?php foreach($tl as $key=>$value): ?>
@@ -145,7 +154,7 @@ if ($loai->num_rows > 0) {
         </button>
         <ul>
           <li><a href="#forgot-pwd" class="forgot">Quên mật khẩu</a></li>
-          <li><a href="./dangky.html" class="register">Đăng ký</a></li>
+          <li><a href="../TaiKhoan/dangky.php" class="register">Đăng ký</a></li>
           <li><a href="./home.html" class="register">Quay lại</a></li>
         </ul>
       </form>

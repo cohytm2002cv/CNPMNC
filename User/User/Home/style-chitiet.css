@@ -312,3 +312,18 @@ section .main_btn:hover i{
     transform: translateY(-20px);
     transition: all .50s ease;
   }
+  .btnSearch{
+   height: 30px;
+   color:white;
+   font-weight: bold;
+   background-color:#2adb4d;
+    width: 80px;
+    }
+    .ips{
+        width:250px;
+        height: 26px;
+        border: 0px;
+        padding-left: 3px;
+
+
+    }

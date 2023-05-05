@@ -66,8 +66,9 @@ if (isset($_GET['id'])) {
   $rowDe = mysqli_fetch_row($result);
   $gia = $rowDe[2];
   $name = $rowDe[1];
-  $img=$rowDe[3];
-  $TenLoai=$rowDe[10];
+  $img = $rowDe[3];
+  $TenLoai = $rowDe[10];
+  $IDproduct = $rowDe[0];
 
 
   // If session cart is not empty
@@ -88,8 +89,9 @@ if (isset($_GET['id'])) {
         'qty' => 1,
         'price' => $gia,
         'name' => $name,
-        'img'=>$img,
-        'tenloai'=> $TenLoai
+        'img' => $img,
+        'tenloai' => $TenLoai,
+        'IDpro' => $IDproduct
 
       ];
 
@@ -102,8 +104,10 @@ if (isset($_GET['id'])) {
       'qty' => 1,
       'price' => $gia,
       'name' => $name,
-      'img'=>$img,
-      'tenloai'=> $TenLoai
+      'img' => $img,
+      'tenloai' => $TenLoai,
+      'IDpro' => $IDproduct
+
 
     ];
 
@@ -137,6 +141,7 @@ if (isset($_GET['id'])) {
   <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
   <!-- --css footer-- -->
   <link rel="stylesheet" href="./footer.css">
+  <link rel="stylesheet" href="./banking.css">
   <!-- ---css icon -->
   <!-- <link rel="stylesheet" href="./icon/fontawesome-free-6.3.0-web/css/all.css"> -->
   <!-- <link rel="stylesheet" href="/icon/fontawesome-free-6.3.0-web/css/all.css"> -->
@@ -149,14 +154,14 @@ if (isset($_GET['id'])) {
 
 <body>
   <header>
-    <a href="../Home/Home.php"class="logo"><i class="ri-home-fill"></i><span>logo</span></a>
+    <a href="../Home/Home.php" class="logo"><i class="ri-home-fill"></i><span>logo</span></a>
     <ul class="navbar">
       <?php foreach ($tl as $key => $value) : ?>
 
-        <li><a href="../Home/Menu.php?MaLoai=<?= $value['MaLoai']; ?>" . class="active">
+      <li><a href="../Home/Menu.php?MaLoai=<?= $value['MaLoai']; ?>" . class="active">
 
-            <?= $value['TenLoai']; ?>
-          </a></li>
+          <?= $value['TenLoai']; ?>
+        </a></li>
 
       <?php endforeach; ?>
 
@@ -166,15 +171,17 @@ if (isset($_GET['id'])) {
 
       <a href="./cart.php" class="Cart">
         <i class="fa-solid fa-cart-shopping">
-        <div class="numCart" > 
-        <?php if (isset($_SESSION['cartt'])) : ?>
+          <div class="numCart">
+            <?php if (isset($_SESSION['cartt'])) : ?>
             <?php echo count($_SESSION['cartt']);; ?>
-          <?php endif; ?>
-        </div>
+            <?php endif; ?>
+          </div>
         </i>
       </a>
-      <a href="../User/TaiKhoan/taikhoan.php" class="User">
-        <i class="fa-solid fa-user"></i></a>
+      <a href="../TaiKhoan/taikhoan.php" class="User"> <i class="fa-solid fa-user"></i>
+        <?php echo $_SESSION['UserName'][0] ?>
+      </a>
+      </a>
       <div class="bx bx-menu" id="menu-icon"></div>
 
     </div>
@@ -204,32 +211,36 @@ if (isset($_GET['id'])) {
             ?>
 
 
-                <tr>  
-                  <td style="width:30px">
-                    <img src="../img/<?= $TenLoai?>/<?= $cart['img']?>" alt="">
-                    
-                  </td>
+            <tr>
+              <td style="width:30px">
+                <img src="../img/<?= $cart['tenloai'] ?>/<?= $cart['img'] ?>" alt="">
 
-                  <td><?= $cart['name']; ?></td>
-                  <td> <?php echo number_format($cart['price']);?></td>
+              </td>
 
-                  <td style="width:200px">
-                    <form action="update.php" method="post">
-                      <input style="margin-left: -30px;" type="text" value="<?= $cart['qty']; ?>" name="qty" min="1">
-                      <input type="hidden" name="upid" value="<?= $cart['id']; ?>">
-                      <input type="submit" name="update" value="Update" class="upd">
-                  </td>
+              <td>
+                <?= $cart['name']; ?>
+              </td>
+              <td>
+                <?php echo number_format($cart['price']); ?>
+              </td>
 
-                  </form>
-                  </dt>
-                  <td style="width:50px">
-                    <a href="./removecartitem.php?id=<?= $cart['id']; ?>"><span>
-                        Xoá </span>
-                    </a>
-                  </td>
+              <td style="width:200px">
+                <form action="update.php" method="post">
+                  <input style="margin-left: -30px;" type="text" value="<?= $cart['qty']; ?>" name="qty" min="1">
+                  <input type="hidden" name="upid" value="<?= $cart['id']; ?>">
+                  <input type="submit" name="update" value="Update" class="upd">
+              </td>
+
+              </form>
+              </dt>
+              <td style="width:50px">
+                <a href="./removecartitem.php?id=<?= $cart['id']; ?>"><span>
+                    Xoá </span>
+                </a>
+              </td>
 
 
-                </tr>
+            </tr>
             <?php
                 $i++;
               endforeach;
@@ -246,28 +257,52 @@ if (isset($_GET['id'])) {
         </div>
       </div>
       <div class="duoi">
-        <div  class="thongtin div-form">
+        <div class="thongtin div-form">
           <div class="form">
-            <form action="" method="post">
-            <div class="div-form">
-              <label for="">Họ Tên</label>
-              <input type="text" name="KH" id="" placeholder="Họ Tên">
-            </div>
-            <div class="div-form">
-              <label for="">Số Điện Thoại</label>
-              <input type="text" name="SDT" id="" placeholder="Số Điện Thoại">
-            </div>
-            <div class="div-form">
-              <label for="">Email</label>
-              <input type="text" name="email" id="" placeholder=" Email">
-            </div>
-            <div class="div-form">
-              <label for="">Địa Chỉ</label>
-              <input type="text" name="DiaChi" id="" placeholder="Địa Chỉ Giao Hàng">
-            </div>
-            <input class="mua" type="submit"  value="Đặt Hàng">
-            </form>
+            <form id="form1" action="" method="post">
+              <div class="div-form">
+                <label for="">Họ Tên</label>
+                <input type="text" name="KH" id="" placeholder="Họ Tên">
+              </div>
+              <div class="div-form">
+                <label for="">Số Điện Thoại</label>
+                <input type="text" name="SDT" id="" placeholder="Số Điện Thoại">
+              </div>
+              <div class="div-form">
+                <label for="">Email</label>
+                <input type="text" name="email" id="" placeholder=" Email">
+              </div>
+              <div class="div-form">
+
+                <label for="">Địa Chỉ</label>
+
+                <input type="text" name="DiaChi" id="" placeholder="Địa Chỉ Giao Hàng">
+
+              </div>
           </div>
+          <div class="phuongthuc">
+            <div style="width: 50%;">
+              <label style="text-align: center;" for="pt">Chọn Phương Thức Thanh Toán</label> <br> <br>
+              <input onclick="myFunction2(1)" type="radio" value="Tiền Mặt" name="pt" id="">Thanh toán khi nhận hàng
+            
+              <br>
+              <input onclick="myFunction2(2)" type="radio" value="Chuyển Khoản" name="pt" id="">Phương Thức Chuyển Khoản
+              
+            
+            </div>
+
+
+            <div class="CK" id="myDIV" style="display: none;">
+
+              <img src="../img/IMG_5074.JPG" alt="">
+
+            </div>
+
+          </div>
+          <input class="mua" type="submit" value="Đặt Hàng">
+
+          </form>
+
         </div>
       </div>
 
@@ -283,27 +318,31 @@ if (isset($_GET['id'])) {
           <div class="tien">
             <span style="margin-top: 5px;">Tổng cộng</span>
             <span class="bill" style="font-size: 25px;">
-             
-              <?php 
-              
-               session_start();
-               $tong=0;
-               foreach($_SESSION['cartt'] as  $value){
-                  
-                    $tong=$tong+($value['price']*$value['qty']);
 
-               }
-               echo number_format("$tong");
+              <?php
 
-            
-              //  echo $_SESSION['cartt'][63]['price']*$_SESSION['cartt'][63]['qty'] ?>
-                      vnđ  </span>
+              session_start();
+              $tong = 0;
+              foreach ($_SESSION['cartt'] as  $value) {
+
+                $tong = $tong + ($value['price'] * $value['qty']);
+              }
+              echo number_format("$tong");
+
+
+              //  echo $_SESSION['cartt'][63]['price']*$_SESSION['cartt'][63]['qty'] 
+              ?>
+              vnđ
+            </span>
           </div>
           <div>
           </div>
         </div>
       </div>
+
+
     </div>
+  </div>
 
   </div>
 
@@ -314,6 +353,28 @@ if (isset($_GET['id'])) {
   </div>
 
 </body>
+<script>
+  function myFunction2(val) {
+
+    var x = document.getElementById("myDIV");
+    var y=document.getElementById("myP");
+    if (val == 1) {
+      x.style.display = 'none';
+      y.style.display = 'none';
+
+    }
+    if (val == 2) {
+      x.style.display = 'block';
+      y.style.display = 'block';
+
+    }
+  }
+
+  submitForms = function () {
+    document.forms["form1"].submit();
+    document.forms["form2"].submit();
+  }
+</script>
 
 </html>
 <?php

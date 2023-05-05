@@ -1,6 +1,5 @@
 <?php
 session_start();
-$username = $_SESSION['UserName'];
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -38,7 +37,7 @@ if (isset($_GET['id'])) {
 
 
 
-  $sql = "SELECT * FROM CTDH   where IDDonHang=$id ";
+  $sql = "SELECT * FROM CTDH,Device,PhanLoai where IDDonHang=$id and PhanLoai.MaLoai=Device.cate and CTDH.IDProduct=Device.id   ";
   $result = $conn->query($sql);
   $CT = array();
 
@@ -90,7 +89,7 @@ if (isset($_GET['id'])) {
   <div class="containerr">
     <div class="menu">
       <div class="flex-shrink-0 p-3" style="width: 280px;">
-        <a href="" class="d-flex align-items-center pb-3 mb-3 link-body-emphasis text-decoration-none border-bottom">
+      <a href="../Home/Home.php" class="d-flex align-items-center pb-3 mb-3 link-body-emphasis text-decoration-none border-bottom">
           <svg class="bi pe-none me-2" width="30" height="24">
             <use xlink:href="" />
           </svg>
@@ -122,7 +121,7 @@ if (isset($_GET['id'])) {
               </ul>
             </div>
           </li>
-          <li class="mb-1">
+          <!-- <li class="mb-1">
             <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false">
               QUẢN LÍ DỊCH VỤ
             </button>
@@ -134,7 +133,7 @@ if (isset($_GET['id'])) {
                 <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Returned</a></li>
               </ul>
             </div>
-          </li>
+          </li> -->
           <li class="border-top my-3"></li>
           <li class="mb-1">
             <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="false">
@@ -142,7 +141,7 @@ if (isset($_GET['id'])) {
             </button>
             <div class="collapse" id="account-collapse">
               <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                <li><a href="../admin/admin.php?UserName= <?= $_SESSION['UserName'] ?>" class="link-dark d-inline-flex text-decoration-none rounded">Xem thông
+              <li><a href="../admin/admin.php?UserName=<?= $_SESSION['UserName'][0] ?>" class="link-dark d-inline-flex text-decoration-none rounded">Xem thông
                     tin</a>
                 </li>
                 <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">chỉnh sửa</a></li>
@@ -183,7 +182,7 @@ if (isset($_GET['id'])) {
 
             <div class="ipr">
               <p><?php echo $HoaDon['0']?></p>
-              <p>23/02/2024</p>
+              <p>13/04/2023</p>
               <p><?php echo $HoaDon['1']?></p>
               <p>0<?php echo $HoaDon['3']?></p>
               <p> <?php echo $HoaDon['4']?></p>
@@ -209,7 +208,7 @@ if (isset($_GET['id'])) {
                 <div >
                   <tr>
                     <td>1</td>
-                    <td><img src="../img/device/14pro-1.jpeg" alt=""></td>
+                    <td><img src="../img/<?= $value['TenLoai']; ?>/<?= $value['img']; ?>" alt=""></td>
                     <td colspan="2"><?= $value['TenSP']; ?></td>
                     <td colspan="2"><?php echo  number_format($value['Gia']); ?> </td>
                     <td style="width: 80px;"><?= $value['SL']; ?></td>

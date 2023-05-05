@@ -39,6 +39,18 @@ if ($result->num_rows > 0) {
   echo "0 results";
 }
 
+$sqli = "SELECT * FROM phanloai";
+$loai = $conn->query($sqli);
+
+$tl = array();
+
+if ($loai->num_rows > 0) {
+  while ($rowl = $loai->fetch_assoc()) {
+    $tl[] = $rowl;
+  }
+} else {
+  echo "0 results";
+}
 
 
 

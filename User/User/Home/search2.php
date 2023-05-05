@@ -14,14 +14,12 @@ if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 
-if (isset($_GET['MaLoai'])) {
-  $MaLoai = $_GET['MaLoai'];
-  $sql = "SELECT * FROM Device where cate=$MaLoai  " ;
-  $result = mysqli_query($conn, $sql);
-  $rowDe = mysqli_fetch_row($result);
-}
+if (isset($_REQUEST['ok']))
+{
+    $tk=$_GET['search'];
+
 //truyvan
-$sql = "SELECT * FROM device where cate=$MaLoai  " ;
+$sql = "SELECT * FROM device,phanloai where device.cate=phanloai.MaLoai and name like '%$tk%'   " ;
 $result = $conn->query($sql);
 $Iphone=array();
 
@@ -33,14 +31,8 @@ if ($result->num_rows > 0) {
 } else {
   // echo "0 results";
 }
-
-// lấy tên loại ở link
-if (isset($_GET['MaLoai'])) {
-  $MaLoai = $_GET['MaLoai'];
-  $sql = "SELECT * FROM Phanloai where MaLoai=$MaLoai  " ;
-  $result = mysqli_query($conn, $sql);
-  $rowTenLoai = mysqli_fetch_row($result);
 }
+
 
 ////
 $sqli = "SELECT * FROM phanloai" ;
@@ -129,8 +121,8 @@ if ($loai->num_rows > 0) {
     </ul>
 
     <div class="main">
-    
-    <form action="./search2.php" method="get">
+
+    <form action="" method="get">
     <input class="ips" type="text" name="search" placeholder="Bạn Muồn Tìm Gì?">
 
     <button class="btnSearch"  type="submit" name="ok"><i  class="fa-solid fa-magnifying-glass"></i></button>
@@ -154,16 +146,7 @@ if ($loai->num_rows > 0) {
 
 
   </header>
-<div class="link">
-    <div class="link-link">
-        <ul>
-            <li><a href="./Home.php">Trang chủ</a></li>
-            <span> ></span>
-            <li><a href="Menu.php?MaLoai=<?= $rowTenLoai[0] ?>"><?php echo $rowTenLoai[1] ?></a></li>
 
-        </ul>
-    </div>
-</div>
   <h1 class="CateName"><?php echo $rowTenLoai[1] ?></h1>
 
   <div class="main-body">
@@ -210,7 +193,7 @@ if ($loai->num_rows > 0) {
 <div class="column">
   <div class="card">
     <!-- <div id="sta" class="status"> <?= $value['name']; ?></div> -->
-    <img class="imgPhone" src='../img/<?= $rowTenLoai[1] ?>/<?= $value['img']; ?>'>
+    <img class="imgPhone" src='../img/<?= $value['TenLoai'] ?>/<?= $value['img']; ?>'>
     <p class="NamePhone"> <?= $value['name']; ?> </p>
     <div class="price-contain">
     <p class="price"> <?php echo number_format($value['price']);?>  </p>

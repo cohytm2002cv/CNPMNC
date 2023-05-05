@@ -61,7 +61,7 @@ $username=$_SESSION['UserName'] ;
   <div class="containerr">
     <div class="menu">
       <div class="flex-shrink-0 p-3" style="width: 280px;">
-        <a href="" class="d-flex align-items-center pb-3 mb-3 link-body-emphasis text-decoration-none border-bottom">
+      <a href="../Home/Home.php" class="d-flex align-items-center pb-3 mb-3 link-body-emphasis text-decoration-none border-bottom">
           <svg class="bi pe-none me-2" width="30" height="24">
             <use xlink:href="" />
           </svg>
@@ -95,7 +95,7 @@ $username=$_SESSION['UserName'] ;
               </ul>
             </div>
           </li>
-          <li class="mb-1">
+          <!-- <li class="mb-1">
             <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
               data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false">
               QUẢN LÍ DỊCH VỤ
@@ -108,7 +108,7 @@ $username=$_SESSION['UserName'] ;
                 <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Returned</a></li>
               </ul>
             </div>
-          </li>
+          </li> -->
           <li class="border-top my-3"></li>
           <li class="mb-1">
             <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
@@ -117,7 +117,7 @@ $username=$_SESSION['UserName'] ;
             </button>
             <div class="collapse" id="account-collapse">
               <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                <li><a href="../admin/admin.php?UserName= <?= $_SESSION['UserName']?>" class="link-dark d-inline-flex text-decoration-none rounded">Xem thông
+              <li><a href="../admin/admin.php?UserName=<?= $_SESSION['UserName'][0] ?>" class="link-dark d-inline-flex text-decoration-none rounded">Xem thông
                     tin</a>
                 </li>
                 <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">chỉnh sửa</a></li>
@@ -150,8 +150,8 @@ $username=$_SESSION['UserName'] ;
               <td>ID</td>
               <td >Tên Sản Phẩm</td>
               <td>Giá</td>
-              <td>Số Lượng</td>
-              <td>Trạng thái</td>
+              <!-- <td>Số Lượng</td> -->
+              <!-- <td>Trạng thái</td> -->
               <td>Thao tác</td>
             </tr>
 
@@ -163,11 +163,11 @@ $username=$_SESSION['UserName'] ;
               <td>
                 <img width="150px" src="../img/<?= $value['TenLoai']; ?>/<?= $value['img']; ?>" alt="">
               </td>
-              <td>123</td>
+              <td><?php echo number_format($value['id']);?></td>
               <td><?= $value['name']; ?></td>
               <td><?php echo number_format($value['price']);?></td>
-              <td>39</td>
-              <td class="trangthai">Còn Hàng</td>
+              <!-- <td><?php echo number_format($value['SL']);?></td> -->
+              <!-- <td class="trangthai">Còn Hàng</td> -->
               <td> 
               <a href="../UpdatePro/UpdateProduct.php?id=<?= $value['id']?>"><button> <i class="fa-sharp fa-solid fa-eye"></i></button></a>
 
