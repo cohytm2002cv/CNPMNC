@@ -177,12 +177,12 @@ $namsinh=$_POST['namsinh'];
 
 
 
-$sql = "INSERT INTO TaiKhoan (Pass,Username,HoTen,SDT,DiaChi,NamSinh,Email)
-VALUES ( '$Pass','$Username','$hoten','$sdt','$diachi','$namsinh','$email' )";
+$sql = "INSERT INTO TaiKhoan (Pass,Username,HoTen,SDT,DiaChi,NamSinh,Email,state)
+VALUES ( '$Pass','$Username','$hoten','$sdt','$diachi','$namsinh','$email','Kích Hoạt' )";
 
 if ($conn->query($sql) === TRUE) {
-  echo "New record created successfully";
-  header("localtion:./taikhoan.php");
+  echo '<script>alert(" đăng ký thành công")</script>';
+
 
 } else {
   echo "Error: " . $sql . "<br>" . $conn->error;
@@ -208,5 +208,6 @@ if ($loai->num_rows > 0) {
 } else {
   echo "0 results";
 }
+header("location:./taikhoan.php");
 
 ?>

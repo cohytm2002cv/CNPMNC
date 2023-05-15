@@ -13,19 +13,7 @@ if ($conn->connect_error) {
 }
 
 
-$sql = "SELECT * FROM DonHang where trangthai='đang xử lí'" ;
-$result = $conn->query($sql);
-$Ipad2=array();
-
-
-if ($result->num_rows > 0) {
-  while($row = $result->fetch_assoc()) {
-      $Ipad2[]=$row;
-  }
-} else {
-  // echo "0 results";
-}
-$sql = "SELECT * FROM DonHang where trangthai='đã xử lí'" ;
+$sql = "SELECT * FROM TaiKhoan" ;
 $result = $conn->query($sql);
 $Ipad=array();
 

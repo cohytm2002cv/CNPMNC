@@ -1,0 +1,61 @@
+.header{
+    background-color: rgb(60, 89, 207);
+    height: 60px;
+    width: 100%;
+  }
+  .containerr{
+    display: flex;
+    min-height: 800px;
+  
+  }
+  .tieude{
+    margin-bottom: 30px;
+   text-align: center;
+    width: 100%;
+  }
+  .noidung-contain{
+    width: 100%;
+    background-color: #dcdcdc;
+  position: relative;
+  }
+  .noidung{
+    height: 100%;
+    width: 98%;
+    right: 0;  
+    background-color: rgb(255, 255, 255);
+    padding-bottom: 30px;
+  }
+  .trangthai{
+    color: rgb(25, 198, 120);
+  }
+  .title td{
+    background-color: rgb(222, 222, 225);
+  
+    border: 0.2px solid;
+  }
+  .footer{
+    background-color: #3b1b1b;
+    height: 300px;
+  }
+  .title{
+    font-weight: bold;
+    color: rgb(0, 94, 157);
+  }
+  table{
+    width: 90%;
+    margin: auto;
+    font-weight: bold;
+  }
+  table td{
+    text-align: center;
+    width: 120px;
+    height: 50px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+  
+  tr{
+  
+    border: 1px solid;
+  }
+  

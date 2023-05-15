@@ -194,7 +194,7 @@ include_once("inclu.php");
           </div>
           <div class="chuongtrinh">
             <div class="km">
-              <p class="p-km"> <i class="fa-solid fa-gift"></i> khuyến mãi</p>
+              <!-- <p class="p-km"> <i class="fa-solid fa-gift"></i> khuyến mãi</p>
               <ul>
 
                   <input type="radio" id="muathang" name="fav_language" value="muathang">
@@ -204,7 +204,7 @@ include_once("inclu.php");
                   <input type="radio" id="baohanh" name="fav_language" value="baohanh">
                   <label for="baohanh">giá ưu đãi mua kèm bảo hành kim cương</label><br><br>
 
-              </ul>
+              </ul> -->
             </div>
             <div class="uudai">
               <p class="p-km"> <i class="fa-solid fa-gift"></i> Ưu đãi</p>

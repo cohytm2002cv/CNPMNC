@@ -2,7 +2,7 @@
 
 
 
-include_once("./DHconfig.php");
+include_once("./USconfig.php");
 session_start();
 ?>
 <html lang="en">
@@ -111,83 +111,42 @@ session_start();
 
           <div class="login">
 
-            
+            a
           </div>
           <div>ok</div>
         </div>
-        <div class="tieude"> <h3>Đơn Hàng Chờ Xử Lí</h3></div>
+        <div class="tieude"> <h3>Danh Sách Khách Hàng</h3></div>
         <div>
           <table style="margin-bottom: 20px;">
 
           <table>
             <tr class="title">
-              <td >ID</td>
-              <td>Người Mua</td>
-              <td>Đơn Giá</td>
+              <td >User Name</td>
+              <td>Tên Người Dùng</td>
               <td>Số Điện Thoại</td>
-              <td>Địa Chỉ</td>
+            
               <td>Email</td>
               <td>Trạng thái</td>
-              <td>Phương thức</td>
-              <td>Thao tác</td>
-            </tr>
-
-            <?php foreach($Ipad2 as $key=>$value): ?>
-              <tr>
-             
-              <td><?= $value['IDorder']; ?></td>
-              <td><?= $value['KH']; ?></td>
-              <td><?php echo number_format($value['TongTien']);?></td>  
-              <td>0<?= $value['SDT']; ?></td>
-              <td><?= $value['DiaChi']; ?></td>
-              <td><?= $value['email']; ?></td>
-              <td><?= $value['trangthai']; ?></td>
-              <td><?= $value['pg']; ?></td>
-
-              <!-- <td class="trangthai">trang thai</td> -->
-              <td>
-                <a onclick="return cancel()" href="./upd.php?ID=<?= $value['IDorder']; ?> "style="margin-right  : 20px;" href=""><i class="fa-solid fa-check"></i></a>
-                <a style="margin-right: 20px;" href="./chitietDH.php?id=<?= $value['IDorder']; ?>"><i class="fa-sharp fa-solid fa-eye"></i></a>
-               <a onclick="return checkDelete()" href="./deleteDH.php?ID=<?= $value['IDorder']; ?>"> <i class="fa-sharp fa-solid fa-trash"></i></a</td>
-            </tr>
-            <?php endforeach; ?>
-
-          </table>
-
-
-          <br>
-          <br>  
-
-          <div class="tieude"> <h3>Đơn Hàng Thành Công</h3></div>
-          <table>
-            <tr class="title">
-              <td >ID</td>
-              <td>Người Mua</td>
-              <td>Đơn Giá</td>
-              <td>Số Điện Thoại</td>
-              <td>Địa Chỉ</td>
-              <td>Email</td>
-              <td>Trạng thái</td>
-              <td>Phương thức</td>
-              <td>Thao tác</td>
+              <td >Thao tác</td>
             </tr>
 
             <?php foreach($Ipad as $key=>$value): ?>
               <tr>
              
-              <td><?= $value['IDorder']; ?></td>
-              <td><?= $value['KH']; ?></td>
-              <td><?php echo number_format($value['TongTien']);?></td>  
+              <td><?= $value['UserName']; ?></td>
+              <td><?= $value['HoTen']; ?></td>
               <td>0<?= $value['SDT']; ?></td>
-              <td><?= $value['DiaChi']; ?></td>
-              <td><?= $value['email']; ?></td>
-              <td><?= $value['trangthai']; ?></td>
-              <td><?= $value['pg']; ?></td>
+              <td><?= $value['Email']; ?></td>
+              <td id="sta" ><?= $value['state']; ?></td>
+          
 
               <!-- <td class="trangthai">trang thai</td> -->
               <td>
-                <a onclick="return cancel()" href="./upd.php?ID=<?= $value['IDorder']; ?> "style="margin-right  : 20px;" href=""><i class="fa-solid fa-check"></i></a>
-                <a style="margin-right: 20px;" href="./chitietDH.php?id=<?= $value['IDorder']; ?>"><i class="fa-sharp fa-solid fa-eye"></i></a>
+                <a onclick="return cancel()" href="./kichhoat.php?UserName=<?= $value['UserName']; ?> "style="margin-right  : 20px;" href=""><i class="fa-solid fa-ban"></i></a>
+                <a onclick="return cancel2()" href="./vohieu.php?UserName=<?= $value['UserName']; ?> "style="margin-right  : 20px;" href=""><i class="fa-solid fa-check"></i></a>
+
+                <a style="margin-right: 20px;" href="../admin/admin.php?UserName=<?=$value['UserName']; ?>"><i class="fa-sharp fa-solid fa-eye"></i></a>
+               <a onclick="return checkDelete()" href="./deleteUS.php?UserName=<?= $value['UserName']; ?>"> <i class="fa-sharp fa-solid fa-trash"></i></a</td>
             </tr>
             <?php endforeach; ?>
 
@@ -213,11 +172,17 @@ session_start();
 <script src="sidebars.js"></script>
 <script>
   function checkDelete(){
-    return confirm('Bạn có muốn huỷ đơn hàng?');
+    return confirm('Bạn có muốn xoá?');
 }
 function cancel(){
-    return confirm('Đã xử lí ?');
+    return confirm('Bạn có muốn vô hiệu hoá ?');
 }
+function cancel2(){
+    return confirm('Bạn có muốn kích hoạt tài khoản ?');
+}
+
+
+
 </script>
 </html>
 

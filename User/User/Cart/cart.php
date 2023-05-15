@@ -158,10 +158,10 @@ if (isset($_GET['id'])) {
     <ul class="navbar">
       <?php foreach ($tl as $key => $value) : ?>
 
-      <li><a href="../Home/Menu.php?MaLoai=<?= $value['MaLoai']; ?>" . class="active">
+        <li><a href="../Home/Menu.php?MaLoai=<?= $value['MaLoai']; ?>" . class="active">
 
-          <?= $value['TenLoai']; ?>
-        </a></li>
+            <?= $value['TenLoai']; ?>
+          </a></li>
 
       <?php endforeach; ?>
 
@@ -173,7 +173,7 @@ if (isset($_GET['id'])) {
         <i class="fa-solid fa-cart-shopping">
           <div class="numCart">
             <?php if (isset($_SESSION['cartt'])) : ?>
-            <?php echo count($_SESSION['cartt']);; ?>
+              <?php echo count($_SESSION['cartt']);; ?>
             <?php endif; ?>
           </div>
         </i>
@@ -211,36 +211,36 @@ if (isset($_GET['id'])) {
             ?>
 
 
-            <tr>
-              <td style="width:30px">
-                <img src="../img/<?= $cart['tenloai'] ?>/<?= $cart['img'] ?>" alt="">
+                <tr>
+                  <td style="width:30px">
+                    <img src="../img/<?= $cart['tenloai'] ?>/<?= $cart['img'] ?>" alt="">
 
-              </td>
+                  </td>
 
-              <td>
-                <?= $cart['name']; ?>
-              </td>
-              <td>
-                <?php echo number_format($cart['price']); ?>
-              </td>
+                  <td>
+                    <?= $cart['name']; ?>
+                  </td>
+                  <td>
+                    <?php echo number_format($cart['price']); ?>
+                  </td>
 
-              <td style="width:200px">
-                <form action="update.php" method="post">
-                  <input style="margin-left: -30px;" type="text" value="<?= $cart['qty']; ?>" name="qty" min="1">
-                  <input type="hidden" name="upid" value="<?= $cart['id']; ?>">
-                  <input type="submit" name="update" value="Update" class="upd">
-              </td>
+                  <td style="width:200px">
+                    <form action="update.php" method="post">
+                      <input style="margin-left: -30px;" type="text" value="<?= $cart['qty']; ?>" name="qty" min="1">
+                      <input type="hidden" name="upid" value="<?= $cart['id']; ?>">
+                      <input type="submit" name="update" value="Update" class="upd">
+                  </td>
 
-              </form>
-              </dt>
-              <td style="width:50px">
-                <a href="./removecartitem.php?id=<?= $cart['id']; ?>"><span>
-                    Xoá </span>
-                </a>
-              </td>
+                  </form>
+                  </dt>
+                  <td style="width:50px">
+                    <a href="./removecartitem.php?id=<?= $cart['id']; ?>"><span>
+                        Xoá </span>
+                    </a>
+                  </td>
 
 
-            </tr>
+                </tr>
             <?php
                 $i++;
               endforeach;
@@ -284,13 +284,14 @@ if (isset($_GET['id'])) {
             <div style="width: 50%;">
               <label style="text-align: center;" for="pt">Chọn Phương Thức Thanh Toán</label> <br> <br>
               <input onclick="myFunction2(1)" type="radio" value="Tiền Mặt" name="pt" id="">Thanh toán khi nhận hàng
-            
+
               <br>
               <input onclick="myFunction2(2)" type="radio" value="Chuyển Khoản" name="pt" id="">Phương Thức Chuyển Khoản
-              
-            
-            </div>
 
+
+            </div>
+             <!-- <button id="paypal-button-container"  name="redirect">thanh toan</button> -->
+             <div id="paypal-button-container" ></div>
 
             <div class="CK" id="myDIV" style="display: none;">
 
@@ -299,12 +300,13 @@ if (isset($_GET['id'])) {
             </div>
 
           </div>
-          <input class="mua" type="submit" value="Đặt Hàng">
+         
 
           </form>
 
         </div>
       </div>
+      
 
     </div>
     <div class="giua"></div>
@@ -315,25 +317,34 @@ if (isset($_GET['id'])) {
             <input class="mgg" type="text" name="mgg" id="" placeholder="Mã Giảm Giá">
             <button class="apply">ap dung</button>
           </div>
+
           <div class="tien">
+            <?php 
+            session_start();
+            $tong = 0;
+            foreach ($_SESSION['cartt'] as  $value) {
+
+              $tong = $tong + ($value['price'] * $value['qty']);
+              
+            }
+            ?>
             <span style="margin-top: 5px;">Tổng cộng</span>
-            <span class="bill" style="font-size: 25px;">
+            
+            <div id="tongtien" value=" <?php echo $tong ?> " class="bill" style="font-size: 25px;">
 
               <?php
 
-              session_start();
-              $tong = 0;
-              foreach ($_SESSION['cartt'] as  $value) {
-
-                $tong = $tong + ($value['price'] * $value['qty']);
-              }
+              
+              
               echo number_format("$tong");
+              
 
 
               //  echo $_SESSION['cartt'][63]['price']*$_SESSION['cartt'][63]['qty'] 
               ?>
               vnđ
-            </span>
+              
+          </div>
           </div>
           <div>
           </div>
@@ -353,11 +364,14 @@ if (isset($_GET['id'])) {
   </div>
 
 </body>
+
+<script src="https://www.paypal.com/sdk/js?client-id=AdoAuGakHOfZDULtRZn13WNOxPEEkzzBgnAXGimtTMddStNd9A-NtEFRDdWGxn8QzJ1yatJfaiSy0UAw&components=buttons"></script>
+
 <script>
   function myFunction2(val) {
 
     var x = document.getElementById("myDIV");
-    var y=document.getElementById("myP");
+    var y = document.getElementById("myP");
     if (val == 1) {
       x.style.display = 'none';
       y.style.display = 'none';
@@ -370,13 +384,49 @@ if (isset($_GET['id'])) {
     }
   }
 
-  submitForms = function () {
+  submitForms = function() {
     document.forms["form1"].submit();
     document.forms["form2"].submit();
   }
+  var tien=document.getElementById('tongtien').getAttribute('value')/23459;
+var tien=parseFloat(tien);
+tmp = (+tien + 8).toFixed(2);
+
+
+  console.log(tien);
+  paypal.Buttons({
+    createOrder: function (data, actions) {
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+                          value: tmp,
+                            // value: parseFloat(document.getElementById('tongtien').getAttribute('value')),
+                            currency: "USD"
+                        }
+                    }]
+                });
+            },
+            onApprove: function (data, actions) {
+        return actions.order.capture().then(function(details) {
+            alert('thanh toan thanh cong');
+            // Call your server to save the transaction
+          
+        })
+    
+            },
+  style: {
+    layout: 'vertical',
+    color:  'blue',
+    shape:  'rect',
+    label:  'paypal'
+  }
+  
+}).render('#paypal-button-container');
 </script>
 
 </html>
 <?php
 include_once('../Cart/createDH.php');
+echo '<script>alert(" đặt hàng thành công")</script>';
+
 ?>

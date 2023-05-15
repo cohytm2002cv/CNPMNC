@@ -5,10 +5,9 @@ $username = "root";
 $password = "";
 $dbname = "DoAn";
 session_start();
-if(isset($_SESSION['UserName'])){
-  $us=$_SESSION['UserName'][0];
+if (isset($_SESSION['UserName'])) {
+  $us = $_SESSION['UserName'][0];
   header("location:../admin/admin.php?UserName={$us}");
-
 }
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -48,34 +47,46 @@ session_start();
 if (isset($_POST['dangnhap'])) {
   $username = $_POST['UserName'];
   $password = $_POST['Pass'];
+  $sub = 'admin';
 
-
-  foreach ($User as $key=>$value) {//so sánh với table user
+  foreach ($User as $key => $value) { //so sánh với table user
     $i = 0;
 
     if ($username == $value["UserName"] && $password == $value["Pass"]) {
-      $_SESSION['UserName'] = array();
-      array_push($_SESSION['UserName'], $username);
-      header("location:../admin/admin.php?UserName={$username}");
+      if ($value['state'] == 'Kích Hoạt') {
 
-      
-    } else {
-      // echo '<script language="javascript">';
-      // echo 'alert("Tài Khoản Hoặc Mật Khẩu Không Chính Xác")';
-      // echo '</script>';
+        $_SESSION['UserName'] = array();
+        array_push($_SESSION['UserName'], $username); {
+          if (strlen(strstr($username, $sub)) > 0) {
+
+            header("location:../admin/admin.php?UserName={$username}");
+          }
+          else{
+            header("location:../admin/us.php?UserName={$username}");
+          }
+        }
+      } else {
+        echo '<script>alert(" Tài Khoản Bị Vô Hiệu Hoá")</script>';
+       
+      }
     }
+
+   
     $i++;
   }
+  echo '<script>alert(" Tên Tài Khoản Hoặc Mật Khẩu Không Chính Xác")</script>';
+
+
 }
 
-$sqli = "SELECT * FROM phanloai" ;
+$sqli = "SELECT * FROM phanloai";
 $loai = $conn->query($sqli);
-$tl=array();
+$tl = array();
 
 
 if ($loai->num_rows > 0) {
-  while($rowl = $loai->fetch_assoc()) {
-      $tl[]=$rowl;
+  while ($rowl = $loai->fetch_assoc()) {
+    $tl[] = $rowl;
   }
 } else {
   echo "0 results";
@@ -116,8 +127,8 @@ if ($loai->num_rows > 0) {
     <a href="../Home/Home.php" class="logo"><i class="ri-home-fill"></i><span>logo</span></a>
 
     <ul class="navbar">
-    <?php foreach($tl as $key=>$value): ?>
-      <li><a href="../Home/Menu.php?MaLoai=<?= $value['MaLoai']; ?>". class="active"> <?= $value['TenLoai']; ?></a></li>
+      <?php foreach ($tl as $key => $value) : ?>
+        <li><a href="../Home/Menu.php?MaLoai=<?= $value['MaLoai']; ?>" . class="active"> <?= $value['TenLoai']; ?></a></li>
       <?php endforeach; ?>
 
     </ul>

@@ -63,7 +63,7 @@ if ($conn->connect_error) {
 
         <div class="trangthai">
           <span>Trạng Thái:</span>
-          <div class="status"> <?php echo $rowDe[7] ?></div>
+          <div class="status"> Đã Duyệt</div>
         </div>
       </div>
       <hr>
@@ -167,19 +167,7 @@ if ($conn->connect_error) {
           <span class="fs-5 fw-semibold">LoGo</span>
         </a>
         <ul class="list-unstyled ps-0">
-          <li class="mb-1">
-            <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
-              data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
-              QUẢN LÍ SẢN PHẨM
-            </button>
-            <div class="collapse show" id="home-collapse">
-              <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                <li><a href="../Product-list/ListProduct.php" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Danh sách sản Phẩm</a></li>
-                <li><a href="../ProductAdd/AddProduct.php" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Thêm sản phẩm</a>
-                </li>
-              </ul>
-            </div>
-          </li>
+          
           <li class="mb-1">
             <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
               data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
@@ -219,10 +207,10 @@ if ($conn->connect_error) {
                 <li><a href="../admin/admin.php?UserName=<?= $_SESSION['UserName'][0] ?>" class="link-dark d-inline-flex text-decoration-none rounded">Xem thông
                     tin</a>
                 </li>
-                <!-- <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">chỉnh sửa</a></li> -->
-                <li><a href="./DSuser.php" class="link-dark d-inline-flex text-decoration-none rounded">Danh sách
+                <!-- <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">chỉnh sửa</a></li>
+                <li><a href="./list/list.html" class="link-dark d-inline-flex text-decoration-none rounded">Danh sách
                     tài
-                    khoản</a></li>
+                    khảin</a></li> -->
                 <li><a href="../admin/logout.php" class="link-dark d-inline-flex text-decoration-none rounded">Đăng xuất</a></li>
               </ul>
             </div>
