@@ -16,26 +16,6 @@ if ($conn->connect_error) {
 
 
 
-
-// $fp = @fopen('goc.php', "w");
-
-// Kiểm tra file mở thành công không
-// if (!$fp) {
-//     echo 'Mở file không thành công';
-// }
-// else
-// {
-//     $data = " ";
-//     fwrite($fp, $data);
-// }
-// die;
-
-//truyvan
-
-
-
-// $MaL = $_GET['MaLoai'];
-
 $sql = "SELECT * FROM device where cate='1'  and img not like ''  limit 4 ";
 $result = $conn->query($sql);
 $Iphone = array();
@@ -184,7 +164,7 @@ if ($loai->num_rows > 0) {
 
 
   </header>
-
+  
 
   <div class="main-body">
 
@@ -336,9 +316,8 @@ if ($loai->num_rows > 0) {
   </div>
 
   <!-- ---footer-- -->
-  <div class="footer">
-    <i class="cart-shopping-solid.svg"></i>
-    
+  <div >
+   <?= include('../footer/ft.php') ?>
   </div>
 
 

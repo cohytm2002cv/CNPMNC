@@ -62,7 +62,7 @@ if(!isset($_SESSION['UserName'])){
             </button>
             <div class="collapse" id="dashboard-collapse">
               <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                <li><a href="../DonHang/DSDonHang.php" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Danh Sách Đơn Hàng</a>
+                <li><a href="../DonHang/DSDonHang<?= $_SESSION['UserName'][1] ?>.php" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Danh Sách Đơn Hàng</a>
                 </li>
 
 
@@ -91,14 +91,13 @@ if(!isset($_SESSION['UserName'])){
             </button>
             <div class="collapse" id="account-collapse">
               <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-              <li><a href="../admin/admin.php?UserName=<?= $_SESSION['UserName'][0] ?>" class="link-dark d-inline-flex text-decoration-none rounded">Xem thông
+              <li><a href="../admin/<?= $_SESSION['UserName'][1] ?>.php?UserName=<?= $_SESSION['UserName'][0] ?>" class="link-dark d-inline-flex text-decoration-none rounded">Xem thông
                     tin</a>
                 </li>
                 
-                <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">chỉnh sửa</a></li>
-                <li><a href="./list/list.html" class="link-dark d-inline-flex text-decoration-none rounded">Danh sách
+                <li><a href="../admin/DSuser.php" class="link-dark d-inline-flex text-decoration-none rounded">Danh sách
                     tài
-                    khảin</a></li>
+                    khoản</a></li>
                 <li><a href="../admin/logout.php" class="link-dark d-inline-flex text-decoration-none rounded">Đăng xuất</a></li>
               </ul>
             </div>
@@ -169,8 +168,9 @@ if(!isset($_SESSION['UserName'])){
     </div>
 
   </div>
-  <div class="footer"></div>
-
+  <div>
+    <?= include('../footer/ft.php') ?>
+  </div>
 
 
 

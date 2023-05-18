@@ -17,14 +17,17 @@ $SDT =  $_REQUEST['SDT'];
 $DC = $_REQUEST['DiaChi'];
 $Email = $_REQUEST['email'];
 $PT = $_REQUEST['pt'];
+$TK=$_SESSION['UserName'][0];
 
 $tt='Đang xử lí';
 
-$sql = "INSERT INTO DonHang ( KH, TongTien, SDT, DiaChi,email,pg,trangthai)
-VALUES ( '$KH', '$tong',$SDT,'$DC','$Email','$PT','$tt')";
+$sql = "INSERT INTO DonHang ( KH, TongTien, SDT, DiaChi,email,pg,trangthai,UsName)
+VALUES ( '$KH', '$tong',$SDT,'$DC','$Email','$PT','$tt','$TK')";
 
 if ($conn->query($sql) === TRUE) {
   echo "New record created successfully";
+  
+
 } else {
   echo "Error: " . $sql . "<br>" . $conn->error;
 }
@@ -45,10 +48,18 @@ $sql = "INSERT INTO CTDH ( TenSP, Gia, IDDonHang,SL,IDProduct)
 VALUES ( ' $nameP ', '$priceP','$lastid','$sl','$idpro')";
 if ($conn->query($sql) === TRUE) {
     echo "New record created successfully";
+
+
   } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
   }
 
 }
 
+
+
 ?>
+<script>
+      window.location.href = './dathang.php'; //Will take you to Google.
+
+</script>

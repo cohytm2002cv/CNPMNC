@@ -171,7 +171,7 @@ $conn->close();
                 <label for="pro-pri">Giá Thiết Bị</label>
               </div>
               <div class="col-75">
-                <input type="text" name="price" value="<?php echo number_format($row['price']);?>đ" placeholder="Nhập giá..">
+                <input type="text" name="price" value="<?php echo ($row['price']);?>" placeholder="Nhập giá..">
               </div>
             </div>
 
@@ -206,14 +206,32 @@ $conn->close();
                 <input type="hidden" value="<?= $row['id']; ?>" name="id" placeholder=" Nhập tên thiết bị">
               </div>
             </div>
-            <!-- <div class="row">
+            <div class="row">
               <div class="col-25">
                 <label for="pro-pri">Chọn ảnh</label>
               </div>
               <div class="col-75">
-                <input type="file" name="imgsr" value="<?= $row['des']; ?>" placeholder="Nhập mô tả..">
+                <input type="file" name="imgsr" value="<?= $row['imgr']; ?>" placeholder="Nhập mô tả..">
               </div>
-            </div> -->
+              <div class="col-25">
+                <label for="pro-pri">Chọn ảnh mô tả 1</label>
+              </div>
+              <div class="col-75">
+                <input type="file" name="img2" value="<?= $row['img2']; ?>" placeholder="Nhập mô tả..">
+              </div>
+              <div class="col-25">
+                <label for="pro-pri">Chọn ảnh mô tả 2</label>
+              </div>
+              <div class="col-75">
+                <input type="file" name="img3" value="<?= $row['img3']; ?>" placeholder="Nhập mô tả..">
+              </div>
+              <div class="col-25">
+                <label for="pro-pri">Chọn ảnh mô tả 3</label>
+              </div>
+              <div class="col-75">
+                <input type="file" name="img4" value="<?= $row['img4']; ?>" placeholder="Nhập mô tả..">
+              </div>
+            </div>
 
 
 

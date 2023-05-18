@@ -1,0 +1,45 @@
+.thanhcong{
+    width: 80%;
+    height: 80%;
+    margin: auto    ;
+    background-color: (242, 247, 245);
+
+}
+.TT{
+    color: black;
+    background-color: white;
+    height: 500px;
+    width: 50%;
+    margin: auto;
+    margin-top: 5%;
+    padding: 2%;
+    text-align: center;
+    border-radius: 20px;
+
+}
+.TT h2{
+    text-align: center;
+    margin-top: 10%;
+}
+.check{
+  font-size: 7rem;
+  text-align: center;
+}
+.btnmua{
+    background-color: #334fdc;
+    width: 60%;
+    height: 50px;
+    font-size: 18px;
+    margin-top: 40px;
+    border: 0px;
+    border-radius: 10px;
+    font-weight: bold;
+    color: white;
+}
+p{
+    margin-top: 2%;
+    font-size: 20px;
+}
+p a{
+    color: #334fdc;
+}

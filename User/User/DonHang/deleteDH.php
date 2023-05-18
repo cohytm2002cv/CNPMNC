@@ -1,5 +1,5 @@
 <?php
-
+session_start( );
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -20,10 +20,13 @@ if (isset($_GET['ID'])) {
 
       $sql = "DELETE FROM CTDH WHERE IDDonHang=$id";
         if ($conn->query($sql) === TRUE) {
-         
+         $ses=$_SESSION['UserName'][1];
           $sql = "DELETE FROM DonHang WHERE IDorder=$id";
           if ($conn->query($sql) === TRUE) {
-            echo "Record deleted successfully";
+           header("location:./DSDonHang{$ses}.php");
+
+        
+                
             } else {
               echo "Error deleting record: " . $conn->error;
             }
@@ -36,8 +39,8 @@ if (isset($_GET['ID'])) {
           }
       
 
-    
+   
+          
         
-
-        
-        header('location:./DSDonHang.php');
+        // header('location:./DSDonHangus.php')
+?>

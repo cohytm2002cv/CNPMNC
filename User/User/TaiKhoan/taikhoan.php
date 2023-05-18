@@ -5,9 +5,14 @@ $username = "root";
 $password = "";
 $dbname = "DoAn";
 session_start();
+
+
 if (isset($_SESSION['UserName'])) {
   $us = $_SESSION['UserName'][0];
-  header("location:../admin/admin.php?UserName={$us}");
+  $role=$_SESSION['UserName'][1];
+
+ 
+  header("location:../admin/$role.php?UserName={$us}");
 }
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -53,13 +58,16 @@ if (isset($_POST['dangnhap'])) {
     $i = 0;
 
     if ($username == $value["UserName"] && $password == $value["Pass"]) {
+      $role=$value['role'];
       if ($value['state'] == 'Kích Hoạt') {
 
         $_SESSION['UserName'] = array();
-        array_push($_SESSION['UserName'], $username); {
+        array_push($_SESSION['UserName'], $username,$role); {
           if (strlen(strstr($username, $sub)) > 0) {
 
             header("location:../admin/admin.php?UserName={$username}");
+
+
           }
           else{
             header("location:../admin/us.php?UserName={$username}");

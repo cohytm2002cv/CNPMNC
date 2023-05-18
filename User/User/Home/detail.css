@@ -91,9 +91,7 @@ font-size: 25px;
     margin-right: 10px;
   
 }
-.chuongtrinh{
 
-}
 .km{
     border: 1px solid;
     border-radius: 10px 10PX 0px 0px;
@@ -186,7 +184,7 @@ margin-left: 10px;
   }
 .swiper-slide .column{
     width: max-content;
-    height: 60%;
+    height: 58%;
     padding: 0 0;
     margin-left: 10%;
 }

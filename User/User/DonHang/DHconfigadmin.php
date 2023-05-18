@@ -14,7 +14,7 @@ if ($conn->connect_error) {
 }
 $TK=$_SESSION['UserName'][0];
 
-$sql = "SELECT * FROM DonHang where trangthai='đang xử lí' and UsName = '$TK' " ;
+$sql = "SELECT * FROM DonHang where trangthai='đang xử lí' " ;
 $result = $conn->query($sql);
 $Ipad2=array();
 
@@ -26,7 +26,7 @@ if ($result->num_rows > 0) {
 } else {
   // echo "0 results";
 }
-$sql = "SELECT * FROM DonHang where trangthai='đã xử lí' and UsName = '$TK' " ;
+$sql = "SELECT * FROM DonHang where trangthai='đã xử lí' " ;
 $result = $conn->query($sql);
 $Ipad=array();
 

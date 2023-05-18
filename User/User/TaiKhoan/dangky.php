@@ -51,6 +51,7 @@
 
 
   </header>
+  
   <!-- -------dangnhap--- -->
   <div class="dangnhap">
     <div class="login">
@@ -173,16 +174,19 @@ $diachi=$_POST['diachi'];
 $email=$_POST['email'];
 $hoten=$_POST['hoten'];
 $namsinh=$_POST['namsinh'];
+$role='us';
 
 
 
-
-$sql = "INSERT INTO TaiKhoan (Pass,Username,HoTen,SDT,DiaChi,NamSinh,Email,state)
-VALUES ( '$Pass','$Username','$hoten','$sdt','$diachi','$namsinh','$email','Kích Hoạt' )";
+$sql = "INSERT INTO TaiKhoan (Pass,Username,HoTen,SDT,DiaChi,NamSinh,Email,state,role)
+VALUES ( '$Pass','$Username','$hoten','$sdt','$diachi','$namsinh','$email','Kích Hoạt','$role' )";
 
 if ($conn->query($sql) === TRUE) {
   echo '<script>alert(" đăng ký thành công")</script>';
+  echo "<script>
+  window.location.href = './taikhoan.php'; //Will take you to Google.
 
+</script>";
 
 } else {
   echo "Error: " . $sql . "<br>" . $conn->error;
@@ -208,6 +212,5 @@ if ($loai->num_rows > 0) {
 } else {
   echo "0 results";
 }
-header("location:./taikhoan.php");
 
 ?>

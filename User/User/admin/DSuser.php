@@ -61,7 +61,7 @@ session_start();
             </button>
             <div class="collapse" id="dashboard-collapse">
               <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                <li><a href="../DonHang/DSDonHang.php" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Danh Sách Đơn Hàng</a>
+                <li><a href="../DonHang/DSDonHang<?= $_SESSION['UserName'][1] ?>.php" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Danh Sách Đơn Hàng</a>
                 </li>
 
 
@@ -94,7 +94,7 @@ session_start();
                     tin</a>
                 </li>
                 <!-- <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">chỉnh sửa</a></li> -->
-                <li><a href="./list/list.html" class="link-dark d-inline-flex text-decoration-none rounded">Danh sách
+                <li><a href="../admin/DSuser.php" class="link-dark d-inline-flex text-decoration-none rounded">Danh sách
                     tài
                     khoản</a></li>
                 <li><a href="../admin/logout.php" class="link-dark d-inline-flex text-decoration-none rounded">Đăng xuất</a></li>
@@ -145,7 +145,7 @@ session_start();
                 <a onclick="return cancel()" href="./kichhoat.php?UserName=<?= $value['UserName']; ?> "style="margin-right  : 20px;" href=""><i class="fa-solid fa-ban"></i></a>
                 <a onclick="return cancel2()" href="./vohieu.php?UserName=<?= $value['UserName']; ?> "style="margin-right  : 20px;" href=""><i class="fa-solid fa-check"></i></a>
 
-                <a style="margin-right: 20px;" href="../admin/admin.php?UserName=<?=$value['UserName']; ?>"><i class="fa-sharp fa-solid fa-eye"></i></a>
+                <a style="margin-right: 20px;" href="../admin/<?= $_SESSION['UserName'][1] ?>.php?UserName=<?=$value['UserName']; ?>"><i class="fa-sharp fa-solid fa-eye"></i></a>
                <a onclick="return checkDelete()" href="./deleteUS.php?UserName=<?= $value['UserName']; ?>"> <i class="fa-sharp fa-solid fa-trash"></i></a</td>
             </tr>
             <?php endforeach; ?>
@@ -160,8 +160,9 @@ session_start();
     </div>
 
   </div>
-  <div class="footer"></div>
-
+  <div>
+    <?= include('../footer/ft.php') ?>
+  </div>
 
 
 

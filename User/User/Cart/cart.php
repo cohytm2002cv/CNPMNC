@@ -30,6 +30,13 @@ if ($loai->num_rows > 0) {
 } else {
   echo "0 results";
 }
+$TK=$_SESSION['UserName'][0];
+
+$sql = "SELECT * FROM TaiKhoan where UserName = '$TK' " ;
+$result = mysqli_query($conn, $sql);
+// $rowHinh = mysqli_fetch_row($result);
+
+$HoaDon = mysqli_fetch_row($result);
 ////
 
 
@@ -109,6 +116,7 @@ if (isset($_GET['id'])) {
       'IDpro' => $IDproduct
 
 
+
     ];
 
     $_SESSION['cartt'][$proid] = $item;
@@ -173,6 +181,7 @@ if (isset($_GET['id'])) {
         <i class="fa-solid fa-cart-shopping">
           <div class="numCart">
             <?php if (isset($_SESSION['cartt'])) : ?>
+
               <?php echo count($_SESSION['cartt']);; ?>
             <?php endif; ?>
           </div>
@@ -262,51 +271,53 @@ if (isset($_GET['id'])) {
             <form id="form1" action="" method="post">
               <div class="div-form">
                 <label for="">Họ Tên</label>
-                <input type="text" name="KH" id="" placeholder="Họ Tên">
+                <input type="text" name="KH" id="" placeholder="Họ Tên" value="<?php echo $HoaDon['2']?> " >
               </div>
               <div class="div-form">
                 <label for="">Số Điện Thoại</label>
-                <input type="text" name="SDT" id="" placeholder="Số Điện Thoại">
+                <input type="text" name="SDT" id="" value="<?php echo $HoaDon['3']?> " placeholder="Số Điện Thoại"required >
               </div>
               <div class="div-form">
                 <label for="">Email</label>
-                <input type="text" name="email" id="" placeholder=" Email">
+                <input type="text" name="email" value="<?php echo $HoaDon['6']?>" id="" placeholder=" Email" required>
               </div>
               <div class="div-form">
 
-                <label for="">Địa Chỉ</label>
+                <label for="">Địa Chỉ Giao Hàng</label>
 
-                <input type="text" name="DiaChi" id="" placeholder="Địa Chỉ Giao Hàng">
+                <input type="text" name="DiaChi" id="" value="<?php echo $HoaDon['4']?>"  placeholder="Địa Chỉ Giao Hàng" required>
 
               </div>
           </div>
           <div class="phuongthuc">
             <div style="width: 50%;">
               <label style="text-align: center;" for="pt">Chọn Phương Thức Thanh Toán</label> <br> <br>
-              <input onclick="myFunction2(1)" type="radio" value="Tiền Mặt" name="pt" id="">Thanh toán khi nhận hàng
+              <input onclick="myFunction2(1)" checked type="radio" value="Tiền Mặt" name="pt" id="">Thanh toán khi nhận hàng
 
               <br>
               <input onclick="myFunction2(2)" type="radio" value="Chuyển Khoản" name="pt" id="">Phương Thức Chuyển Khoản
 
 
             </div>
-             <!-- <button id="paypal-button-container"  name="redirect">thanh toan</button> -->
-             <div id="paypal-button-container" ></div>
+            <!-- <button id="paypal-button-container"  name="redirect">thanh toan</button> -->
 
             <div class="CK" id="myDIV" style="display: none;">
 
-              <img src="../img/IMG_5074.JPG" alt="">
+              <div style="width:90%" id="paypal-button-container"></div>
+            </div>
 
+            <div class="TM" id="myP">
+              <input style="width:90%" type="submit" value="Đặt Mua" class="mua">
             </div>
 
           </div>
-         
+
 
           </form>
 
         </div>
       </div>
-      
+
 
     </div>
     <div class="giua"></div>
@@ -319,32 +330,31 @@ if (isset($_GET['id'])) {
           </div>
 
           <div class="tien">
-            <?php 
+            <?php
             session_start();
             $tong = 0;
             foreach ($_SESSION['cartt'] as  $value) {
 
               $tong = $tong + ($value['price'] * $value['qty']);
-              
             }
             ?>
             <span style="margin-top: 5px;">Tổng cộng</span>
-            
+
             <div id="tongtien" value=" <?php echo $tong ?> " class="bill" style="font-size: 25px;">
 
               <?php
 
-              
-              
+
+
               echo number_format("$tong");
-              
+
 
 
               //  echo $_SESSION['cartt'][63]['price']*$_SESSION['cartt'][63]['qty'] 
               ?>
               vnđ
-              
-          </div>
+
+            </div>
           </div>
           <div>
           </div>
@@ -374,59 +384,70 @@ if (isset($_GET['id'])) {
     var y = document.getElementById("myP");
     if (val == 1) {
       x.style.display = 'none';
-      y.style.display = 'none';
+      y.style.display = 'block';
 
     }
     if (val == 2) {
       x.style.display = 'block';
-      y.style.display = 'block';
+      y.style.display = 'none';
 
     }
   }
 
-  submitForms = function() {
-    document.forms["form1"].submit();
-    document.forms["form2"].submit();
-  }
-  var tien=document.getElementById('tongtien').getAttribute('value')/23459;
-var tien=parseFloat(tien);
-tmp = (+tien + 8).toFixed(2);
 
 
-  console.log(tien);
+
+
+  //thanh toan paypal
+  var tien = document.getElementById('tongtien').getAttribute('value') / 23459;
+  var tien = parseFloat(tien);
+  tmp = (+tien + 8).toFixed(2);
+
+
   paypal.Buttons({
-    createOrder: function (data, actions) {
-                return actions.order.create({
-                    purchase_units: [{
-                        amount: {
-                          value: tmp,
-                            // value: parseFloat(document.getElementById('tongtien').getAttribute('value')),
-                            currency: "USD"
-                        }
-                    }]
-                });
-            },
-            onApprove: function (data, actions) {
-        return actions.order.capture().then(function(details) {
-            alert('thanh toan thanh cong');
-            // Call your server to save the transaction
-          
-        })
-    
-            },
-  style: {
-    layout: 'vertical',
-    color:  'blue',
-    shape:  'rect',
-    label:  'paypal'
-  }
-  
-}).render('#paypal-button-container');
+    createOrder: function(data, actions) {
+      return actions.order.create({
+        purchase_units: [{
+          amount: {
+            value: tmp,
+            // value: parseFloat(document.getElementById('tongtien').getAttribute('value')),
+            currency: "USD"
+
+          }
+        }]
+      });
+    },
+    detail: {
+currency_code: "USD",
+invoice_number: "#123",
+
+
+},
+    onApprove: function(data, actions) {
+      return actions.order.capture().then(function(details) {
+     document.forms["form1"].submit();
+     include_once('../Cart/createDH.php');
+    //  window.location.href = './dathang.php'; //Will take you to Google.
+
+
+        // Call your server to save the transaction
+
+      })
+
+    },
+    style: {
+      layout: 'vertical',
+      color: 'blue',
+      shape: 'rect',
+      label: 'paypal'
+    }
+
+  }).render('#paypal-button-container');
 </script>
 
 </html>
 <?php
 include_once('../Cart/createDH.php');
-echo '<script>alert(" đặt hàng thành công")</script>';
+
 
 ?>

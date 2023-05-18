@@ -1,54 +1,27 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "DoAn";
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
-}
 
 
-$sql = "SELECT * FROM Device,phanloai where MaLoai=cate" ;
-$result = $conn->query($sql);
-$Ipad=array();
 
-
-if ($result->num_rows > 0) {
-  while($row = $result->fetch_assoc()) {
-      $SP[]=$row;
-  }
-} else {
-  // echo "0 results";
-}
+include_once("./DHconfig.php");
 session_start();
-$username=$_SESSION['UserName'] ;
-
 ?>
-
 <html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Danh Sách Sản Phẩm</title>
+  <title>Document</title>
   <link href="bootstrap-5.3.0-alpha3-examples/assets/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sidebars/">
   <link href="./bootstrap-5.3.0-alpha3-examples/sidebars/sidebars.css" rel="stylesheet">
   <script src="./bootstrap-5.3.0-alpha3-examples/sidebars/sidebars.js"></script>
+  <link rel="stylesheet" href="./addpro.css">
   <script src="https://kit.fontawesome.com/0d29d48e70.js" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="./sanpham.css">
-<link rel="stylesheet" href="./noidung.css">
+
   <!-- --dropdownmenu- -->
-  <link rel="stylesheet" href="./dropdownmenu.css">
-  <link rel="stylesheet" href="./iconList.css">
-
-
+  <script src="./dropdown.js"></script>
+  <link rel="stylesheet" href="./them.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
@@ -59,7 +32,7 @@ $username=$_SESSION['UserName'] ;
 <body>
 
   <div class="containerr">
-    <div class="menu">
+  <div class="menu">
       <div class="flex-shrink-0 p-3" style="width: 280px;">
       <a href="../Home/Home.php" class="d-flex align-items-center pb-3 mb-3 link-body-emphasis text-decoration-none border-bottom">
           <svg class="bi pe-none me-2" width="30" height="24">
@@ -68,7 +41,7 @@ $username=$_SESSION['UserName'] ;
           <span class="fs-5 fw-semibold">LoGo</span>
         </a>
         <ul class="list-unstyled ps-0">
-          <li class="mb-1">
+          <!-- <li class="mb-1">
             <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
               data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
               QUẢN LÍ SẢN PHẨM
@@ -80,7 +53,7 @@ $username=$_SESSION['UserName'] ;
                 </li>
               </ul>
             </div>
-          </li>
+          </li> -->
           <li class="mb-1">
             <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
               data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
@@ -88,7 +61,7 @@ $username=$_SESSION['UserName'] ;
             </button>
             <div class="collapse" id="dashboard-collapse">
               <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                <li><a href="../DonHang/DSDonHang<?= $_SESSION['UserName'][1] ?>.php" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Danh Sách Đơn Hàng</a>
+                <li><a href="" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Danh Sách Đơn Hàng</a>
                 </li>
 
 
@@ -120,9 +93,8 @@ $username=$_SESSION['UserName'] ;
               <li><a href="../admin/<?= $_SESSION['UserName'][1] ?>.php?UserName=<?= $_SESSION['UserName'][0] ?>" class="link-dark d-inline-flex text-decoration-none rounded">Xem thông
                     tin</a>
                 </li>
-                <li><a href="../admin/DSuser.php" class="link-dark d-inline-flex text-decoration-none rounded">Danh sách
-                    tài
-                    khoản</a></li>
+                <!-- <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">chỉnh sửa</a></li> -->
+                
                 <li><a href="../admin/logout.php" class="link-dark d-inline-flex text-decoration-none rounded">Đăng xuất</a></li>
               </ul>
             </div>
@@ -134,68 +106,115 @@ $username=$_SESSION['UserName'] ;
 
       <div class="noidung">
         <div class="header">
-         
+
           <div class="login">
-            
+
             
           </div>
+          <div>ok</div>
         </div>
-
-        <div class="tieude"> <h3>Danh Sách Sản Phẩm</h3></div>
+        <div class="tieude"> <h3>Đơn Hàng Chờ Xử Lí</h3></div>
         <div>
           <table style="margin-bottom: 20px;">
+
+          <table>
             <tr class="title">
-              <td width="150px">Hình</td>
-              <td>ID</td>
-              <td >Tên Sản Phẩm</td>
-              <td>Giá</td>
-              <!-- <td>Số Lượng</td> -->
-              <!-- <td>Trạng thái</td> -->
+              <td >ID</td>
+              <td>Người Mua</td>
+              <td>Đơn Giá</td>
+              <td>Số Điện Thoại</td>
+              <td>Địa Chỉ</td>
+              <td>Email</td>
+              <td>Trạng thái</td>
+              <td>Phương thức</td>
               <td>Thao tác</td>
             </tr>
 
-          </table>
-          <table>
-          <?php foreach($SP as $key=>$value): ?>
-      
-            <tr>  
-              <td>
-                <img width="150px" src="../img/<?= $value['TenLoai']; ?>/<?= $value['img']; ?>" alt="">
-              </td>
-              <td><?php echo number_format($value['id']);?></td>
-              <td><?= $value['name']; ?></td>
-              <td><?php echo number_format($value['price']);?></td>
-              <!-- <td><?php echo number_format($value['SL']);?></td> -->
-              <!-- <td class="trangthai">Còn Hàng</td> -->
-              <td> 
-              <a href="../UpdatePro/UpdateProduct.php?id=<?= $value['id']?>"><button> <i class="fa-sharp fa-solid fa-eye"></i></button></a>
+            <?php foreach($Ipad2 as $key=>$value): ?>
+              <tr>
+             
+              <td><?= $value['IDorder']; ?></td>
+              <td><?= $value['KH']; ?></td>
+              <td><?php echo number_format($value['TongTien']);?></td>  
+              <td>0<?= $value['SDT']; ?></td>
+              <td><?= $value['DiaChi']; ?></td>
+              <td><?= $value['email']; ?></td>
+              <td><?= $value['trangthai']; ?></td>
+              <td><?= $value['pg']; ?></td>
 
-                <a onclick="return checkDelete()" href="./del.php?id=<?= $value['id']?>"><button> <i class="fa-sharp fa-solid fa-trash"></i> </button></a>
-              </td>
-              <hr width="80%" style="margin: auto;">
+              <!-- <td class="trangthai">trang thai</td> -->
+              <td>
+                <a style="margin-right: 20px;" href="./chitietDH<?= $_SESSION['UserName'][1] ?>.php?id=<?= $value['IDorder']; ?>"><i class="fa-sharp fa-solid fa-eye"></i></a>
+               <a onclick="return checkDelete()" href="./deleteDH.php?ID=<?= $value['IDorder']; ?>"> <i class="fa-sharp fa-solid fa-trash"></i></a</td>
             </tr>
             <?php endforeach; ?>
-            
+
+          </table>
+
+
+          <br>
+          <br>  
+
+          <div class="tieude"> <h3>Đơn Hàng Thành Công</h3></div>
+          <table>
+            <tr class="title">
+              <td >ID</td>
+              <td>Người Mua</td>
+              <td>Đơn Giá</td>
+              <td>Số Điện Thoại</td>
+              <td>Địa Chỉ</td>
+              <td>Email</td>
+              <td>Trạng thái</td>
+              <td>Phương thức</td>
+              <td>Thao tác</td>
+            </tr>
+
+            <?php foreach($Ipad as $key=>$value): ?>
+              <tr>
+             
+              <td><?= $value['IDorder']; ?></td>
+              <td><?= $value['KH']; ?></td>
+              <td><?php echo number_format($value['TongTien']);?></td>  
+              <td>0<?= $value['SDT']; ?></td>
+              <td><?= $value['DiaChi']; ?></td>
+              <td><?= $value['email']; ?></td>
+              <td><?= $value['trangthai']; ?></td>
+              <td><?= $value['pg']; ?></td>
+
+              <!-- <td class="trangthai">trang thai</td> -->
+              <td>
+                <a style="margin-right: 20px;" href="./chitietDHus.php?id=<?= $value['IDorder']; ?>"><i class="fa-sharp fa-solid fa-eye"></i></a>
+            </tr>
+            <?php endforeach; ?>
 
           </table>
         </div>
+
+
+        
       </div>
+
     </div>
+
   </div>
   <div>
     <?= include('../footer/ft.php') ?>
   </div>
 
 
-</body>
-<script src="bootstrap-5.3.0-alpha3-examples/assets/js/color-modes.js"></script>
 
+</body>
+
+<script src="bootstrap-5.3.0-alpha3-examples/assets/js/color-modes.js"></script>
 <script src="./bootstrap-5.3.0-alpha3-examples/assets/dist/js/bootstrap.bundle.min.js"></script>
 <script src="sidebars.js"></script>
-<script language="JavaScript" type="text/javascript">
-
-function checkDelete(){
-    return confirm('Bạn có muốn xoá?');
+<script>
+  function checkDelete(){
+    return confirm('Bạn có muốn huỷ đơn hàng?');
+}
+function cancel(){
+    return confirm('Đã xử lí ?');
 }
 </script>
 </html>
+

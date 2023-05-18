@@ -3,6 +3,10 @@
 $id = $_POST["id"];
 $name = $_POST["name"];
 $img=$_POST["imgsr"];
+$img2=$_POST["img2"];
+$img3=$_POST["img3"];
+$img4=$_POST["img4"];
+
 $price=$_POST["price"];
 $cate=$_POST["cate"];
 $des=$_POST["des"];
@@ -31,7 +35,7 @@ if ($conn->query($sql) === TRUE) {
 }
 else
 {
-	$sql = "update Device set name='$name',price='$price',cate='$cate',des='$des',img='$img'	 where id='$id'";
+	$sql = "update Device set name='$name',price='$price',cate='$cate',des='$des',img='$img',img2='$img2',img3='$img3',img4='$img4'  where id='$id'";
 
 if ($conn->query($sql) === TRUE) {
 	echo "Records updated: ".$id."-".$name;

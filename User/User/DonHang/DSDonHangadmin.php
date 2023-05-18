@@ -2,7 +2,7 @@
 
 
 
-include_once("./DHconfig.php");
+include_once("./DHconfigadmin.php");
 session_start();
 ?>
 <html lang="en">
@@ -61,7 +61,7 @@ session_start();
             </button>
             <div class="collapse" id="dashboard-collapse">
               <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                <li><a href="../DonHang/DSDonHang.php" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Danh Sách Đơn Hàng</a>
+                <li><a href="../DonHang/DSDonHang<?= $_SESSION['UserName'][1] ?>.php" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Danh Sách Đơn Hàng</a>
                 </li>
 
 
@@ -147,7 +147,7 @@ session_start();
               <!-- <td class="trangthai">trang thai</td> -->
               <td>
                 <a onclick="return cancel()" href="./upd.php?ID=<?= $value['IDorder']; ?> "style="margin-right  : 20px;" href=""><i class="fa-solid fa-check"></i></a>
-                <a style="margin-right: 20px;" href="./chitietDH.php?id=<?= $value['IDorder']; ?>"><i class="fa-sharp fa-solid fa-eye"></i></a>
+                <a style="margin-right: 20px;" href="./chitietDH<?= $_SESSION['UserName'][1] ?>.php?id=<?= $value['IDorder']; ?>"><i class="fa-sharp fa-solid fa-eye"></i></a>
                <a onclick="return checkDelete()" href="./deleteDH.php?ID=<?= $value['IDorder']; ?>"> <i class="fa-sharp fa-solid fa-trash"></i></a</td>
             </tr>
             <?php endforeach; ?>
@@ -186,8 +186,8 @@ session_start();
 
               <!-- <td class="trangthai">trang thai</td> -->
               <td>
-                <a onclick="return cancel()" href="./upd.php?ID=<?= $value['IDorder']; ?> "style="margin-right  : 20px;" href=""><i class="fa-solid fa-check"></i></a>
-                <a style="margin-right: 20px;" href="./chitietDH.php?id=<?= $value['IDorder']; ?>"><i class="fa-sharp fa-solid fa-eye"></i></a>
+                <!-- <a onclick="return cancel()" href="./upd.php?ID=<?= $value['IDorder']; ?> "style="margin-right  : 20px;" href=""><i class="fa-solid fa-check"></i></a> -->
+                <a style="margin-right: 20px;" href="./chitietDH<?= $_SESSION['UserName'][1] ?>.php?id=<?= $value['IDorder']; ?>"><i class="fa-sharp fa-solid fa-eye"></i></a>
             </tr>
             <?php endforeach; ?>
 
@@ -201,8 +201,9 @@ session_start();
     </div>
 
   </div>
-  <div class="footer"></div>
-
+  <div>
+    <?= include('../footer/ft.php') ?>
+  </div>
 
 
 

@@ -33,7 +33,7 @@ include_once("inclu.php");
   <link rel="stylesheet" href="./css/email2.css">
 
   <!-- ----chitiet---- -->
-  <link rel="stylesheet" href="../home/css/slide-chitiet.css">
+  <!-- <link rel="stylesheet" href="../home/css/slide-chitiet.css"> -->
   <link rel="stylesheet" href="./StarRating/style.css">
 
 
@@ -288,9 +288,8 @@ include_once("inclu.php");
   </div>
 
   <!-- ---footer-- -->
-  <div class="footer">
-    <i class="cart-shopping-solid.svg"></i>
-    saddd
+  <div>
+    <?= include('../footer/ft.php') ?>
   </div>
 
 

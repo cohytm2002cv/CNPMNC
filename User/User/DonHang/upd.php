@@ -28,5 +28,5 @@ if ($conn->query($sql) === TRUE) {
 }
     
 }
-            header('location:./DSDonHang.php');
+            header('location:./DSDonHangadmin.php');
 ?>

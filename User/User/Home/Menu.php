@@ -240,10 +240,9 @@ if ($loai->num_rows > 0) {
 
 </div>
 <!-- ---footer-- -->
-<div class="footer">
-  <i class="cart-shopping-solid.svg"></i>
-  saddd
-</div>
+<div>
+    <?= include('../footer/ft.php') ?>
+  </div>
 
 
 

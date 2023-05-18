@@ -185,7 +185,7 @@ margin-left: 10px;
   }
 .swiper-slide .column{
     width: max-content;
-    height: max-content;
+    height: 58%;
     padding: 0 0;
 }
 .slide-img .swiper{

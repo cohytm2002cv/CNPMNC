@@ -47,8 +47,8 @@ $result = $conn->query($sql);
 
 
 // -----
-$sql = "INSERT INTO Device ( name, price, img, cate,img2,img3,img4)
-VALUES ( '$Tensp', '$Giasp','$Hinhsp','$LoaiSP','$IMG2','$IMG3','$IMG4')";
+$sql = "INSERT INTO Device ( name, price, img, cate,des,img2,img3,img4)
+VALUES ( '$Tensp', '$Giasp','$Hinhsp','$LoaiSP','$IMG2','$Des','$IMG3','$IMG4')";
 
 if ($conn->query($sql) === TRUE) {
   echo "New record created successfully";
