@@ -19,7 +19,7 @@ background-color: rgb(242, 242, 245);
 
 }
 header{
-    position: relative;
+    position: fixed;
     width: 100%;
     height: 70px;
     top: 0;
@@ -95,6 +95,7 @@ header{
 @media(max-width:1280px) {
 
     header{
+        position: fixed;
         padding: 14px 2%;
         transition: .2s;
     }

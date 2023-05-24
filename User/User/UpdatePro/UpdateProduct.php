@@ -14,8 +14,24 @@ if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 
+$sql = "SELECT * FROM ttdt  where IDPro = $id";
+$kq = $conn->query($sql);
 
-$sql = "select * from Device,phanloai where cate=MaLoai and id='$id'";
+
+$kq = $conn->query($sql);
+
+if ($kq->num_rows > 0) {
+
+  $ct = $kq->fetch_assoc();
+
+  
+
+} else {
+  echo "Not Found";
+}
+
+
+$sql = "select * from Device,phanloai,ttdt where cate=MaLoai and device.id='$id' and device.id=ttdt.IDPro  ";
 
 $result = $conn->query($sql);
 
@@ -185,6 +201,46 @@ $conn->close();
             </div>
             <div class="row">
               <div class="col-25">
+                <label for="pro-pri">Pin</label>
+              </div>
+              <div class="col-75">
+                <input type="text" name="pin" value="<?= $row['Pin'] ?>" placeholder="Nhập mô tả..">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-25">
+                <label for="pro-pri">Chip</label>
+              </div>
+              <div class="col-75">
+                <input type="text" name="chip" value="<?= $row['Chip']; ?>" placeholder="Nhập mô tả..">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-25">
+                <label for="pro-pri">Ram</label>
+              </div>
+              <div class="col-75">
+                <input type="text" name="ram" value="<?= $row['Ram']; ?>" placeholder="Nhập mô tả..">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-25">
+                <label for="pro-pri">Màn Hình</label>
+              </div>
+              <div class="col-75">
+                <input type="text" name="mh" value="<?= $row['ManHinh']; ?>" placeholder="Nhập mô tả..">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-25">
+                <label for="pro-pri">Camera</label>
+              </div>
+              <div class="col-75">
+                <input type="text" name="cam" value="<?= $row['Camera']; ?>" placeholder="Nhập mô tả..">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-25">
                 <label for="pro-loai">Loại</label>
               </div>
               <div class="col-75">
@@ -325,8 +381,9 @@ $conn->close();
         </ul>
       </div>
     </div>
-  <div class="footer"></div>
-
+    <div>
+    <?= include('../footer/ft.php') ?>
+  </div>
 </body>
 <script src="bootstrap-5.3.0-alpha3-examples/assets/js/color-modes.js"></script>
 

@@ -42,10 +42,13 @@ foreach ($_SESSION['cartt'] as $cart) {
   $priceP= $cart['price'];
   $sl=$cart['qty']; 
   $idpro=$cart['IDpro']; 
+  $idpro=$cart['IDpro']; 
+  $img=$cart['img']; 
 
 
-$sql = "INSERT INTO CTDH ( TenSP, Gia, IDDonHang,SL,IDProduct)
-VALUES ( ' $nameP ', '$priceP','$lastid','$sl','$idpro')";
+
+$sql = "INSERT INTO CTDH ( TenSP, Gia, SL,IMG,IDDonHang)
+VALUES ( ' $nameP ', '$priceP','$sl','$img','$lastid')";
 if ($conn->query($sql) === TRUE) {
     echo "New record created successfully";
 

@@ -233,8 +233,9 @@ if (isset($_GET['id'])) {
       </div>
     </div>
   </div>
-  <div class="footer"></div>
-
+  <div>
+    <?= include('../footer/ft.php') ?>
+  </div>
 
 
 </body>

@@ -30,6 +30,7 @@ if(!isset($_SESSION['UserName'])){
 
 </head>
 
+
 <body>
 
   <div class="containerr">
@@ -128,15 +129,30 @@ if(!isset($_SESSION['UserName'])){
               <div>
                 <p>Tên Sản Phẩm</p>
                 <input type="text" name="name" id="">
-              </div>
-
-              <div>
-                <p><label for="des">Mô Tả Sản Phẩm</label></p>
-                <textarea  id="w3review" name="des" rows="4" style="width: 100%;" ></textarea>
-              </div>
+            </div>
               <div>
                 <p>Giá sản phẩm</p>
                 <input type="text" name="price" id="">
+              </div>
+              <div>
+                <p>Màn Hình</p>
+                <input type="text" name="MH" id="">
+              </div>
+              <div>
+                <p>Chip</p>
+                <input type="text" name="Chip" id="">
+              </div>
+              <div>
+                <p>Ram</p>
+                <input type="text" name="Ram" id="">
+              </div>
+              <div>
+                <p>Pin</p>
+                <input type="text" name="Pin" id="">
+              </div>
+              <div>
+                <p>Camera</p>
+                <input type="text" name="Camera" id="">
               </div>
               <div>
                 <label style="font-weight: bold;" for="cate">Loại Sản Phẩm:</label>
@@ -146,6 +162,10 @@ if(!isset($_SESSION['UserName'])){
                   <option value="2">IPad</option>
                   <option value="3">MacBook</option>
                   <option value="4">AirPod</option>
+                  <option value="5">Watch</option>
+
+                  <option value="6">Phụ Kiện</option>
+
                 </select>
               </div>
               <div class="hinh">

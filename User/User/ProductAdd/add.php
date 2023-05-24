@@ -28,6 +28,14 @@ $IMG2=$_POST['img2'];
 $IMG3=$_POST['img3'];
 $IMG4=$_POST['img4'];
 
+
+
+$mh=$_POST['MH'];
+$ram=$_POST['Ram'];
+$pin=$_POST['Pin'];
+$chip=$_POST['Chip'];
+$cam=$_POST['Camera'];
+
 ///hien thi loai
 $sql = "SELECT *FROM Device ";
 $result = $conn->query($sql);
@@ -42,20 +50,45 @@ $result = $conn->query($sql);
 // }
 
 
-
-
-
-
 // -----
 $sql = "INSERT INTO Device ( name, price, img, cate,des,img2,img3,img4)
-VALUES ( '$Tensp', '$Giasp','$Hinhsp','$LoaiSP','$IMG2','$Des','$IMG3','$IMG4')";
+VALUES ( '$Tensp', '$Giasp','$Hinhsp','$LoaiSP','','$IMG2','$IMG3','$IMG4')";
 
 if ($conn->query($sql) === TRUE) {
   echo "New record created successfully";
 } else {
   echo "Error: " . $sql . "<br>" . $conn->error;
 }
+
+
+
+$last = mysqli_insert_id($conn); 
+
+echo "last id : ".$last; 
+
 // header("addproduct.php");
+
+
+$sql = "INSERT INTO ttdt ( ManHinh, Chip, Ram,Pin,IDPro,Camera)
+VALUES ( ' $mh ', '$chip','$ram',$pin,$last,'$cam')";
+if ($conn->query($sql) === TRUE) {
+    echo "New record created successfully";
+
+
+  } else {
+    echo "Error: " . $sql . "<br>" . $conn->error;
+  }
+
+
+// $sql = "INSERT INTO ttdt ( ManHinh, Chip, Ram,Pin,IDPro,Camera)
+// VALUES ( '$mh ', '$chip','$ram',$pin,$last,'$cam')";
+// if ($conn->query($sql) === TRUE) {
+//     echo "New record created successfully";
+
+
+//   } else {
+//     echo "Error: " . $sql . "<br>" . $conn->error;
+//   }
 
 session_start();
 

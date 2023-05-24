@@ -21,8 +21,21 @@ if (isset($_GET['id'])) {
 
   $rowDe = mysqli_fetch_row($result);
 }
+if (isset($_GET['id'])) {
+  $Masp = $_GET['id'];
+$sql = "SELECT * FROM ttdt  where IDPro = $Masp";
+$result = $conn->query($sql);
+$tt = array();
 
 
+if ($result->num_rows > 0) {
+  while ($row = $result->fetch_assoc()) {
+    $tt[] = $row;
+  }
+} else {
+  echo "0 results";
+}
+}
 
 
 //

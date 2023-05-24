@@ -94,7 +94,7 @@ session_start();
                     tin</a>
                 </li>
                 <!-- <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">chỉnh sửa</a></li> -->
-                <li><a href="./list/list.html" class="link-dark d-inline-flex text-decoration-none rounded">Danh sách
+                <li><a href="../admin/DSuser.php" class="link-dark d-inline-flex text-decoration-none rounded">Danh sách
                     tài
                     khoản</a></li>
                 <li><a href="../admin/logout.php" class="link-dark d-inline-flex text-decoration-none rounded">Đăng xuất</a></li>

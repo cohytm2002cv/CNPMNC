@@ -90,11 +90,10 @@
         </div> -->
         <!-- <button name="dangky" type="submit" class="submit" onclick="validate()"> -->
         <input  type="submit" value="Đăng ký">
+        <br> <br>
       
         <!-- </button> -->
         <ul>
-          <li><a href="#forgot-pwd" class="forgot">Quên mật khẩu</a></li>
-          <li><a href="./dangky.html" class="register">Đăng ký</a></li>
           <li><a href="../TaiKhoan/taikhoan.php" class="register">Quay lại</a></li>
         </ul>
       </form>
@@ -106,9 +105,8 @@
 
 
   <!-- ---footer-- -->
-  <div class="footer">
-    <i class="cart-shopping-solid.svg"></i>
-    saddd
+  <div>
+    <?= include('../footer/ft.php') ?>
   </div>
 
 

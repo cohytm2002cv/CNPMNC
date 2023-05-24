@@ -30,9 +30,12 @@ if ($loai->num_rows > 0) {
 } else {
   echo "0 results";
 }
-$TK=$_SESSION['UserName'][0];
 
-$sql = "SELECT * FROM TaiKhoan where UserName = '$TK' " ;
+
+
+$TK = $_SESSION['UserName'][0];
+
+$sql = "SELECT * FROM TaiKhoan where UserName = '$TK' ";
 $result = mysqli_query($conn, $sql);
 // $rowHinh = mysqli_fetch_row($result);
 
@@ -113,8 +116,8 @@ if (isset($_GET['id'])) {
       'name' => $name,
       'img' => $img,
       'tenloai' => $TenLoai,
-      'IDpro' => $IDproduct
-
+      'IDpro' => $IDproduct,
+   
 
 
     ];
@@ -271,21 +274,21 @@ if (isset($_GET['id'])) {
             <form id="form1" action="" method="post">
               <div class="div-form">
                 <label for="">Họ Tên</label>
-                <input type="text" name="KH" id="" placeholder="Họ Tên" value="<?php echo $HoaDon['2']?> " >
+                <input type="text" name="KH" id="" placeholder="Họ Tên" value="<?php echo $HoaDon['2'] ?> ">
               </div>
               <div class="div-form">
                 <label for="">Số Điện Thoại</label>
-                <input type="text" name="SDT" id="" value="<?php echo $HoaDon['3']?> " placeholder="Số Điện Thoại"required >
+                <input type="text" name="SDT" id="" value="<?php echo $HoaDon['3'] ?> " placeholder="Số Điện Thoại" required>
               </div>
               <div class="div-form">
                 <label for="">Email</label>
-                <input type="text" name="email" value="<?php echo $HoaDon['6']?>" id="" placeholder=" Email" required>
+                <input type="text" name="email" value="<?php echo $HoaDon['6'] ?>" id="" placeholder=" Email" required>
               </div>
               <div class="div-form">
 
                 <label for="">Địa Chỉ Giao Hàng</label>
 
-                <input type="text" name="DiaChi" id="" value="<?php echo $HoaDon['4']?>"  placeholder="Địa Chỉ Giao Hàng" required>
+                <input type="text" name="DiaChi" id="" value="<?php echo $HoaDon['4'] ?>" placeholder="Địa Chỉ Giao Hàng" required>
 
               </div>
           </div>
@@ -325,8 +328,8 @@ if (isset($_GET['id'])) {
       <div class="thongtin">
         <div class="thanhtien">
           <div style="display: flex;">
-            <input class="mgg" type="text" name="mgg" id="" placeholder="Mã Giảm Giá">
-            <button class="apply">ap dung</button>
+            <input class="mgg" type="text" name="voucher" id="voucher" placeholder="Mã Giảm Giá">
+            <button onclick="voucher()" class="apply">ap dung</button>
           </div>
 
           <div class="tien">
@@ -368,11 +371,9 @@ if (isset($_GET['id'])) {
   </div>
 
   <!-- ---footer-- -->
-  <div class="footer">
-    <i class="cart-shopping-solid.svg"></i>
-
+  <div>
+    <?= include('../footer/ft.php') ?>
   </div>
-
 </body>
 
 <script src="https://www.paypal.com/sdk/js?client-id=AdoAuGakHOfZDULtRZn13WNOxPEEkzzBgnAXGimtTMddStNd9A-NtEFRDdWGxn8QzJ1yatJfaiSy0UAw&components=buttons"></script>
@@ -397,7 +398,6 @@ if (isset($_GET['id'])) {
 
 
 
-
   //thanh toan paypal
   var tien = document.getElementById('tongtien').getAttribute('value') / 23459;
   var tien = parseFloat(tien);
@@ -418,16 +418,16 @@ if (isset($_GET['id'])) {
       });
     },
     detail: {
-currency_code: "USD",
-invoice_number: "#123",
+      currency_code: "USD",
+      invoice_number: "#123",
 
 
-},
+    },
     onApprove: function(data, actions) {
       return actions.order.capture().then(function(details) {
-     document.forms["form1"].submit();
-     include_once('../Cart/createDH.php');
-    //  window.location.href = './dathang.php'; //Will take you to Google.
+        document.forms["form1"].submit();
+        include_once('../Cart/createDH.php');
+        //  window.location.href = './dathang.php'; //Will take you to Google.
 
 
         // Call your server to save the transaction

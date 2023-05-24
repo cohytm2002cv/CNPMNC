@@ -173,14 +173,14 @@ if ($loai->num_rows > 0) {
 
 </div>
   <!-- ---body -->
-<div class="loai">
+<!-- <div class="loai">
     <ul>
         <li> <a style="color: #0066CC;" href="./IPhone.html">Tất cả</a></li>
         <li><a href="">IPhone 14 Series</a></li>
         <li><a href="">IPhone 13 Series</a></li>
         <li><a href="">IPhone 12 Series</a></li>
     </ul>
-</div>
+</div> -->
 <!-- ---danh-sach-dien thoai-- -->
 
 

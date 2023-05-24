@@ -35,8 +35,16 @@ include_once("inclu.php");
   <!-- ----chitiet---- -->
   <!-- <link rel="stylesheet" href="../home/css/slide-chitiet.css"> -->
   <link rel="stylesheet" href="./StarRating/style.css">
-
-
+  <link rel="stylesheet" href="./xem.css">
+<style>
+  .ttdtd{
+    border-spacing:0px;
+    color: black;
+    width: 100%;
+    padding: 10px 10px;
+  }
+ 
+</style>
 
 
 
@@ -70,7 +78,7 @@ include_once("inclu.php");
             <?php echo count($_SESSION['cartt']);; ?>
           <?php endif; ?>
         </div>
-        </i>
+        </i>  
       </a>
       <a href="../TaiKhoan/taikhoan.php" class="User"> <i class="fa-solid fa-user"> </i>
       <?php echo $_SESSION['UserName'][0]?> 
@@ -102,39 +110,29 @@ include_once("inclu.php");
   <div class="body-main">
     <div class="top">
       <div class="left">
-        <div class="slideshow-container">
+      <div class="image-slideshow">
 
-
-
-          <div class="mySlides fade">
-            <div class="numbertext">1 / 3</div>
-            <img src="../img/<?=$rowDe['10']?>/<?= $rowDe['6']?>" style="width:100%">
-            <!-- <img src="../Home/img/ip14/14-2.jpeg" alt=""> -->
-          </div>
-          <div class="mySlides fade">
-            <div class="numbertext">1 / 3</div>
-            <img src="../img/<?=  $rowDe[10] ?>/<?=  $rowDe['7'] ?> " style="width:100%">
-            <!-- <img src="../Home/img/ip14/14-2.jpeg" alt=""> -->
-          </div>
-          <div class="mySlides fade">
-            <div class="numbertext">1 / 3</div>
-            <img src="../img/<?=  $rowDe[10] ?>/<?=  $rowDe[8] ?> " style="width:100%">
-            <!-- <img src="../Home/img/ip14/14-2.jpeg" alt=""> -->
-          </div>
-      
-
-          <a class="prev" onclick="plusSlides(-1)">❮</a>
-          <a class="next" onclick="plusSlides(1)">❯</a>
-
-        </div>
+<div class="image fade">
+<img src="../img/<?=  $rowDe[10] ?>/<?=  $rowDe['6'] ?> " alt="">
+</div>
+  
+<div class="image fade">
+<img src="../img/<?=  $rowDe[10] ?>/<?=  $rowDe['7'] ?> " alt="">
+</div>
+  
+<div class="image fade">
+<img src="../img/<?=  $rowDe[10] ?>/<?=  $rowDe['8'] ?> " alt="">
+</div>
+</div>
         <br>
 
-        <div class="slide-img">
+        <!-- <div class="slide-img">
+          <img onclick="plusSlides(-1)" src="../img/IPhone/14-2.jpeg" alt="">
+          <img onclick="plusSlides(1)" src="../img/IPhone/14-2.jpeg" alt="">
 
 
 
-
-        </div>
+        </div> -->
 
       </div>
       <div class="right">
@@ -192,19 +190,37 @@ include_once("inclu.php");
               <li><span style="background-color: #61586B;"></span></li>
             </ul>
           </div>
+          <div>
+            <table class="ttdtd" >
+            <?php foreach($tt as $key=>$value): ?>
+              <tr style="  background-color: rgba(242, 242, 242, 1);" >
+                <td>Màn Hình</td>
+                <td  ><?= $value['ManHinh'] ?> inches</td>
+              </tr>
+              <tr>
+                <td>Chip</td>
+                <td  ><?= $value['Chip'] ?></td>
+              </tr>
+              <tr style="  background-color: rgba(242, 242, 242, 1);" >
+                <td>Ram</td>
+                <td  ><?= $value['Ram'] ?> GB</td>
+              </tr>
+              <tr>
+                <td>Camera</td>
+                <td  ><?= $value['Camera'] ?> MP</td>
+              </tr>
+              <tr>
+                <td>Pin</td>
+                <td  ><?= $value['Pin'] ?> mAh</td>
+              </tr>
+              <?php endforeach; ?>
+
+              
+            </table>
+          </div>
           <div class="chuongtrinh">
             <div class="km">
-              <!-- <p class="p-km"> <i class="fa-solid fa-gift"></i> khuyến mãi</p>
-              <ul>
-
-                  <input type="radio" id="muathang" name="fav_language" value="muathang">
-                  <label for="muathang">Mua thẳng</label><br>
-                  <input type="radio" id="gop" name="fav_language" value="gop">
-                  <label for="gop">Trả góp</label><br>
-                  <input type="radio" id="baohanh" name="fav_language" value="baohanh">
-                  <label for="baohanh">giá ưu đãi mua kèm bảo hành kim cương</label><br><br>
-
-              </ul> -->
+        
             </div>
             <div class="uudai">
               <p class="p-km"> <i class="fa-solid fa-gift"></i> Ưu đãi</p>
@@ -288,9 +304,12 @@ include_once("inclu.php");
   </div>
 
   <!-- ---footer-- -->
-  <div>
+
+  <footer>
+   <div>
     <?= include('../footer/ft.php') ?>
-  </div>
+  </div>   
+</footer>
 
 
 
@@ -332,9 +351,24 @@ include_once("inclu.php");
       }
     }
   </script>
+    <script >
+      let index = 0;
+displayImages();
+function displayImages() {
+  let i;
+  const images = document.getElementsByClassName("image");
+  for (i = 0; i < images.length; i++) {
+    images[i].style.display = "none";
+  }
+  index++;
+  if (index > images.length) {
+    index = 1;
+  }
+  images[index-1].style.display = "block";
+  setTimeout(displayImages, 2000); 
+}
+    </script>
 
-
-          <!-- ---addtocard-- -->
    
 </body>
 

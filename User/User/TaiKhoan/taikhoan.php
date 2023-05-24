@@ -155,7 +155,7 @@ if ($loai->num_rows > 0) {
 
   </header>
   <!-- -------dangnhap--- -->
-  <div class="dangnhap">
+  <div class="dangnhap" style="margin-bottom: 300px;" >
     <div class="login">
       <form action="" method="post" class="form">
         <img src="./img/logo.jpg" alt="" />
@@ -185,9 +185,8 @@ if ($loai->num_rows > 0) {
 
 
   <!-- ---footer-- -->
-  <div class="footer">
-    <i class="cart-shopping-solid.svg"></i>
-    saddd
+  <div>
+    <?= include('../footer/ft.php') ?>
   </div>
 
 

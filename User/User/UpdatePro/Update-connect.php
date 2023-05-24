@@ -11,6 +11,15 @@ $price=$_POST["price"];
 $cate=$_POST["cate"];
 $des=$_POST["des"];
 
+
+
+$mh=$_POST["mh"];
+$pin=$_POST["pin"];
+$ram=$_POST["ram"];
+$chip=$_POST["chip"];
+$cam=$_POST["cam"];
+
+
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -32,6 +41,17 @@ if ($conn->query($sql) === TRUE) {
 } else {
 	echo "Error: ".$sql."<br>".$conn->error;
 }
+
+$sql = "update ttdt set Ram='$ram',Chip='$chip',ManHinh='$mh',Pin='$pin',Camera='$cam' where IDPro='$id'";
+
+if ($conn->query($sql) === TRUE) {
+	echo "Records updated: ".$id."-".$name;
+} else {
+	echo "Error: ".$sql."<br>".$conn->error;
+}
+
+
+
 }
 else
 {
@@ -43,6 +63,10 @@ if ($conn->query($sql) === TRUE) {
 	echo "Error: ".$sql."<br>".$conn->error;
 }
 }
+
+
+
+
 header("location:../Product-list/ListProduct.php");
 
 $conn->close();

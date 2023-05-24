@@ -75,6 +75,33 @@ if ($result->num_rows > 0) {
 } else {
   // echo "0 results";
 }
+
+$sql = "SELECT * FROM Device where cate='4' and img not like ''  limit 4 ";
+$result = $conn->query($sql);
+$ap = array();
+
+
+if ($result->num_rows > 0) {
+  while ($row = $result->fetch_assoc()) {
+    $ap[] = $row;
+  }
+} else {
+  // echo "0 results";
+}
+
+$sql = "SELECT * FROM Device where cate='5' and img not like ''  limit 4 ";
+$result = $conn->query($sql);
+$w = array();
+
+
+if ($result->num_rows > 0) {
+  while ($row = $result->fetch_assoc()) {
+    $w[] = $row;
+  }
+} else {
+  // echo "0 results";
+}
+
 session_start();
 
 ////
@@ -139,13 +166,13 @@ if ($loai->num_rows > 0) {
     </ul>
 
     <div class="main">
-    <form action="./search2.php" method="get">
-    <input class="ips" type="text" name="search" placeholder="Bạn Muồn Tìm Gì?">
+      <form action="./search2.php" method="get">
+        <input class="ips" type="text" name="search" placeholder="Bạn Muồn Tìm Gì?">
 
-    <button class="btnSearch"  type="submit" name="ok"><i  class="fa-solid fa-magnifying-glass"></i></button>
-    
-    
-    </form>
+        <button class="btnSearch" type="submit" name="ok"><i class="fa-solid fa-magnifying-glass"></i></button>
+
+
+      </form>
       <a href="../Cart/cart.php" class="Cart">
         <i class="fa-solid fa-cart-shopping">
           <div class="numCart">
@@ -156,15 +183,15 @@ if ($loai->num_rows > 0) {
         </i>
       </a>
       <a href="../TaiKhoan/taikhoan.php" class="User"> <i class="fa-solid fa-user"></i>
-      <?php echo $_SESSION['UserName'][0]?> 
-    </a>
+        <?php echo $_SESSION['UserName'][0] ?>
+      </a>
       <div class="bx bx-menu" id="menu-icon"></div>
 
     </div>
 
 
   </header>
-  
+
 
   <div class="main-body">
 
@@ -245,7 +272,7 @@ if ($loai->num_rows > 0) {
               <img class="imgPhone" src='../img/IPad/<?= $value['img']; ?>'>
               <p class="NamePhone"> <?= $value['name']; ?> </p>
               <div class="price-contain">
-                <p class="price"> <?= $value['price']; ?> </p>
+              <p class="price"> <?php echo number_format($value['price']); ?> </p>
                 <!-- <p class="price-old">34.000.000</p> -->
               </div>
             </div>
@@ -259,42 +286,98 @@ if ($loai->num_rows > 0) {
 
 
   <p class="btn-all">
-  <a href="../Home/Menu.php?MaLoai=2"><button>Xem tất cả IPad</button></a>
+    <a href="../Home/Menu.php?MaLoai=2"><button>Xem tất cả IPad</button></a>
   </p>
   <h2 class="Cate">MacBook</h2>
 
+  <div class="row">
+
+    <?php foreach ($Mac as $key => $value) : ?>
+
+
+      <a href="chitiet.php?id=<?= $value['id']; ?>" .>
+        <div class="column">
+          <div class="card">
+            <!-- <div id="sta" class="status"> <?= $value['TenTT']; ?></div> -->
+            <img class="imgPhone" src='../img/MacBook/<?= $value['img']; ?>'>
+            <!-- <img class="imgPhone" src="../User/User/img/device/14-2.jpeg"> -->
+            <p class="NamePhone"> <?= $value['name']; ?> </p>
+            <div class="price-contain">
+              <p class="price"> <?php echo number_format($value['price']); ?> </p>
+              <!-- <p class="price-old">34.000.000</p> -->
+            </div>
+          </div>
+        </div>
+      </a>
+
+    <?php endforeach; ?>
+
+
+
+
+  </div>
+
+
+  <p class="btn-all">
+    <a href="../Home/Menu.php?MaLoai=3"><button>Xem tất cả MacBook</button></a>
+  </p>
+  <h2 class="Cate">AirPod</h2>
+
 <div class="row">
 
-  <?php foreach ($Mac as $key => $value) : ?>
-
+  <?php foreach ($ap as $key => $value) : ?>
 
     <a href="chitiet.php?id=<?= $value['id']; ?>" .>
       <div class="column">
         <div class="card">
-          <!-- <div id="sta" class="status"> <?= $value['TenTT']; ?></div> -->
-          <img class="imgPhone" src='../img/MacBook/<?= $value['img']; ?>'>
-          <!-- <img class="imgPhone" src="../User/User/img/device/14-2.jpeg"> -->
+          <!-- <div id="sta" class="status">Tạm hết hàng</div> -->
+          <img class="imgPhone" src='../img/AirPod/<?= $value['img']; ?>'>
           <p class="NamePhone"> <?= $value['name']; ?> </p>
           <div class="price-contain">
-            <p class="price"> <?php echo number_format($value['price']); ?> </p>
+          <p class="price"> <?php echo number_format($value['price']); ?> </p>
             <!-- <p class="price-old">34.000.000</p> -->
           </div>
         </div>
       </div>
     </a>
-
   <?php endforeach; ?>
 
 
-
-
+</div>
 </div>
 
 
 <p class="btn-all">
-<a href="../Home/Menu.php?MaLoai=3"><button>Xem tất cả IPad</button></a>
+<a href="../Home/Menu.php?MaLoai=2"><button>Xem tất cả AirPodd</button></a>
 </p>
+<h2 class="Cate">Watch</h2>
+<div class="row">
 
+  <?php foreach ($w as $key => $value) : ?>
+
+    <a href="chitiet.php?id=<?= $value['id']; ?>" .>
+      <div class="column">
+        <div class="card">
+          <!-- <div id="sta" class="status">Tạm hết hàng</div> -->
+          <img class="imgPhone" src='../img/Watch/<?= $value['img']; ?>'>
+          <p class="NamePhone"> <?= $value['name']; ?> </p>
+          <div class="price-contain">
+          <p class="price"> <?php echo number_format($value['price']); ?> </p>
+            <!-- <p class="price-old">34.000.000</p> -->
+          </div>
+        </div>
+      </div>
+    </a>
+  <?php endforeach; ?>
+
+
+</div>
+</div>
+
+
+<p class="btn-all">
+<a href="../Home/Menu.php?MaLoai=2"><button>Xem tất cả Watch</button></a>
+</p>
 
 
   </div>
@@ -316,8 +399,8 @@ if ($loai->num_rows > 0) {
   </div>
 
   <!-- ---footer-- -->
-  <div >
-   <?= include('../footer/ft.php') ?>
+  <div>
+    <?= include('../footer/ft.php') ?>
   </div>
 
 
